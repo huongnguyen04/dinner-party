@@ -1,4 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+
 
 const PartyOverview = () => {
   const [theme, setTheme] = useState('');
@@ -13,10 +15,12 @@ const PartyOverview = () => {
 
   return(
     <>
-      <span>Theme {theme}</span>
-      <span>Date {date}</span>
-      <span>Host {host}</span>
-      <button onClick={()=>setEditModal(true)} >Edit</button>
+      <StyledOverview>
+        <span><b>Theme</b> {theme}</span>
+        <span><b>Date</b> {date}</span>
+        <span><b></b>Host {host}</span>
+        <button onClick={()=>setEditModal(true)} >Edit</button>
+      </StyledOverview>
 
       {editModal && <>
         <form>
@@ -33,5 +37,12 @@ const PartyOverview = () => {
     </>
   );
 }
+
+const StyledOverview = styled.div`
+  span {
+    display: inline-block;
+    padding: 50px;
+  }
+`
 
 export default PartyOverview;
