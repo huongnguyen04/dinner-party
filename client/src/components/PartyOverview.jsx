@@ -18,13 +18,14 @@ const PartyOverview = () => {
       <StyledOverview>
         <span><b>Theme</b> {theme}</span>
         <span><b>Date</b> {date}</span>
-        <span><b></b>Host {host}</span>
+        <span><b>Host</b> {host}</span>
         <button onClick={()=>setEditModal(true)} >Edit</button>
       </StyledOverview>
 
       {editModal && <>
         <form>
           Theme: <input type='text' value={theme} onChange={(e) => setTheme(e.target.value)}></input>
+          <div> Give me a theme! </div>
           <br></br>
           Date: <input type='date' value={date} onChange={(e) => setDate(e.target.value)}></input>
           <br></br>
