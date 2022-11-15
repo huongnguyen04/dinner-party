@@ -1,5 +1,7 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import styled from 'styled-components';
+import { AppStyle } from '../assets/styles.js';
 import PartyOverview from './PartyOverview.jsx';
 import Menu from './Menu.jsx';
 import Guests from './Guests.jsx';
@@ -18,7 +20,8 @@ const App = () => {
 
   return (
     <>
-      <h1>dinner party 🥘🎉</h1>
+      <AppStyle/>
+      <StyledAppTitle>dinner party 🥘🎉</StyledAppTitle>
       {!isAuthenticated &&
       <>
         <button onClick={loginWithRedirect}>Log in</button>
@@ -44,5 +47,9 @@ const App = () => {
     </>
   )
 }
+
+const StyledAppTitle = styled.h1`
+  text-align: center;
+`
 
 export default App;
