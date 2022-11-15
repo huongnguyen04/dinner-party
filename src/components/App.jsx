@@ -1,8 +1,10 @@
 import React from 'react';
 
-// Huzzah for jsx!
 const App = () => {
-  return <h1>Hello World</h1>
+
+  return (
+    <h1>dinner party 🥘🎉</h1>
+  )
 }
 
 export default App;
