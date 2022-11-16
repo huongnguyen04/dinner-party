@@ -9,6 +9,9 @@ const PartyOverview = () => {
   const [host, setHost] = useState('');
   const [editModal, setEditModal] = useState(false);
   const [makeMenu, setMakeMenu] = useState(false);
+  const [cuisines, setCuisines] = useState(null);
+  const [modalView, setModalView] = useState(true);
+  const [userInput, setUserInput] = useState(null)
 
   const onSubmit = (e) => {
     e.preventDefault()
