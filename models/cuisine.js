@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+require("dotenv").config();
+const mongoose = require('../db/connection.js');
 
 const CuisineSchema = new mongoose.Schema ({
   name: String,
