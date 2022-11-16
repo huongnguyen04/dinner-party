@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -11,7 +11,8 @@ const PartyOverview = () => {
   const [makeMenu, setMakeMenu] = useState(false);
   const [cuisines, setCuisines] = useState(null);
   const [modalView, setModalView] = useState(true);
-  const [userInput, setUserInput] = useState(null)
+  const [userInput, setUserInput] = useState(null);
+  const [selectedTheme, setSelectedTheme] = useState(null);
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -22,15 +23,17 @@ const PartyOverview = () => {
   }
 
   const generateMenu = () => {
-    axios.get(`/cuisines/${theme}`)
-      .then((res) => {
-        console.log('response: ', res.data);
-        //add 3 items to each menu category
-      })
-      .catch((err) => {
-        console.log('Error, could not get cuisines. Error: ', err);
-      })
+    axios.get(`/cuisines/${selectedTheme}`)
+    .then((res) => {
+      console.log('response: ', res.data);
+      //add 3 items to each menu category
+    })
+    .catch((err) => {
+      console.log('Error, could not get cuisines. Error: ', err);
+    })
   }
+
+  useEffect(generateMenu, [selectedTheme]);
 
   const getCuisines = () => {
     axios.get(`/cuisines`)
@@ -41,6 +44,13 @@ const PartyOverview = () => {
       .catch((err) => {
         console.log('Error, could not get cuisines. Error: ', err);
       })
+  }
+
+  let cuisineOptions;
+  if (cuisines) {
+    cuisineOptions = cuisines.map((cuisine, index) =>
+      <option key={index}>{cuisine}</option>
+    )
   }
 
   return (
@@ -63,6 +73,7 @@ const PartyOverview = () => {
                   setUserInput(true);
                 } else {
                   setUserInput(false);
+                  getCuisines();
                 }
               }}>
               <option value='select'>select an option</option>
@@ -75,9 +86,13 @@ const PartyOverview = () => {
         {!modalView && !userInput &&
           <>
             <div>Select an option and we'll generate a menu for you.</div>
-            <select>
+            <select onChange={(e) => {
+              setSelectedTheme(e.target.value);
+            }}>
               <option>choose here</option>
+              {cuisineOptions}
             </select>
+            <button onClick={() => setEditModal(false)}>confirm</button>
           </>
         }
         {!modalView && userInput &&
