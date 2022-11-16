@@ -53,19 +53,44 @@ const PartyOverview = () => {
       </StyledOverview>
 
       {editModal && <>
-        <form>
-          Theme: <input type='text' value={theme} onChange={(e) => setTheme(e.target.value)}></input>
-          <div>
-            <input type='checkbox' id='makeMenu' name='makeMenu' onChange={() => setMakeMenu(true)}></input>
-            <label htmlFor='makeMenu'>Make me a menu!</label>
-          </div>
-          <br></br>
-          Date: <input type='date' value={date} onChange={(e) => setDate(e.target.value)}></input>
-          <br></br>
-          Host: <input type='text' value={host} onChange={(e) => setHost(e.target.value)}></input>
-          <br></br>
-          <button onClick={onSubmit}>submit</button>
-        </form>
+        {modalView &&
+          <>
+            <div>
+              Would you like to input a theme or choose from a list?
+            </div>
+            <select onChange={(e) => {
+                if (e.target.value === 'true') {
+                  setUserInput(true);
+                } else {
+                  setUserInput(false);
+                }
+              }}>
+              <option value='select'>select an option</option>
+              <option value={true}>I want to input a theme</option>
+              <option value={false}>I want choose from a list</option>
+            </select>
+            <button onClick={() => setModalView(!modalView)}>next</button>
+          </>
+        }
+        {!modalView && !userInput &&
+          <>
+            <div>Select an option and we'll generate a menu for you.</div>
+            <select>
+              <option>choose here</option>
+            </select>
+          </>
+        }
+        {!modalView && userInput &&
+          <form>
+            Theme: <input type='text' value={theme} onChange={(e) => setTheme(e.target.value)}></input>
+            <br></br>
+            Date: <input type='date' value={date} onChange={(e) => setDate(e.target.value)}></input>
+            <br></br>
+            Host: <input type='text' value={host} onChange={(e) => setHost(e.target.value)}></input>
+            <br></br>
+            <button onClick={onSubmit}>submit</button>
+          </form>
+        }
       </>
       }
     </>
