@@ -32,8 +32,18 @@ const PartyOverview = () => {
       })
   }
 
+  const getCuisines = () => {
+    axios.get(`/cuisines`)
+      .then((res) => {
+        console.log('response: ', res.data);
+        setCuisines(res.data);
+      })
+      .catch((err) => {
+        console.log('Error, could not get cuisines. Error: ', err);
+      })
+  }
 
-  return(
+  return (
     <>
       <StyledOverview>
         <span><b>Theme</b> {theme}</span>
