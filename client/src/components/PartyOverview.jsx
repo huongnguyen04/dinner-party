@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 
 
@@ -7,11 +8,27 @@ const PartyOverview = () => {
   const [date, setDate] = useState('');
   const [host, setHost] = useState('');
   const [editModal, setEditModal] = useState(false);
+  const [makeMenu, setMakeMenu] = useState(false);
 
-  const onChange = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault()
     setEditModal(false);
+    if (makeMenu) {
+      generateMenu();
+    }
   }
+
+  const generateMenu = () => {
+    axios.get(`/cuisines/${theme}`)
+      .then((res) => {
+        console.log('response: ', res.data);
+        //add 3 items to each menu category
+      })
+      .catch((err) => {
+        console.log('Error, could not get cuisines. Error: ', err);
+      })
+  }
+
 
   return(
     <>
