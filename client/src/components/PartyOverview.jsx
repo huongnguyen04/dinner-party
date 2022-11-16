@@ -42,13 +42,16 @@ const PartyOverview = () => {
       {editModal && <>
         <form>
           Theme: <input type='text' value={theme} onChange={(e) => setTheme(e.target.value)}></input>
-          <div> Give me a theme! </div>
+          <div>
+            <input type='checkbox' id='makeMenu' name='makeMenu' onChange={() => setMakeMenu(true)}></input>
+            <label htmlFor='makeMenu'>Make me a menu!</label>
+          </div>
           <br></br>
           Date: <input type='date' value={date} onChange={(e) => setDate(e.target.value)}></input>
           <br></br>
           Host: <input type='text' value={host} onChange={(e) => setHost(e.target.value)}></input>
           <br></br>
-          <button onChange={onChange}>submit</button>
+          <button onClick={onSubmit}>submit</button>
         </form>
       </>
       }
