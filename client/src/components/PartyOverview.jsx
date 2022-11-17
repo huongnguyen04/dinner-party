@@ -5,10 +5,7 @@ import Modal from './Modal.jsx';
 import useModal from './useModal.jsx';
 import '../assets/modal.css';
 
-const PartyOverview = ( {generateMenu }) => {
-  const [theme, setTheme] = useState('');
-  const [date, setDate] = useState('');
-  const [host, setHost] = useState('');
+const PartyOverview = ( {theme, setTheme, date, setDate, host, setHost, generateMenu, sendPartyOverviewDetails }) => {
   const [editModal, setEditModal] = useState(false);
   const [makeMenu, setMakeMenu] = useState(false);
   const [cuisines, setCuisines] = useState(null);
@@ -32,18 +29,20 @@ const PartyOverview = ( {generateMenu }) => {
         <span><b>Theme</b> {theme}</span>
         <span><b>Date</b> {date}</span>
         <span><b>Host</b> {host}</span>
-        <button onClick={toggle}>Edit</button>
+        <button onClick={toggle}>Edit Details</button>
       </StyledOverview>
 
       <div>
-        <Modal visible={visible} toggle={toggle} theme={theme} setTheme={setTheme} date={date} setDate={setDate} host={host} setHost={setHost} setSelectedTheme={setSelectedTheme} />
+        <Modal visible={visible} toggle={toggle} theme={theme} setTheme={setTheme} date={date} setDate={setDate} host={host} setHost={setHost} setSelectedTheme={setSelectedTheme} sendPartyOverviewDetails={sendPartyOverviewDetails} />
       </div>
     </>
   );
 }
 
 const StyledOverview = styled.div`
+  text-align: center;
   span {
+    font-size: 24px;
     display: inline-block;
     padding: 50px;
   }
