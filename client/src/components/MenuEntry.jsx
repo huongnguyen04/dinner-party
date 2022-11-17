@@ -2,7 +2,7 @@ import React from 'react';
 
 const MenuEntry = ({ foods }) => {
   let mapped;
-  if (foods.length > 0) {
+  if (foods && foods.length > 0) {
     mapped = foods.map((item, index) => <div key={index}>{item}</div>)
   }
   return (
