@@ -44,6 +44,7 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, entrees,
     <>
       <h1>Menu</h1>
 
+
       <h4>Entrees</h4>
       <MenuEntry foods={entrees}/>
       <br></br>
