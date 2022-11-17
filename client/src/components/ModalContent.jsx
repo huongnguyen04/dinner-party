@@ -56,10 +56,10 @@ const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, s
         <br></br>
         <form onSubmit={(e)=> {
           e.preventDefault();
-          sendPartyOverviewDetails();
           setTheme(tempTheme);
           setDate(tempDate);
           setHost(tempHost);
+          sendPartyOverviewDetails();
           toggle();
         }}>
           <label htmlFor='theme'>Theme: </label>
@@ -83,10 +83,10 @@ const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, s
     {!modalView1 && userInput &&
       <form onSubmit={(e)=> {
         e.preventDefault();
-        sendPartyOverviewDetails();
         setTheme(tempTheme);
         setDate(tempDate);
         setHost(tempHost);
+        sendPartyOverviewDetails();
         toggle();
       }}>
         Theme: <input type='text' value={tempTheme} onChange={(e) => setTempTheme(e.target.value)} required></input>
