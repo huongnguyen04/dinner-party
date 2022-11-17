@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
 import axios from 'axios';
+import Typed from 'typed.js';
 import { AppStyle } from '../assets/styles.js';
 import PartyOverview from './PartyOverview.jsx';
 import Menu from './Menu.jsx';
 import Guests from './Guests.jsx';
+import TypedAnimation from './TypedAnimation.jsx';
 
 const App = () => {
   const { isLoading, isAuthenticated, error, user, loginWithRedirect, logout } =
@@ -18,6 +20,9 @@ const App = () => {
   const [desserts, setDesserts] = useState([]);
   const [watch, setWatch] = useState(true);
   const [guests, setGuests] = useState();
+  const [theme, setTheme] = useState('');
+  const [date, setDate] = useState('');
+  const [host, setHost] = useState('');
 
   const getMenu = () => {
     if (user) {
@@ -29,14 +34,32 @@ const App = () => {
           setSides(res.data[0].sides);
           setDrinks(res.data[0].drinks);
           setDesserts(res.data[0].desserts);
-          setGuests(res.data[0].guests)
+          setGuests(res.data[0].guests);
+          setTheme(res.data[0].theme);
+          setDate(res.data[0].date);
+          setHost(res.data[0].host);
         })
-        .catch((err) => console.log('Error getting data in DB. Error: ', err))
+        .catch((err) => {
+          console.log('Error getting data in DB. Error: ', err)
+          setEntrees([]);
+          setAppetizers([]);
+          setSides([]);
+          setDrinks([]);
+          setDesserts([]);
+          setGuests([]);
+        })
     }
   }
 
+  const sendPartyOverviewDetails = () => {
+    console.log('in send party overview details')
+    axios.post('/partyDetail', {userId: user.sub, theme: theme, date: date.toString(), host: host})
+      .then((res) => console.log('added party details'))
+      .catch((err) => console.log(err));
+  }
+
   const addGuest = (guest) => {
-    axios.post('/guests', {userId: user.sub, guest: guest})
+    axios.post('/guests', {userId: user.sub, guest: guest, confirmed: false})
       .then((res) => console.log('added guest'))
       .catch((err) => console.log(err));
   }
@@ -70,43 +93,57 @@ const App = () => {
       .catch((err) => console.log(err));
   }
 
+  const reset = () => {
+    setWatch(!watch);
+    axios.post('/delete')
+      .then((res) => {
+        console.log('cleared all')
+      })
+      .catch((err) => console.log('error clearing all'))
+  }
+
   useEffect(getMenu, [user, watch]);
 
   const generateMenu = (selectedTheme) => {
     if (selectedTheme) {
       axios.get(`/cuisines/${selectedTheme}`)
-      .then((res) => {
-        let entreeData = [];
-        let appData = [];
-        let sideData = [];
-        let drinkData = [];
-        let dessertData = [];
-        for (let i = 0; i < 3; i++) {
-          if (res.data.entrees[i]) {
-            entreeData.push(res.data.entrees[i].name);
+        .then((res) => {
+          let entreeData = [];
+          let appData = [];
+          let sideData = [];
+          let drinkData = [];
+          let dessertData = [];
+          for (let i = 0; i < 3; i++) {
+            if (res.data.entrees[i]) {
+              entreeData.push(res.data.entrees[i].name);
+              addEntree(res.data.entrees[i].name)
+            }
+            if (res.data.appetizers[i]) {
+              appData.push(res.data.appetizers[i].name);
+              addAppetizer(res.data.appetizers[i].name);
+            }
+            if (res.data.sides[i]) {
+              sideData.push(res.data.sides[i].name);
+              addSide(res.data.sides[i].name);
+            }
+            if (res.data.drinks[i]) {
+              drinkData.push(res.data.drinks[i].name);
+              addDrink(res.data.drinks[i].name);
+            }
+            if (res.data.desserts[i]) {
+              dessertData.push(res.data.desserts[i].name);
+              addDessert(res.data.desserts[i].name);
+            }
           }
-          if (res.data.appetizers[i]) {
-            appData.push(res.data.appetizers[i].name);
-          }
-          if (res.data.sides[i]) {
-            sideData.push(res.data.sides[i].name);
-          }
-          if (res.data.drinks[i]) {
-            drinkData.push(res.data.drinks[i].name);
-          }
-          if (res.data.desserts[i]) {
-            dessertData.push(res.data.desserts[i].name);
-          }
-        }
-        setEntrees(entreeData);
-        setAppetizers(appData);
-        setSides(sideData);
-        setDrinks(drinkData);
-        setDesserts(dessertData);
-      })
-      .catch((err) => {
-        console.log('Error, could not get cuisines. Error: ', err);
-      })
+          setEntrees(entreeData);
+          setAppetizers(appData);
+          setSides(sideData);
+          setDrinks(drinkData);
+          setDesserts(dessertData);
+        })
+        .catch((err) => {
+          console.log('Error, could not get cuisines. Error: ', err);
+        })
     }
   }
 
@@ -123,24 +160,40 @@ const App = () => {
       <StyledAppTitle>dinner party 🥘🎉</StyledAppTitle>
       {!isAuthenticated &&
       <>
+      <StyledButtonAlign>
         <button onClick={loginWithRedirect}>Log in</button>
-        <h1>let's host a dinner party.</h1>
-        <h2>the theme is...</h2>
+      </StyledButtonAlign>
+      <StyledTextAlign>
+        <StyledSubTitles>
+          <h1>let's host a dinner party.</h1>
+          <h2>the theme is...</h2>
+          <TypedAnimation/>
+        </StyledSubTitles>
+      </StyledTextAlign>
       </>
       }
       {isAuthenticated &&
         <>
-          <div>
-            Hello, {user.name}{'👋🏻 '}
+          <StyledLogOutButtonAlign>
+            <button onClick={reset}>Reset</button>
             <button onClick={() => logout({ returnTo: window.location.origin })}>
               Log out
             </button>
+          </StyledLogOutButtonAlign>
+          <div>
+            Hello, {user.name}{'👋🏻 '}
           </div>
           {user &&
           <div>
-            <PartyOverview generateMenu={generateMenu} />
-            <Menu addEntree={addEntree} addAppetizer={addAppetizer} addSide={addSide} addDrink={addDrink} addDessert={addDessert} entrees={entrees} setEntrees={setEntrees} appetizers={appetizers} setAppetizers={setAppetizers} sides={sides} setSides={setSides} drinks={drinks} setDrinks={setDrinks} desserts={desserts} setDesserts={setDesserts} getMenu={getMenu} watch={watch} setWatch={setWatch}/>
-            <Guests guests={guests} setGuests={setGuests} addGuest={addGuest} watch={watch} setWatch={setWatch}/>
+            <PartyOverview theme={theme} setTheme={setTheme} host={host} setHost={setHost} date={date} setDate={setDate} generateMenu={generateMenu} sendPartyOverviewDetails={sendPartyOverviewDetails} />
+            <StyledContainer>
+              <StyledMenu>
+                <Menu addEntree={addEntree} addAppetizer={addAppetizer} addSide={addSide} addDrink={addDrink} addDessert={addDessert} entrees={entrees} setEntrees={setEntrees} appetizers={appetizers} setAppetizers={setAppetizers} sides={sides} setSides={setSides} drinks={drinks} setDrinks={setDrinks} desserts={desserts} setDesserts={setDesserts} getMenu={getMenu} watch={watch} setWatch={setWatch}/>
+              </StyledMenu>
+              <StyledGuests>
+                <Guests guests={guests} setGuests={setGuests} addGuest={addGuest} watch={watch} setWatch={setWatch}/>
+              </StyledGuests>
+            </StyledContainer>
           </div>
           }
         </>
@@ -149,8 +202,46 @@ const App = () => {
   )
 }
 
+const StyledTextAlign = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`
+
 const StyledAppTitle = styled.h1`
   text-align: center;
+  font-size: 42px;
+`
+
+const StyledSubTitles = styled.div`
+  text-align: center;
+`
+
+const StyledButtonAlign = styled.div`
+  position: absolute;
+  right: 30px;
+  padding: 10px;
+`
+
+const StyledLogOutButtonAlign = styled.div`
+  position: absolute;
+  right: 30px;
+  padding: 10px;
+`
+
+const StyledContainer = styled.div`
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-areas: "menu guests"
+`
+
+const StyledMenu = styled.div`
+  grid-area: menu;
+`
+
+const StyledGuests = styled.div`
+  grid-area: guests;
 `
 
 export default App;
