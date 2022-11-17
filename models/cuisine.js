@@ -1,11 +1,10 @@
-require("dotenv").config();
-const mongoose = require('../db/connection.js');
+const mongoose = require('mongoose');
 
-const CuisineSchema = new mongoose.Schema ({
+const CuisineSchema = new mongoose.Schema({
   name: String,
   type: String,
   category: String
 });
-const Cuisine = new mongoose.model('Cuisine', CuisineSchema);
+// const Cuisine = new mongoose.model('Cuisine', CuisineSchema);
 
-module.exports = Cuisine;
+module.exports = CuisineSchema;
