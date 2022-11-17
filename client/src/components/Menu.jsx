@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MenuEntry from './MenuEntry.jsx';
+import axios from 'axios';
 
-const Menu = () => {
-  const [entrees, setEntrees] = useState(['entree1', 'entree2', 'entree3']);
-  const [appetizers, setAppetizers] = useState(['app1', 'app2', 'app3']);
-  const [sides, setSides] = useState(['side1', 'side2', 'side3']);
-  const [drinks, setDrinks] = useState(['drink1', 'drink2', 'drink3']);
-  const [desserts, setDesserts] = useState(['dessert1', 'dessert2', 'dessert3']);
+const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, entrees, setEntrees, appetizers, setAppetizers, sides, setSides, drinks, setDrinks, desserts, setDesserts, getMenu, watch, setWatch }) => {
 
   const [entree, setEntree] = useState('');
   const [appetizer, setAppetizer] = useState('');
@@ -15,37 +11,32 @@ const Menu = () => {
   const [dessert, setDessert] = useState('');
 
   const addEntreeClick = () => {
-    let copy = entrees.slice();
-    copy.push(entree);
-    setEntrees(copy);
+    setWatch(!watch);
+    addEntree(entree);
     setEntree('');
   }
 
   const addAppClick = () => {
-    let copy = appetizers.slice();
-    copy.push(appetizer);
-    setAppetizers(copy);
+    setWatch(!watch);
+    addAppetizer(appetizer);
     setAppetizer('');
   }
 
   const addSideClick = () => {
-    let copy = sides.slice();
-    copy.push(side);
-    setSides(copy);
+    setWatch(!watch);
+    addSide(side);
     setSide('');
   }
 
   const addDrinkClick = () => {
-    let copy = drinks.slice();
-    copy.push(drink);
-    setDrinks(copy);
+    setWatch(!watch);
+    addDrink(drink);
     setDrink('');
   }
 
   const addDessertClick = () => {
-    let copy = desserts.slice();
-    copy.push(dessert);
-    setDesserts(copy);
+    setWatch(!watch);
+    addDessert(dessert);
     setDessert('');
   }
 
@@ -54,7 +45,6 @@ const Menu = () => {
       <h1>Menu</h1>
 
       <h4>Entrees</h4>
-
       <MenuEntry foods={entrees}/>
       <br></br>
       <div>
@@ -87,7 +77,7 @@ const Menu = () => {
       </div>
 
       <h4>Dessert</h4>
-      <MenuEntry foods={drinks}/>
+      <MenuEntry foods={desserts}/>
       <br></br>
       <div>
         <input placeholder={"add dessert"} value={dessert} onChange={(e) => setDessert(e.target.value)}></input>
