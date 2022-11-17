@@ -10,17 +10,17 @@ const TypedAnimation = () => {
   React.useEffect(() => {
     const options = {
     	strings: [
-        'asian cuisine',
-        'italian cuisine',
-        'french cuisine',
         'wine and cheese night',
+        'italian cuisine',
         'harry potter',
+        'french cuisine',
         'sushi',
+        'asian cuisine',
         'christmas',
         'whatever you want'
       ],
       typeSpeed: 70,
-      backSpeed: 50,
+      backSpeed: 70,
     };
 
     // elRef refers to the <span> rendered below
