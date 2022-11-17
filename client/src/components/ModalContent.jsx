@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, setSelectedTheme, sendPartyOverviewDetails }) => {
+const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, setSelectedTheme, sendPartyOverviewDetails, watch, setWatch }) => {
   const [modalView1, setModalView1] = useState(true);
   // const [modalView2, setModalView2] = useState(false);
   const [userInput, setUserInput] = useState(null);
@@ -47,7 +47,7 @@ const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, s
           <option value={true}>I want to input a theme</option>
           <option value={false}>I want choose from a list</option>
         </select>
-        <button onClick={() => setModalView1(!modalView1)}>next</button>
+        <button class='no-padding' onClick={() => setModalView1(!modalView1)}>next</button>
       </>
     }
      {!modalView1 && !userInput &&
@@ -60,6 +60,7 @@ const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, s
           setDate(tempDate);
           setHost(tempHost);
           sendPartyOverviewDetails();
+          setWatch(!watch);
           toggle();
         }}>
           <label htmlFor='theme'>Theme: </label>

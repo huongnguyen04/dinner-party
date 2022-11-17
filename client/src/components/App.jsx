@@ -47,6 +47,9 @@ const App = () => {
           setDrinks([]);
           setDesserts([]);
           setGuests([]);
+          setTheme('');
+          setDate('');
+          setHost('');
         })
     }
   }
@@ -94,10 +97,10 @@ const App = () => {
   }
 
   const reset = () => {
-    setWatch(!watch);
     axios.post('/delete')
-      .then((res) => {
-        console.log('cleared all')
+    .then((res) => {
+      console.log('cleared all')
+      setWatch(!watch);
       })
       .catch((err) => console.log('error clearing all'))
   }
@@ -161,7 +164,7 @@ const App = () => {
       {!isAuthenticated &&
       <>
       <StyledButtonAlign>
-        <button onClick={loginWithRedirect}>Log in</button>
+        <button onClick={loginWithRedirect}>Log In</button>
       </StyledButtonAlign>
       <StyledTextAlign>
         <StyledSubTitles>
@@ -177,15 +180,15 @@ const App = () => {
           <StyledLogOutButtonAlign>
             <button onClick={reset}>Reset</button>
             <button onClick={() => logout({ returnTo: window.location.origin })}>
-              Log out
+              Log Out
             </button>
           </StyledLogOutButtonAlign>
-          <div>
-            Hello, {user.name}{'👋🏻 '}
-          </div>
+          <StyledGreeting>
+            Hello, {user.name}{' 👋🏻 '}
+          </StyledGreeting>
           {user &&
           <div>
-            <PartyOverview theme={theme} setTheme={setTheme} host={host} setHost={setHost} date={date} setDate={setDate} generateMenu={generateMenu} sendPartyOverviewDetails={sendPartyOverviewDetails} />
+            <PartyOverview theme={theme} setTheme={setTheme} host={host} setHost={setHost} date={date} setDate={setDate} generateMenu={generateMenu} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch} />
             <StyledContainer>
               <StyledMenu>
                 <Menu addEntree={addEntree} addAppetizer={addAppetizer} addSide={addSide} addDrink={addDrink} addDessert={addDessert} entrees={entrees} setEntrees={setEntrees} appetizers={appetizers} setAppetizers={setAppetizers} sides={sides} setSides={setSides} drinks={drinks} setDrinks={setDrinks} desserts={desserts} setDesserts={setDesserts} getMenu={getMenu} watch={watch} setWatch={setWatch}/>
@@ -215,6 +218,10 @@ const StyledAppTitle = styled.h1`
 `
 
 const StyledSubTitles = styled.div`
+  text-align: center;
+`
+
+const StyledGreeting = styled.div`
   text-align: center;
 `
 

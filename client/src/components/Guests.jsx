@@ -56,7 +56,7 @@ const Guests = ({ guests, setGuests, watch, setWatch, addGuest }) => {
 
       <div>
         <input placeholder={"add more guests"} value={guest} onChange={(e) => setGuest(e.target.value)}></input>
-        <button onClick={onGuestButtonClick}>+</button>
+        <button class='plus' onClick={onGuestButtonClick}>+</button>
       </div>
 
     </>

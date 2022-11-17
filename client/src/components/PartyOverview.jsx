@@ -5,7 +5,7 @@ import Modal from './Modal.jsx';
 import useModal from './useModal.jsx';
 import '../assets/modal.css';
 
-const PartyOverview = ( {theme, setTheme, date, setDate, host, setHost, generateMenu, sendPartyOverviewDetails }) => {
+const PartyOverview = ( {theme, setTheme, date, setDate, host, setHost, generateMenu, sendPartyOverviewDetails, watch, setWatch }) => {
   const [editModal, setEditModal] = useState(false);
   const [makeMenu, setMakeMenu] = useState(false);
   const [cuisines, setCuisines] = useState(null);
@@ -21,7 +21,7 @@ const PartyOverview = ( {theme, setTheme, date, setDate, host, setHost, generate
     }
   }
 
-  useEffect(()=> generateMenu(selectedTheme), [selectedTheme]);
+  useEffect(()=> generateMenu(selectedTheme), [watch]);
 
   return (
     <>
@@ -33,7 +33,7 @@ const PartyOverview = ( {theme, setTheme, date, setDate, host, setHost, generate
       </StyledOverview>
 
       <div>
-        <Modal visible={visible} toggle={toggle} theme={theme} setTheme={setTheme} date={date} setDate={setDate} host={host} setHost={setHost} setSelectedTheme={setSelectedTheme} sendPartyOverviewDetails={sendPartyOverviewDetails} />
+        <Modal visible={visible} toggle={toggle} theme={theme} setTheme={setTheme} date={date} setDate={setDate} host={host} setHost={setHost} setSelectedTheme={setSelectedTheme} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch} />
       </div>
     </>
   );
@@ -45,6 +45,7 @@ const StyledOverview = styled.div`
     font-size: 24px;
     display: inline-block;
     padding: 50px;
+    color: #EFF1F3;
   }
 `
 

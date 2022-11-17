@@ -5,17 +5,17 @@ import styled from 'styled-components';
 
 const container = document.getElementById('root');
 
-const Modal = ({ visible, toggle, theme, setTheme, date, setDate, host, setHost, setSelectedTheme, sendPartyOverviewDetails }) => visible ? ReactDOM.createPortal(
+const Modal = ({ visible, toggle, theme, setTheme, date, setDate, host, setHost, setSelectedTheme, sendPartyOverviewDetails, watch, setWatch }) => visible ? ReactDOM.createPortal(
   <div className="modal">
     <div className="modal-pop" role="dialog" aria-modal="true">
       <StyledXButtonAlign>
-        <button type="button" onClick={() => {
+        <button class='no-padding' type="button" onClick={() => {
           toggle()
         }}>x</button>
       </StyledXButtonAlign>
       <h3>Let's party!</h3>
 
-      <ModalContent toggle={toggle} theme={theme} setTheme={setTheme} date={date} setDate={setDate} host={host} setHost={setHost} setSelectedTheme={setSelectedTheme} sendPartyOverviewDetails={sendPartyOverviewDetails}/>
+      <ModalContent toggle={toggle} theme={theme} setTheme={setTheme} date={date} setDate={setDate} host={host} setHost={setHost} setSelectedTheme={setSelectedTheme} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch}/>
 
     </div>
     <div className="modal-overlay"></div>
