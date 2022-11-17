@@ -1,6 +1,6 @@
 const axios = require('axios');
-const Model = require('./models/cuisine.js');
-const connect = require('./db/connection.js');
+// const Model = require('./models/cuisine.js');
+const { Cuisine } = require('./db/connection.js');
 
 const api = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${process.env.EDAMAM_APP_ID}&app_key=${process.env.EDAMAM_APP_KEY}&`
 
@@ -59,14 +59,14 @@ const getFoodDataAllCuisines = () => {
   return Promise.all(allFoodData);
 }
 
-Model.deleteMany({})
+Cuisine.deleteMany({})
   .then(() => {
     return getFoodDataAllCuisines();
   })
   .then((data) => {
     let flatList = [];
     console.log('data length:', data.length)
-    console.log('data:', data)
+    // console.log('data:', data)
     data.forEach((arr) => {
       if (typeof arr !== 'undefined') {
         arr.forEach((item) => {
@@ -76,8 +76,8 @@ Model.deleteMany({})
         })
       }
     });
-    console.log('flatList: ', flatList)
-    return Model.insertMany(flatList);
+    console.log('flatList: ', flatList);
+    return Cuisine.insertMany(flatList);
   })
   .then(() => {
     console.log('The database has been reset!');
