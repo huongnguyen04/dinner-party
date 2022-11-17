@@ -2,7 +2,8 @@ require("dotenv").config();
 const axios = require('axios');
 const express = require('express');
 const path = require("path");
-const routes = require('../controllers/cuisines.js')
+const cuisineRoutes = require('../controllers/cuisines.js')
+const userRoutes = require('../controllers/users.js')
 const app = express();
 
 // Require User model
@@ -13,9 +14,19 @@ const api = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${process.
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 
-app.get(`/cuisines/:theme`, routes.getCuisinesData)
+app.get(`/cuisines/:theme`, cuisineRoutes.getCuisinesData);
 
-app.get('/cuisines', routes.getCuisines)
+app.get('/cuisines', cuisineRoutes.getCuisines);
+
+app.get('/partyData/:userId', userRoutes.getPartyData);
+app.post('/guests', userRoutes.addGuest);
+
+app.post('/entrees', userRoutes.addEntree);
+app.post('/appetizers', userRoutes.addAppetizer);
+app.post('/sides', userRoutes.addSide);
+app.post('/drinks', userRoutes.addDrink);
+app.post('/desserts', userRoutes.addDessert);
+
 
 
 app.listen(3005);
