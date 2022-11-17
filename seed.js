@@ -7,7 +7,8 @@ const api = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${process.
 
 // const cuisineTypes = ['american', 'african', 'asian', 'british', 'caribbean', 'central europe', 'chinese',' eastern europe', 'french', 'greek', 'indian', 'italian', 'japanese', 'korean', 'kosher', 'mediterranean', 'mexican', 'middle eastern', 'nordic', 'south american', spanish', 'south east asian', 'taiwanese', 'vietnamese']
 // console.log('cuisineTypes.length: ', cuisineTypes.length) // 24
-let cuisineTypes = ['asian', 'american', 'french', 'mediterranean', 'mexican'];
+// let cuisineTypes = ['asian', 'american', 'french', 'mediterranean', 'mexican'];
+// let cuisineTypes = ['spanish'];
 
 const getFoodData = (cuisineType, dishType, dishTypeQuery) => {
   return axios.get(`${api}cuisineType=${cuisineType}&dishType=${dishTypeQuery}`)
@@ -59,7 +60,7 @@ const getFoodDataAllCuisines = () => {
   return Promise.all(allFoodData);
 }
 
-Cuisine.deleteMany({})
+Cuisine.find({})
   .then(() => {
     return getFoodDataAllCuisines();
   })
@@ -80,7 +81,7 @@ Cuisine.deleteMany({})
     return Cuisine.insertMany(flatList);
   })
   .then(() => {
-    console.log('The database has been reset!');
+    console.log('The database has been seeded!');
   })
   .catch((err) => console.error('Error resetting the database: ', err))
   .then(() => process.exit());

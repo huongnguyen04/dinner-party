@@ -14,14 +14,11 @@ const PartyOverview = ( {theme, setTheme, date, setDate, host, setHost, generate
   const [selectedTheme, setSelectedTheme] = useState(null);
   const {toggle, visible} = useModal();
 
-  const onSubmit = (e) => {
-    e.preventDefault()
-    if (makeMenu) {
-      generateMenu();
-    }
-  }
+  // useEffect(()=> {
 
-  useEffect(()=> generateMenu(selectedTheme), [watch]);
+  //   // sendPartyOverviewDetails();
+  //   generateMenu(selectedTheme);
+  // }, [watch]);
 
   return (
     <>
@@ -33,7 +30,7 @@ const PartyOverview = ( {theme, setTheme, date, setDate, host, setHost, generate
       </StyledOverview>
 
       <div>
-        <Modal visible={visible} toggle={toggle} theme={theme} setTheme={setTheme} date={date} setDate={setDate} host={host} setHost={setHost} setSelectedTheme={setSelectedTheme} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch} />
+        <Modal visible={visible} toggle={toggle} theme={theme} setTheme={setTheme} date={date} setDate={setDate} host={host} setHost={setHost} selectedTheme={selectedTheme} setSelectedTheme={setSelectedTheme} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch} generateMenu={generateMenu} />
       </div>
     </>
   );

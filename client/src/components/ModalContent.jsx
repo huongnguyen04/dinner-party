@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, setSelectedTheme, sendPartyOverviewDetails, watch, setWatch }) => {
+const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, selectedTheme, setSelectedTheme, sendPartyOverviewDetails, watch, setWatch, generateMenu }) => {
   const [modalView1, setModalView1] = useState(true);
   // const [modalView2, setModalView2] = useState(false);
   const [userInput, setUserInput] = useState(null);
@@ -56,33 +56,35 @@ const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, s
     }
      {!modalView1 && !userInput &&
       <>
-        <div>Select an option and we'll generate a menu for you.</div>
-        <br></br>
-        <form onSubmit={(e)=> {
-          e.preventDefault();
-          setTheme(tempTheme);
-          setDate(tempDate);
-          setHost(tempHost);
-          sendPartyOverviewDetails();
-          setWatch(!watch);
-          toggle();
-        }}>
-          <label htmlFor='theme'>Theme: </label>
-          <select name='theme' onChange={(e) => {
-            setSelectedTheme(e.target.value);
-            setTempTheme(e.target.value);
+        <StyledModalView1>
+          <div>Select an option and we'll generate a menu for you.</div>
+          <br></br>
+          <form onSubmit={(e)=> {
+            e.preventDefault();
+            setTheme(tempTheme);
+            setDate(tempDate);
+            setHost(tempHost);
+            generateMenu(selectedTheme);
+            toggle();
           }}>
-            <option>select a theme</option>
-            {cuisineOptions}
-          </select>
-          <div>
-            Date: <input type='date' value={tempDate} onChange={(e) => setTempDate(e.target.value)} required></input>
-          </div>
-          <div>
-            Host: <input type='text' value={tempHost} onChange={(e) => setTempHost(e.target.value)} required></input>
-          </div>
-          <input type='submit'></input>
-        </form>
+            <label htmlFor='theme'>Theme: </label>
+            <select name='theme' onChange={(e) => {
+              setSelectedTheme(e.target.value);
+              setTempTheme(e.target.value);
+            }}>
+              <option>select a theme</option>
+              {cuisineOptions}
+            </select>
+            <div>
+              Date: <input type='date' value={tempDate} onChange={(e) => setTempDate(e.target.value)} required></input>
+            </div>
+            <div>
+              Host: <input type='text' value={tempHost} onChange={(e) => setTempHost(e.target.value)} required></input>
+            </div>
+            <br></br>
+            <input type='submit'></input>
+          </form>
+        </StyledModalView1>
        </>
     }
     {!modalView1 && userInput &&
@@ -92,7 +94,6 @@ const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, s
           setTheme(tempTheme);
           setDate(tempDate);
           setHost(tempHost);
-          sendPartyOverviewDetails();
           toggle();
         }}>
           Theme: <input type='text' value={tempTheme} onChange={(e) => setTempTheme(e.target.value)} required></input>

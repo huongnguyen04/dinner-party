@@ -55,8 +55,8 @@ const Guests = ({ guests, setGuests, watch, setWatch, addGuest }) => {
       </StyledGuestsArea>
 
       <div>
-        <input placeholder={"add more guests"} value={guest} onChange={(e) => setGuest(e.target.value)}></input>
-        <button class='plus' onClick={onGuestButtonClick}>+</button>
+        <input placeholder={"add guest"} value={guest} onChange={(e) => setGuest(e.target.value)}></input>
+        <button className='plus' onClick={onGuestButtonClick}>+</button>
       </div>
 
     </>

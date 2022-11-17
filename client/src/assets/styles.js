@@ -5,7 +5,7 @@ const AppStyle = createGlobalStyle`
 
 body {
   margin: 10%;
-  background-color: #CC8B86;
+  background-color: #904E55;
 }
 
 h1 {

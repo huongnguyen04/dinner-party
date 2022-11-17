@@ -50,7 +50,7 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, entrees,
       <br></br>
       <div>
         <input placeholder={"add entree"} value={entree} onChange={(e) => setEntree(e.target.value)}></input>
-        <button class='plus' onClick={addEntreeClick}>+</button>
+        <button className='plus' onClick={addEntreeClick}>+</button>
       </div>
       <br></br>
 
@@ -59,7 +59,7 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, entrees,
       <br></br>
       <div>
         <input placeholder={"add app"} value={appetizer} onChange={(e) => setAppetizer(e.target.value)}></input>
-        <button class='plus' onClick={addAppClick}>+</button>
+        <button className='plus' onClick={addAppClick}>+</button>
       </div>
       <br></br>
 
@@ -68,7 +68,7 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, entrees,
       <br></br>
       <div>
         <input placeholder={"add side"} value={side} onChange={(e) => setSide(e.target.value)}></input>
-        <button class='plus' onClick={addSideClick}>+</button>
+        <button className='plus' onClick={addSideClick}>+</button>
       </div>
       <br></br>
 
@@ -77,7 +77,7 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, entrees,
       <br></br>
       <div>
         <input placeholder={"add drink"} value={drink} onChange={(e) => setDrink(e.target.value)}></input>
-        <button class='plus' onClick={addDrinkClick}>+</button>
+        <button className='plus' onClick={addDrinkClick}>+</button>
       </div>
       <br></br>
 
@@ -86,7 +86,7 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, entrees,
       <br></br>
       <div>
         <input placeholder={"add dessert"} value={dessert} onChange={(e) => setDessert(e.target.value)}></input>
-        <button class='plus' onClick={addDessertClick}>+</button>
+        <button className='plus' onClick={addDessertClick}>+</button>
       </div>
     </>
   );

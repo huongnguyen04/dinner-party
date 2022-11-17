@@ -6,8 +6,8 @@ const getPartyData = (req, res) => {
   console.log('userId: ', userId)
   User.find({userId: userId})
     .then((data) => {
-      console.log('party data: ', data)
-      res.send(data);
+      console.log('party data: ', data[0])
+      res.send(data[0]);
     })
     .catch((err) => console.log('Error, could not get all party data in database. Error: ', err))
 }
@@ -15,9 +15,9 @@ const getPartyData = (req, res) => {
 const addPartyDetail = (req, res) => {
   User.findOneAndUpdate({userId: req.body.userId}, {theme: req.body.theme, date: req.body.date, host: req.body.host}, {returnDocument: 'after', upsert: true})
     .then((data) => {
-      res.send('Successfully added guest to database');
+      res.send('Successfully added party details to database');
     })
-    .catch((err) => console.log('Error, could not add guest to database. Error: ', err));
+    .catch((err) => console.log('Error, could not add party details to database. Error: ', err));
 }
 
 const clearMenu = (req, res) => {
