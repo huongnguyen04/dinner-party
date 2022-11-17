@@ -28,6 +28,8 @@ button {
   cursor: pointer;
   color: white;
   padding: 5px;
+  border-radius: 5px;
+
 }
 
 p, div, option {
@@ -37,7 +39,13 @@ p, div, option {
   font-size: 16px;
 }
 
-select, input {
+select {
+  // color: #D8B4A0;
+  font-family: Verdana;
+  width: 200px;
+}
+
+input {
   // color: #D8B4A0;
   font-family: Verdana;
   width: 150px;

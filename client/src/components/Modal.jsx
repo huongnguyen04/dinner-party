@@ -13,7 +13,7 @@ const Modal = ({ visible, toggle, theme, setTheme, date, setDate, host, setHost,
           toggle()
         }}>x</button>
       </StyledXButtonAlign>
-      <h3>Let's party!</h3>
+      <StyledTitle>Let's party!</StyledTitle>
 
       <ModalContent toggle={toggle} theme={theme} setTheme={setTheme} date={date} setDate={setDate} host={host} setHost={setHost} setSelectedTheme={setSelectedTheme} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch}/>
 
@@ -22,7 +22,9 @@ const Modal = ({ visible, toggle, theme, setTheme, date, setDate, host, setHost,
   </div>, container
 ) : null;
 
-
+const StyledTitle = styled.h3`
+  text-align: center;
+`
 const StyledXButtonAlign = styled.div`
   position: absolute;
   right: 30px;
