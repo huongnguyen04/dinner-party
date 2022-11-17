@@ -6,9 +6,6 @@ const cuisineRoutes = require('../controllers/cuisines.js')
 const userRoutes = require('../controllers/users.js')
 const app = express();
 
-// Require User model
-const User = require('../models/user.js');
-
 const api = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${process.env.EDAMAM_APP_ID}&app_key=${process.env.EDAMAM_APP_KEY}&`
 
 app.use(express.static(path.join(__dirname, '../public')));
