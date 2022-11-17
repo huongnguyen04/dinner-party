@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const ModalContent = ({ theme, setTheme, date, setDate, host, setHost, setSelectedTheme }) => {
+const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, setSelectedTheme, sendPartyOverviewDetails }) => {
   const [modalView1, setModalView1] = useState(true);
+  // const [modalView2, setModalView2] = useState(false);
   const [userInput, setUserInput] = useState(null);
   const [cuisines, setCuisines] = useState(null);
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-  }
+  const [tempTheme, setTempTheme] = useState('');
+  const [tempDate, setTempDate] = useState('');
+  const [tempHost, setTempHost] = useState('')
 
   const getCuisines = () => {
     axios.get(`/cuisines`)
@@ -52,24 +52,51 @@ const ModalContent = ({ theme, setTheme, date, setDate, host, setHost, setSelect
     }
      {!modalView1 && !userInput &&
       <>
-         <div>Select an option and we'll generate a menu for you.</div>
-         <select onChange={(e) => {
-          setSelectedTheme(e.target.value);
-          setTheme(e.target.value)
+        <div>Select an option and we'll generate a menu for you.</div>
+        <br></br>
+        <form onSubmit={(e)=> {
+          e.preventDefault();
+          sendPartyOverviewDetails();
+          setTheme(tempTheme);
+          setDate(tempDate);
+          setHost(tempHost);
+          toggle();
         }}>
-          <option>choose here</option>
-          {cuisineOptions}
-         </select>
+          <label htmlFor='theme'>Theme: </label>
+          <select name='theme' onChange={(e) => {
+            setSelectedTheme(e.target.value);
+            setTempTheme(e.target.value);
+          }}>
+            <option>select a theme</option>
+            {cuisineOptions}
+          </select>
+          <div>
+            Date: <input type='date' value={tempDate} onChange={(e) => setTempDate(e.target.value)} required></input>
+          </div>
+          <div>
+            Host: <input type='text' value={tempHost} onChange={(e) => setTempHost(e.target.value)} required></input>
+          </div>
+          <input type='submit'></input>
+        </form>
        </>
     }
     {!modalView1 && userInput &&
-      <form>
-        Theme: <input type='text' value={theme} onChange={(e) => setTheme(e.target.value)}></input>
+      <form onSubmit={(e)=> {
+        e.preventDefault();
+        sendPartyOverviewDetails();
+        setTheme(tempTheme);
+        setDate(tempDate);
+        setHost(tempHost);
+        toggle();
+      }}>
+        Theme: <input type='text' value={tempTheme} onChange={(e) => setTempTheme(e.target.value)} required></input>
         <br></br>
-        Date: <input type='date' value={date} onChange={(e) => setDate(e.target.value)}></input>
+        Date: <input type='date' value={tempDate} onChange={(e) => setTempDate(e.target.value)} required></input>
         <br></br>
-        Host: <input type='text' value={host} onChange={(e) => setHost(e.target.value)}></input>
+        Host: <input type='text' value={tempHost} onChange={(e) => setTempHost(e.target.value)} required></input>
         <br></br>
+        <input type='submit'></input>
+
       </form>
     }
   </>
