@@ -12,7 +12,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 
 app.get(`/cuisines/:theme`, cuisineRoutes.getCuisinesData);
-
 app.get('/cuisines', cuisineRoutes.getCuisines);
 
 app.get('/partyData/:userId', userRoutes.getPartyData);
