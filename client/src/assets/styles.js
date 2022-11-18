@@ -6,6 +6,7 @@ const AppStyle = createGlobalStyle`
 body {
   margin: 10%;
   background-color: #904E55;
+  width: 900px;
 }
 
 h1 {
@@ -51,8 +52,16 @@ input {
   width: 150px;
 }
 
+.themeSelect {
+  width: 150px;
+}
+
 input[type=submit] {
   width: 100px;
+}
+
+form {
+  text-align: center;
 }
 
 `

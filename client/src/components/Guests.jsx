@@ -10,7 +10,6 @@ const Guests = ({ guests, setGuests, watch, setWatch, addGuest }) => {
 
 
   const onGuestButtonClick = () => {
-    setWatch(!watch);
     addGuest(guest);
     setGuest('');
   }
@@ -55,7 +54,7 @@ const Guests = ({ guests, setGuests, watch, setWatch, addGuest }) => {
       </StyledGuestsArea>
 
       <div>
-        <input placeholder={"add guest"} value={guest} onChange={(e) => setGuest(e.target.value)}></input>
+        <input placeholder={'add guest'} value={guest} onChange={(e) => setGuest(e.target.value)}></input>
         <button className='plus' onClick={onGuestButtonClick}>+</button>
       </div>
 
@@ -65,11 +64,17 @@ const Guests = ({ guests, setGuests, watch, setWatch, addGuest }) => {
 
 const StyledGuestsArea = styled.div`
   min-height: 300px;
-  border: 1px solid black;
+  border: 1px solid white;
 `
 
 const StyledBtn = styled.button`
-  background: ${props => props.selected ? '#D3D3D3' : 'none'}
+  background: ${props => props.selected ? '#D3D3D3' : 'none'};
+  color: ${props => props.selected ? '#904E55' : 'white'};
+  border: 1px solid white;
+  &:hover {
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24),0 5px 10px 0 rgba(0,0,0,0.19);
+  }
+
 `
 
 export default Guests;

@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, selectedTheme, setSelectedTheme, sendPartyOverviewDetails, watch, setWatch, generateMenu }) => {
+const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu }) => {
   const [modalView1, setModalView1] = useState(true);
-  // const [modalView2, setModalView2] = useState(false);
   const [userInput, setUserInput] = useState(null);
   const [cuisines, setCuisines] = useState(null);
   const [tempTheme, setTempTheme] = useState('');
   const [tempDate, setTempDate] = useState('');
-  const [tempHost, setTempHost] = useState('')
+  const [tempHost, setTempHost] = useState('');
+  const [selectedTheme, setSelectedTheme] = useState(null);
 
   const getCuisines = () => {
     axios.get(`/cuisines`)
@@ -37,7 +37,7 @@ const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, s
           Would you like to input a theme or choose from a list?
         </div>
         <br></br>
-        <StyledModalView1>
+        <StyledModalView>
           <select onChange={(e) => {
               if (e.target.value === 'true') {
                 setUserInput(true);
@@ -50,13 +50,13 @@ const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, s
             <option value={true}>I want to input a theme</option>
             <option value={false}>I want choose from a list</option>
           </select>
-          <button class='no-padding' onClick={() => setModalView1(!modalView1)}>next</button>
-        </StyledModalView1>
+          <button className='no-padding' onClick={() => setModalView1(!modalView1)}>next</button>
+        </StyledModalView>
       </>
     }
      {!modalView1 && !userInput &&
       <>
-        <StyledModalView1>
+        <StyledModalView>
           <div>Select an option and we'll generate a menu for you.</div>
           <br></br>
           <form onSubmit={(e)=> {
@@ -84,11 +84,11 @@ const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, s
             <br></br>
             <input type='submit'></input>
           </form>
-        </StyledModalView1>
+        </StyledModalView>
        </>
     }
     {!modalView1 && userInput &&
-      <StyledModalView1>
+      <StyledModalView>
         <form onSubmit={(e)=> {
           e.preventDefault();
           setTheme(tempTheme);
@@ -96,21 +96,22 @@ const ModalContent = ({ toggle, theme, setTheme, date, setDate, host, setHost, s
           setHost(tempHost);
           toggle();
         }}>
-          Theme: <input type='text' value={tempTheme} onChange={(e) => setTempTheme(e.target.value)} required></input>
+          Theme: <input className='themeSelect' type='text' value={tempTheme} onChange={(e) => setTempTheme(e.target.value)} required></input>
           <br></br>
           Date: <input type='date' value={tempDate} onChange={(e) => setTempDate(e.target.value)} required></input>
           <br></br>
           Host: <input type='text' value={tempHost} onChange={(e) => setTempHost(e.target.value)} required></input>
           <br></br>
+          <br></br>
           <input type='submit'></input>
         </form>
-      </StyledModalView1>
+      </StyledModalView>
     }
   </>
   )
 }
 
-const StyledModalView1 = styled.div`
+const StyledModalView = styled.div`
   text-align: center;
   vertical-align: middle;
 `

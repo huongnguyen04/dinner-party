@@ -20,68 +20,76 @@ const App = () => {
   return (
     <>
       <AppStyle/>
-      <StyledAppTitle>dinner party 🥘🎉</StyledAppTitle>
+
+      <StyledTitleContainer>
+        <StyledAppTitle>dinner party 🥘🎉</StyledAppTitle>
+        {isAuthenticated &&
+          <StyledGreeting>
+              Hello, {user.name}{' 👋🏻 '}
+            </StyledGreeting>}
+      </StyledTitleContainer>
       {!isAuthenticated &&
       <>
-        <StyledButtonAlign>
-          <button onClick={loginWithRedirect}>Log In</button>
-        </StyledButtonAlign>
-        <StyledTextAlign>
-          <StyledSubTitles>
-            <h1>let's host a dinner party.</h1>
-            <h2>the theme is...</h2>
-            <TypedAnimation/>
-          </StyledSubTitles>
-        </StyledTextAlign>
+        <StyledSubTitles>
+          <h1>let's host a dinner party.</h1>
+          <h2>the theme is...</h2>
+          <TypedAnimation/>
+          <StyledButtonAlign>
+            <StyledLoginButton onClick={loginWithRedirect}>Sign In</StyledLoginButton>
+          </StyledButtonAlign>
+        </StyledSubTitles>
       </>
       }
       {isAuthenticated &&
         <>
-          <StyledLogOutButtonAlign>
-            <button onClick={() => logout({ returnTo: window.location.origin })}>
-              Log Out
-            </button>
-          </StyledLogOutButtonAlign>
-          <StyledGreeting>
-            Hello, {user.name}{' 👋🏻 '}
-          </StyledGreeting>
-          {user && <AuthenticatedHome user={user} />}
+          {user && <AuthenticatedHome user={user} logout={logout} />}
         </>
       }
     </>
   )
 }
 
-const StyledTextAlign = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+const StyledTitleContainer = styled.div`
+  background: white;
+  padding: 15px;
+  // width: 900px;
 `
-
 const StyledAppTitle = styled.h1`
   text-align: center;
   font-size: 42px;
+  color: #904E55;
 `
 
 const StyledSubTitles = styled.div`
   text-align: center;
+  padding-top: 100px;
 `
 
 const StyledGreeting = styled.div`
   text-align: center;
+  color: #904E55;
 `
 
 const StyledButtonAlign = styled.div`
-  position: absolute;
+  margin-top: 100px;
+  text-align: center;
+  padding: 10px;
+`
+
+const StyledLoginButton = styled.button`
+  width: 150px;
+  background: white;
+  color: #904E55;
+`
+
+const StyledLogOutButtonAlign = styled.div`
+  position: relative;
   right: 30px;
   padding: 10px;
 `
 
-const StyledLogOutButtonAlign = styled.div`
+const StyledLogoutContainer = styled.div`
   position: absolute;
-  right: 30px;
-  padding: 10px;
 `
 
 export default App;

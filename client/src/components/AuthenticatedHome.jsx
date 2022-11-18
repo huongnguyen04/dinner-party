@@ -5,18 +5,17 @@ import PartyOverview from './PartyOverview.jsx';
 import Menu from './Menu.jsx';
 import Guests from './Guests.jsx';
 
-const AuthenticatedHome = ({ user }) => {
-  const [userId, setUserId] = useState(null)
+const AuthenticatedHome = ({ user, logout }) => {
+  const [theme, setTheme] = useState('');
+  const [date, setDate] = useState('');
+  const [host, setHost] = useState('');
   const [entrees, setEntrees] = useState([]);
   const [appetizers, setAppetizers] = useState([]);
   const [sides, setSides] = useState([]);
   const [drinks, setDrinks] = useState([]);
   const [desserts, setDesserts] = useState([]);
-  const [watch, setWatch] = useState(true);
   const [guests, setGuests] = useState();
-  const [theme, setTheme] = useState('');
-  const [date, setDate] = useState('');
-  const [host, setHost] = useState('');
+  const [watch, setWatch] = useState(true);
 
   const getMenu = () => {
     if (user) {
@@ -50,7 +49,6 @@ const AuthenticatedHome = ({ user }) => {
 
   const sendPartyOverviewDetails = () => {
     console.log('in send party overview details')
-    console.log('theme: ', theme, 'date: ', date, 'host: ', host)
     if (theme && date && host) {
       axios.post('/partyDetail', {userId: user.sub, theme: theme, date: date.toString(), host: host})
         .then((res) => console.log('added party details'))
@@ -58,50 +56,59 @@ const AuthenticatedHome = ({ user }) => {
     }
   }
 
-  useEffect(sendPartyOverviewDetails, [theme])
+  useEffect(sendPartyOverviewDetails, [theme]);
 
   const addGuest = (guest) => {
     axios.post('/guests', {userId: user.sub, guest: guest, confirmed: false})
-      .then((res) => console.log('added guest'))
+      .then((res) => {
+        console.log('added guest');
+        setWatch(!watch);
+      })
       .catch((err) => console.log(err));
   }
 
   const addEntree = (entree) => {
     axios.post('/entrees', {userId: user.sub, entree: entree})
-      .then((res) => console.log('added entree'))
+      .then((res) => {
+        console.log('added entree');
+        setWatch(!watch);
+      })
       .catch((err) => console.log(err));
   }
 
   const addAppetizer = (appetizer) => {
     axios.post('/appetizers', {userId: user.sub, appetizer: appetizer})
-      .then((res) => console.log('added appetizer'))
+      .then((res) => {
+        console.log('added appetizer');
+        setWatch(!watch);
+      })
       .catch((err) => console.log(err));
   }
 
   const addSide = (side) => {
     axios.post('/sides', {userId: user.sub, side: side})
-      .then((res) => console.log('added side'))
+      .then((res) => {
+        console.log('added side');
+        setWatch(!watch);
+      })
       .catch((err) => console.log(err));
   }
 
   const addDrink = (drink) => {
     axios.post('/drinks', {userId: user.sub, drink: drink})
-      .then((res) => console.log('added drink'))
+      .then((res) => {
+        console.log('added drink');
+        setWatch(!watch);
+      })
       .catch((err) => console.log(err));
   }
   const addDessert = (dessert) => {
     axios.post('/desserts', {userId: user.sub, dessert: dessert})
-      .then((res) => console.log('added dessert'))
-      .catch((err) => console.log(err));
-  }
-
-  const reset = () => {
-    axios.post('/delete')
-    .then((res) => {
-      console.log('cleared all')
-      setWatch(!watch);
+      .then((res) => {
+        console.log('added dessert');
+        setWatch(!watch);
       })
-      .catch((err) => console.log('error clearing all'))
+      .catch((err) => console.log(err));
   }
 
   const generateMenu = (selectedTheme) => {
@@ -136,21 +143,30 @@ const AuthenticatedHome = ({ user }) => {
   useEffect(getMenu, [user, watch]);
 
   return (
-    <div>
-        <button onClick={reset}>Reset</button>
-
-        <PartyOverview theme={theme} setTheme={setTheme} host={host} setHost={setHost} date={date} setDate={setDate} generateMenu={generateMenu} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch} />
+    <StyledAuthenticatedHome>
+        <PartyOverview theme={theme} setTheme={setTheme} host={host} setHost={setHost} date={date} setDate={setDate} generateMenu={generateMenu} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch} logout={logout} />
         <StyledContainer>
           <StyledMenu>
-            <Menu addEntree={addEntree} addAppetizer={addAppetizer} addSide={addSide} addDrink={addDrink} addDessert={addDessert} entrees={entrees} setEntrees={setEntrees} appetizers={appetizers} setAppetizers={setAppetizers} sides={sides} setSides={setSides} drinks={drinks} setDrinks={setDrinks} desserts={desserts} setDesserts={setDesserts} getMenu={getMenu} watch={watch} setWatch={setWatch}/>
+            <Menu addEntree={addEntree} addAppetizer={addAppetizer} addSide={addSide} addDrink={addDrink} addDessert={addDessert} entrees={entrees} appetizers={appetizers} sides={sides} drinks={drinks}  desserts={desserts} />
           </StyledMenu>
           <StyledGuests>
-            <Guests guests={guests} setGuests={setGuests} addGuest={addGuest} watch={watch} setWatch={setWatch}/>
+            <Guests guests={guests} setGuests={setGuests} addGuest={addGuest} watch={watch} setWatch={setWatch} />
           </StyledGuests>
         </StyledContainer>
-    </div>
+    </StyledAuthenticatedHome>
   )
 }
+
+const StyledAuthenticatedHome = styled.div`
+  position: relative;
+  padding-top: 30px;
+`
+
+const StyledResetButton = styled.div`
+  position: relative;
+  right: 30px;
+  padding: 10px;
+`
 
 const StyledContainer = styled.div`
   display: grid;
