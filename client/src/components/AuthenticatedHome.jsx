@@ -32,10 +32,21 @@ const AuthenticatedHome = ({ user, logout }) => {
           setSides(res.data.sides);
           setDrinks(res.data.drinks);
           setDesserts(res.data.desserts);
-          setGuests(res.data.guests);
           setTheme(res.data.theme);
           setDate(res.data.date);
           setHost(res.data.host);
+          let tempGuestList = [];
+          res.data.guests.forEach((guest)=> {
+            if (guest.confirmed) {
+              tempGuestList.push(guest);
+            }
+          });
+          res.data.guests.forEach((guest)=> {
+            if (!guest.confirmed) {
+              tempGuestList.push(guest);
+            }
+          })
+          setGuests(tempGuestList);
         })
         .catch((err) => {
           console.log('Error getting data in DB. Error: ', err)
