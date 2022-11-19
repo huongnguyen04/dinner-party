@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import GuestEntry from './GuestEntry.jsx';
 
-const Guests = ({ guests, setGuests, watch, setWatch, addGuest }) => {
+const Guests = ({ guests, setGuests, addGuest, modifyGuest, watch, setWatch }) => {
   const [guest, setGuest] = useState('');
   const [showAllView, setShowAllView] = useState(true);
   const [confirmedView, setConfirmedView] = useState(false);
@@ -48,9 +48,9 @@ const Guests = ({ guests, setGuests, watch, setWatch, addGuest }) => {
       <StyledBtn selected={confirmedView} onClick={onConfirmedClick}>Confirmed</StyledBtn>
       <StyledBtn selected={nonConfirmedView} onClick={onNotConfirmedClick}>Not Confirmed</StyledBtn>
       <StyledGuestsArea>
-        {showAllView && <GuestEntry guests={guests} setGuests={setGuests}/>}
-        {confirmedView && <GuestEntry guests={confirmedList} setGuests={setGuests}/>}
-        {nonConfirmedView && <GuestEntry guests={nonConfirmedList} setGuests={setGuests}/>}
+        {showAllView && <GuestEntry guests={guests} setGuests={setGuests} modifyGuest={modifyGuest} />}
+        {confirmedView && <GuestEntry guests={confirmedList} setGuests={setGuests} modifyGuest={modifyGuest} />}
+        {nonConfirmedView && <GuestEntry guests={nonConfirmedList} setGuests={setGuests} modifyGuest={modifyGuest} />}
       </StyledGuestsArea>
 
       <div>

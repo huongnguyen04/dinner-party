@@ -18,6 +18,9 @@ const AuthenticatedHome = ({ user, logout }) => {
   const [watch, setWatch] = useState(true);
 
   console.log('user: ', user)
+  if (guests && guests.length > 0) {
+    console.log('guests: ', guests[0]._id)
+  }
 
   const getMenu = () => {
     if (user) {
@@ -67,6 +70,15 @@ const AuthenticatedHome = ({ user, logout }) => {
         setWatch(!watch);
       })
       .catch((err) => console.log(err));
+  }
+
+  const modifyGuest = (guest) => {
+    axios.put('/guest', {userId: user.sub, guestId: guest._id, confirmed: !guest.confirmed})
+      .then((res) => {
+        console.log('guest has been modified');
+        setWatch(!watch);
+      })
+      .catch((err) => console.log('guest could not be modified'))
   }
 
   const addEntree = (entree) => {
@@ -142,6 +154,7 @@ const AuthenticatedHome = ({ user, logout }) => {
       }
   }
 
+
   useEffect(getMenu, [user, watch]);
 
   return (
@@ -152,7 +165,7 @@ const AuthenticatedHome = ({ user, logout }) => {
             <Menu addEntree={addEntree} addAppetizer={addAppetizer} addSide={addSide} addDrink={addDrink} addDessert={addDessert} entrees={entrees} appetizers={appetizers} sides={sides} drinks={drinks}  desserts={desserts} />
           </StyledMenu>
           <StyledGuests>
-            <Guests guests={guests} setGuests={setGuests} addGuest={addGuest} watch={watch} setWatch={setWatch} />
+            <Guests guests={guests} setGuests={setGuests} addGuest={addGuest} modifyGuest={modifyGuest} watch={watch} setWatch={setWatch} />
           </StyledGuests>
         </StyledContainer>
     </StyledAuthenticatedHome>

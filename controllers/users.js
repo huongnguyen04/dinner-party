@@ -38,6 +38,15 @@ const addGuest = (req, res) => {
     .catch((err) => console.log('Error, could not add guest to database. Error: ', err));
 }
 
+const modifyGuest = (req, res) => {
+  console.log('req.body: ', req.body)
+  User.update({'guests._id': req.body.guestId}, {'$set': {'guests.$.confirmed': req.body.confirmed}})
+    .then((data) => {
+      res.send('Successfully added guest to database');
+    })
+    .catch((err) => console.log('Error, could not add guest to database. Error: ', err));
+}
+
 const addEntree = (req, res) => {
   // console.log('req.body: ', req.body)
   User.findOneAndUpdate({userId: req.body.userId}, {'$push': {entrees: req.body.entree}}, {returnDocument: 'after', upsert: true})
@@ -83,4 +92,4 @@ const addDessert = (req, res) => {
     .catch((err) => console.log('Error, could not add dessert to database. Error: ', err));
 }
 
-module.exports = { getPartyData, addGuest, addPartyDetail, clearMenu, addEntree, addAppetizer, addSide, addDrink, addDessert }
+module.exports = { getPartyData, addGuest, modifyGuest, addPartyDetail, clearMenu, addEntree, addAppetizer, addSide, addDrink, addDessert }
