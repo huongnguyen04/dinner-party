@@ -7,8 +7,7 @@ import TypedAnimation from './TypedAnimation.jsx';
 import AuthenticatedHome from './AuthenticatedHome.jsx';
 
 const App = () => {
-  const { isLoading, isAuthenticated, error, user, loginWithRedirect, logout } =
-  useAuth0();
+  const { isLoading, isAuthenticated, error, user, loginWithRedirect, logout } = useAuth0();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -20,14 +19,20 @@ const App = () => {
   return (
     <>
       <AppStyle/>
-
-      <StyledTitleContainer>
-        <StyledAppTitle>dinner party 🥘🎉</StyledAppTitle>
         {isAuthenticated &&
-          <StyledGreeting>
-              Hello, {user.name}{' 👋🏻 '}
-            </StyledGreeting>}
-      </StyledTitleContainer>
+        <>
+          <StyledTitleContainer>
+            <StyledAppTitle>dinner party 🥘🎉</StyledAppTitle>
+              <>
+                <StyledGreeting>
+                  Hello, {user.name}{' 👋🏻 '}
+                </StyledGreeting>
+              </>
+          </StyledTitleContainer>
+         {user && <AuthenticatedHome user={user} logout={logout} />}
+        </>
+        }
+
       {!isAuthenticated &&
       <>
         <StyledSubTitles>
@@ -35,16 +40,11 @@ const App = () => {
           <h2>the theme is...</h2>
           <TypedAnimation/>
           <StyledButtonAlign>
-            <StyledLoginButton onClick={loginWithRedirect}>Sign In</StyledLoginButton>
-            <StyledLoginButton onClick={()=> loginWithRedirect({ action: 'signup' })}>Sign Up</StyledLoginButton>
+            <StyledLoginButton onClick={loginWithPopup}>Sign In</StyledLoginButton>
+            <StyledLoginButton onClick={()=> loginWithPopup({ action: 'signup' })}>Sign Up</StyledLoginButton>
           </StyledButtonAlign>
         </StyledSubTitles>
       </>
-      }
-      {isAuthenticated &&
-        <>
-          {user && <AuthenticatedHome user={user} logout={logout} />}
-        </>
       }
     </>
   )
@@ -53,7 +53,6 @@ const App = () => {
 const StyledTitleContainer = styled.div`
   background: white;
   padding: 15px;
-  // width: 900px;
 `
 const StyledAppTitle = styled.h1`
   text-align: center;
@@ -83,14 +82,5 @@ const StyledLoginButton = styled.button`
   color: #904E55;
 `
 
-const StyledLogOutButtonAlign = styled.div`
-  position: relative;
-  right: 30px;
-  padding: 10px;
-`
-
-const StyledLogoutContainer = styled.div`
-  position: absolute;
-`
 
 export default App;
