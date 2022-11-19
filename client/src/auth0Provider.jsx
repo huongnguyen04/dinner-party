@@ -1,7 +1,7 @@
 import React from 'react';
 import { Auth0Provider } from '@auth0/auth0-react';
 
-const Auth0ProviderWithHistory = ({ children }) => {
+const Auth0ProviderWithConfig = ({ children }) => {
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
   const redirectUri = process.env.REACT_APP_AUTH0_CALLBACK_URL;
@@ -17,4 +17,4 @@ const Auth0ProviderWithHistory = ({ children }) => {
   );
 };
 
-export default Auth0ProviderWithHistory;
+export default Auth0ProviderWithConfig;
