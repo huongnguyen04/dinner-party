@@ -7,7 +7,7 @@ import TypedAnimation from './TypedAnimation.jsx';
 import AuthenticatedHome from './AuthenticatedHome.jsx';
 
 const App = () => {
-  const { isLoading, isAuthenticated, error, user, loginWithRedirect, logout } = useAuth0();
+  const { isLoading, isAuthenticated, error, user, loginWithPopup, logout } = useAuth0();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -41,7 +41,7 @@ const App = () => {
           <TypedAnimation/>
           <StyledButtonAlign>
             <StyledLoginButton onClick={loginWithPopup}>Sign In</StyledLoginButton>
-            <StyledLoginButton onClick={()=> loginWithPopup({ action: 'signup' })}>Sign Up</StyledLoginButton>
+            {/* <StyledLoginButton onClick={()=> loginWithPopup({ action: 'signup' })}>Sign Up</StyledLoginButton> */}
           </StyledButtonAlign>
         </StyledSubTitles>
       </>
