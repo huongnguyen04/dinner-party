@@ -4,7 +4,9 @@ import { createGlobalStyle } from 'styled-components';
 const AppStyle = createGlobalStyle`
 
 body {
-  margin: 10%;
+  margin: 0 auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
   background-color: #904E55;
   width: 900px;
 }
