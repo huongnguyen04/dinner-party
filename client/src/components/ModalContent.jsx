@@ -112,6 +112,8 @@ const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu }) => {
 }
 
 const StyledModalView = styled.div`
+  // display: flex;
+  // flex-direction: column;
   text-align: center;
   vertical-align: middle;
 `
