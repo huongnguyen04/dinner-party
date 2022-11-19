@@ -25,28 +25,6 @@ const getFoodData = (cuisineType, dishType, dishTypeQuery) => {
     .catch((error) => console.log('error!! error: ', error));
 }
 
-// const createInterval = (cuisineType, category, categoryQuery) => {
-//   // let allFoodData = [];
-//   return setInterval(() => {
-//     allFoodData.push(getFoodData(cuisineType, category, categoryQuery));
-//   }, 60000);
-//   // timer();
-//   // clearInterval(timer);
-//   // return Promise.all(allFoodData);
-// }
-
-// const getFoodDataAllCuisines = () => {
-//   let results = [];
-//   cuisineTypes.forEach((cuisineType) => {
-//     results.push(createInterval(cuisineType, 'entree', 'Main%20course'));
-//     results.push(createInterval(cuisineType, 'appetizer', 'starter'));
-//     results.push(createInterval(cuisineType, 'side', 'Side%20dish'));
-//     results.push(createInterval(cuisineType, 'drink', 'drinks'));
-//     results.push(createInterval(cuisineType, 'dessert', 'desserts'));
-//   })
-//   return results;
-// }
-
 // loop through cuisine types and do an axios get request for each food category
 const getFoodDataAllCuisines = () => {
   let allFoodData = [];
