@@ -17,6 +17,8 @@ const AuthenticatedHome = ({ user, logout }) => {
   const [guests, setGuests] = useState();
   const [watch, setWatch] = useState(true);
 
+  console.log('user: ', user)
+
   const getMenu = () => {
     if (user) {
       axios.get(`/partyData/${user.sub}`)

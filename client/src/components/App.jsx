@@ -36,6 +36,7 @@ const App = () => {
           <TypedAnimation/>
           <StyledButtonAlign>
             <StyledLoginButton onClick={loginWithRedirect}>Sign In</StyledLoginButton>
+            <StyledLoginButton onClick={()=> loginWithRedirect({ action: 'signup' })}>Sign Up</StyledLoginButton>
           </StyledButtonAlign>
         </StyledSubTitles>
       </>
