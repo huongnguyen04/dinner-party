@@ -10,27 +10,29 @@ const PartyOverview = ( {theme, setTheme, date, setDate, host, setHost, generate
 
   const reset = () => {
     axios.post('/delete')
-    .then((res) => {
-      console.log('cleared all')
-      setWatch(!watch);
+      .then((res) => {
+        console.log('cleared all')
+        setWatch(!watch);
       })
       .catch((err) => console.log('error clearing all'))
   }
 
   return (
     <>
-      <StyledOverview>
-        <span><b>Theme:</b> {theme}</span>
-        <span><b>Date:</b> {date}</span>
-        <span><b>Host:</b> {host}</span>
+      <StyledOverviewBanner>
         <StyledButtonContainer>
           <button onClick={toggle}>Edit Details</button>
           <button onClick={reset}>Reset</button>
           <button onClick={() => logout({ returnTo: window.location.origin })}>
-                Log Out
+            Log Out
           </button>
         </StyledButtonContainer>
-      </StyledOverview>
+        <StyledOverviewDetails>
+          <span><b>Theme:</b> {theme}</span>
+          <span><b>Date:</b> {date}</span>
+          <span><b>Host:</b> {host}</span>
+        </StyledOverviewDetails>
+      </StyledOverviewBanner>
 
       <div>
         <Modal visible={visible} toggle={toggle} setTheme={setTheme} setDate={setDate} setHost={setHost} generateMenu={generateMenu} />
@@ -39,34 +41,32 @@ const PartyOverview = ( {theme, setTheme, date, setDate, host, setHost, generate
   );
 }
 
-const StyledOverview = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  span {
-    font-size: 18px;
-    // display: inline-block;
-    padding: 50px;
-    color: white;
-  }
+const StyledOverviewBanner = styled.div`
   border: 1px solid white;
   height: 100px;
+`
 
+const StyledOverviewDetails = styled.div`
+  text-align: center;
+  span {
+    font-size: 18px;
+    padding-left: 50px;
+    padding-right: 50px;
+    color: white;
+  }
+`
+
+const StyledButtonContainer = styled.div`
+  text-align: right;
+  margin-bottom: 15px;
   button {
+    margin: 3px;
     color: #904E55;
     background-color: white;
     border: 1px solid #904E55;
     &:hover {
       box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24),0 5px 10px 0 rgba(0,0,0,0.19);
     }
-  }
-`
-
-const StyledButtonContainer = styled.div`
-  margin-left: auto;
-  button {
-    margin: 3px;
   }
 `
 
