@@ -65,6 +65,7 @@ const Guests = ({ guests, setGuests, addGuest, modifyGuest, watch, setWatch }) =
 const StyledGuestsArea = styled.div`
   min-height: 300px;
   border: 1px solid white;
+  padding: 10px;
 `
 
 const StyledBtn = styled.button`
