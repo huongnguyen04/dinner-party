@@ -5,6 +5,5 @@ const CuisineSchema = new mongoose.Schema({
   type: String,
   category: String
 });
-// const Cuisine = new mongoose.model('Cuisine', CuisineSchema);
 
 module.exports = CuisineSchema;
