@@ -9,9 +9,6 @@ import AuthenticatedHome from './AuthenticatedHome.jsx';
 const App = () => {
   const { isLoading, isAuthenticated, error, user, loginWithPopup, logout } = useAuth0();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
   if (error) {
     return <div>Oops... {error.message}</div>;
   }
@@ -35,6 +32,8 @@ const App = () => {
 
       {!isAuthenticated &&
       <>
+      {isLoading && <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>}
+      {!isLoading &&
         <StyledSubTitles>
           <h1>let's host a dinner party.</h1>
           <h2>the theme is...</h2>
@@ -44,6 +43,7 @@ const App = () => {
             {/* <StyledLoginButton onClick={()=> loginWithPopup({ action: 'signup' })}>Sign Up</StyledLoginButton> */}
           </StyledButtonAlign>
         </StyledSubTitles>
+      }
       </>
       }
     </>
