@@ -15,7 +15,8 @@ app.get('/cuisines', cuisineRoutes.getCuisines);
 
 app.get('/partyData/:userId', userRoutes.getPartyData);
 app.post('/partyDetail', userRoutes.addPartyDetail)
-app.post('/guests', userRoutes.addGuest);
+app.post('/addGuest', userRoutes.addGuest);
+app.post('/deleteGuest', userRoutes.deleteGuest);
 app.put('/guest', userRoutes.modifyGuest);
 app.post('/delete', userRoutes.clearMenu);
 

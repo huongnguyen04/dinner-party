@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import GuestItem from './GuestItem.jsx';
 
-const GuestList = ({ guests, setGuests, modifyGuest }) => {
+const GuestList = ({ guests, modifyGuest, deleteGuest }) => {
 
   let guestList;
   if (guests && guests.length > 0) {
-    guestList = guests.map((guest, index) => {
-      return <StyledGuest key={index}>{guest.confirmed ? <span onClick={() => modifyGuest(guest)}>✓</span> : <span onClick={() => modifyGuest(guest)}>☐</span>} {guest.name}</StyledGuest>
-    })
+    guestList = guests.map((guest, index) =>
+      <GuestItem key={index} guest={guest} modifyGuest={modifyGuest} deleteGuest={deleteGuest}/>
+    )
   }
   return (
     <>
@@ -15,13 +16,5 @@ const GuestList = ({ guests, setGuests, modifyGuest }) => {
     </>
   )
 }
-
-const StyledGuest = styled.div`
-  padding: 2px;
-  margin: 2px;
-  span {
-    cursor: pointer;
-  }
-`
 
 export default GuestList;

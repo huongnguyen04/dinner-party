@@ -75,12 +75,21 @@ const AuthenticatedHome = ({ user, logout }) => {
   useEffect(sendPartyOverviewDetails, [theme]);
 
   const addGuest = (guest) => {
-    axios.post('/guests', {userId: user.sub, guest: guest, confirmed: false})
+    axios.post('/addGuest', {userId: user.sub, guest: guest, confirmed: false})
       .then((res) => {
         console.log('added guest');
         setWatch(!watch);
       })
       .catch((err) => console.log(err));
+  }
+
+  const deleteGuest = (guest) => {
+    axios.post('/deleteGuest', {userId: user.sub, guestId: guest._id})
+      .then((res) => {
+        console.log('deleted guest');
+        setWatch(!watch);
+      })
+      .catch((err) => console.log('guest could not be deleted'))
   }
 
   const modifyGuest = (guest) => {
@@ -151,7 +160,7 @@ const AuthenticatedHome = ({ user, logout }) => {
             <Menu addMenuItem={addMenuItem} deleteMenuItem={deleteMenuItem} entrees={entrees} appetizers={appetizers} sides={sides} drinks={drinks} desserts={desserts} />
           </StyledMenu>
           <StyledGuests>
-            <Guests guests={guests} setGuests={setGuests} addGuest={addGuest} modifyGuest={modifyGuest} watch={watch} setWatch={setWatch} />
+            <Guests guests={guests} setGuests={setGuests} addGuest={addGuest} modifyGuest={modifyGuest} watch={watch} setWatch={setWatch} deleteGuest={deleteGuest} />
           </StyledGuests>
         </StyledContainer>
     </StyledAuthenticatedHome>

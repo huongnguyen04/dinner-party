@@ -36,6 +36,14 @@ const addGuest = (req, res) => {
     .catch((err) => console.log('Error, could not add guest to database. Error: ', err));
 }
 
+const deleteGuest = (req, res) => {
+  User.updateOne({userId: req.body.userId}, {'$pull': {guests: {'_id': req.body.guestId}}})
+    .then((data) => {
+      res.send('Successfully added guest to database');
+    })
+    .catch((err) => console.log('Error, could not add guest to database. Error: ', err));
+}
+
 const modifyGuest = (req, res) => {
   User.update({'guests._id': req.body.guestId}, {'$set': {'guests.$.confirmed': req.body.confirmed}})
     .then((data) => {
@@ -124,4 +132,4 @@ const deleteDessert = (req, res) => {
     .catch((err) => console.log('Error, could not delete dessert from database. Error: ', err))
 }
 
-module.exports = { getPartyData, addGuest, modifyGuest, addPartyDetail, clearMenu, addEntree, addAppetizer, addSide, addDrink, addDessert, deleteEntree, deleteAppetizer, deleteSide, deleteDrink, deleteDessert }
+module.exports = { getPartyData, addGuest, deleteGuest, modifyGuest, addPartyDetail, clearMenu, addEntree, addAppetizer, addSide, addDrink, addDessert, deleteEntree, deleteAppetizer, deleteSide, deleteDrink, deleteDessert }

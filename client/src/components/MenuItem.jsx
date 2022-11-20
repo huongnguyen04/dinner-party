@@ -13,18 +13,18 @@ const MenuItem = ({ item, category, deleteMenuItem }) => {
   )
 }
 
-let StyledWrapper = styled.div`
+const StyledWrapper = styled.div`
   div:hover + button, button:hover {
   display: inline-block;
 }
 `
 
-let StyledItem = styled.div`
+const StyledItem = styled.div`
   display: inline-block;
 
 `
 
-let DeleteButton = styled.button`
+const DeleteButton = styled.button`
   display: none;
   padding: 0px;
   border: none;
