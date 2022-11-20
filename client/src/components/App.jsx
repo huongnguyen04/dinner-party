@@ -31,20 +31,20 @@ const App = () => {
         }
 
       {!isAuthenticated &&
-      <>
-      {isLoading && <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>}
-      {!isLoading &&
-        <StyledSubTitles>
-          <h1>let's host a dinner party.</h1>
-          <h2>the theme is...</h2>
-          <TypedAnimation/>
-          <StyledButtonAlign>
-            <StyledLoginButton onClick={loginWithPopup}>Sign In</StyledLoginButton>
-            {/* <StyledLoginButton onClick={()=> loginWithPopup({ action: 'signup' })}>Sign Up</StyledLoginButton> */}
-          </StyledButtonAlign>
-        </StyledSubTitles>
-      }
-      </>
+        <>
+          {isLoading && <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>}
+          {!isLoading &&
+            <StyledSubTitles>
+              <h1>let's host a dinner party.</h1>
+              <h2>the theme is...</h2>
+              <TypedAnimation/>
+              <StyledButtonAlign>
+                <StyledLoginButton onClick={loginWithPopup}>Sign In</StyledLoginButton>
+                {/* <StyledLoginButton onClick={()=> loginWithPopup({ action: 'signup' })}>Sign Up</StyledLoginButton> */}
+              </StyledButtonAlign>
+            </StyledSubTitles>
+          }
+        </>
       }
     </>
   )
