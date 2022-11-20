@@ -29,6 +29,13 @@ const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu }) => {
     )
   }
 
+  const formatDate = (date) => {
+    let formatted = '';
+    let split = date.split('-');
+    formatted = split[1] + '-' + split[2] + '-' + split[0];
+    return formatted;
+  }
+
   return (
     <>
     {modalView1 &&
@@ -50,7 +57,10 @@ const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu }) => {
             <option value={true}>I want to input a theme</option>
             <option value={false}>I want choose from a list</option>
           </select>
-          <button className='no-padding' onClick={() => setModalView1(!modalView1)}>next</button>
+          <div>
+            <br></br>
+            <button className='nextButton' onClick={() => setModalView1(!modalView1)}>next</button>
+          </div>
         </StyledModalView>
       </>
     }
@@ -62,7 +72,7 @@ const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu }) => {
           <form onSubmit={(e)=> {
             e.preventDefault();
             setTheme(tempTheme);
-            setDate(tempDate);
+            setDate(formatDate(tempDate));
             setHost(tempHost);
             generateMenu(selectedTheme);
             toggle();
@@ -92,7 +102,7 @@ const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu }) => {
         <form onSubmit={(e)=> {
           e.preventDefault();
           setTheme(tempTheme);
-          setDate(tempDate);
+          setDate(formatDate(tempDate));
           setHost(tempHost);
           toggle();
         }}>
