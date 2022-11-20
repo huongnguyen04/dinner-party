@@ -45,7 +45,7 @@ const modifyGuest = (req, res) => {
 }
 
 const addEntree = (req, res) => {
-  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {entrees: req.body.entree}}, {returnDocument: 'after', upsert: true})
+  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {entrees: req.body.menuItem}}, {returnDocument: 'after', upsert: true})
     .then((data) => {
       res.send('Successfully added entree to database');
     })
@@ -53,7 +53,7 @@ const addEntree = (req, res) => {
 }
 
 const addAppetizer = (req, res) => {
-  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {appetizers: req.body.appetizer}}, {returnDocument: 'after', upsert: true})
+  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {appetizers: req.body.menuItem}}, {returnDocument: 'after', upsert: true})
     .then((data) => {
       res.send('Successfully added appetizer to database');
     })
@@ -61,7 +61,7 @@ const addAppetizer = (req, res) => {
 }
 
 const addSide = (req, res) => {
-  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {sides: req.body.side}}, {returnDocument: 'after', upsert: true})
+  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {sides: req.body.menuItem}}, {returnDocument: 'after', upsert: true})
     .then((data) => {
       res.send('Successfully added side to database');
     })
@@ -69,7 +69,7 @@ const addSide = (req, res) => {
 }
 
 const addDrink = (req, res) => {
-  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {drinks: req.body.drink}}, {returnDocument: 'after', upsert: true})
+  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {drinks: req.body.menuItem}}, {returnDocument: 'after', upsert: true})
     .then((data) => {
       res.send('Successfully added drink to database');
     })
@@ -77,7 +77,7 @@ const addDrink = (req, res) => {
 }
 
 const addDessert = (req, res) => {
-  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {desserts: req.body.dessert}}, {returnDocument: 'after', upsert: true})
+  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {desserts: req.body.menuItem}}, {returnDocument: 'after', upsert: true})
     .then((data) => {
       res.send('Successfully added dessert to database');
     })

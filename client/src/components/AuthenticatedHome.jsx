@@ -92,6 +92,15 @@ const AuthenticatedHome = ({ user, logout }) => {
       .catch((err) => console.log('guest could not be modified'))
   }
 
+  const addMenuItem = (menuItem, category) => {
+    axios.post(`/add${category}`, {userId: user.sub, menuItem: menuItem})
+      .then((res) => {
+        console.log('added entry');
+        setWatch(!watch);
+      })
+      .catch((err) => console.log(err));
+  }
+
   const deleteMenuItem = (menuItem, category) => {
     axios.post(`/delete${category}`, {userId: user.sub, menuItem: menuItem})
       .then((res) => {
@@ -101,50 +110,6 @@ const AuthenticatedHome = ({ user, logout }) => {
       .catch((err) => console.log(err));
   }
 
-  const addEntree = (entree) => {
-    axios.post('/entrees', {userId: user.sub, entree: entree})
-      .then((res) => {
-        console.log('added entree');
-        setWatch(!watch);
-      })
-      .catch((err) => console.log(err));
-  }
-
-
-  const addAppetizer = (appetizer) => {
-    axios.post('/appetizers', {userId: user.sub, appetizer: appetizer})
-      .then((res) => {
-        console.log('added appetizer');
-        setWatch(!watch);
-      })
-      .catch((err) => console.log(err));
-  }
-
-  const addSide = (side) => {
-    axios.post('/sides', {userId: user.sub, side: side})
-      .then((res) => {
-        console.log('added side');
-        setWatch(!watch);
-      })
-      .catch((err) => console.log(err));
-  }
-
-  const addDrink = (drink) => {
-    axios.post('/drinks', {userId: user.sub, drink: drink})
-      .then((res) => {
-        console.log('added drink');
-        setWatch(!watch);
-      })
-      .catch((err) => console.log(err));
-  }
-  const addDessert = (dessert) => {
-    axios.post('/desserts', {userId: user.sub, dessert: dessert})
-      .then((res) => {
-        console.log('added dessert');
-        setWatch(!watch);
-      })
-      .catch((err) => console.log(err));
-  }
 
   const generateMenu = (selectedTheme) => {
     if (selectedTheme) {
@@ -152,19 +117,19 @@ const AuthenticatedHome = ({ user, logout }) => {
         .then((res) => {
           for (let i = 0; i < 3; i++) {
             if (res.data.entrees[i]) {
-              addEntree(res.data.entrees[i].name)
+              addMenuItem(res.data.entrees[i].name, 'entree')
             }
             if (res.data.appetizers[i]) {
-              addAppetizer(res.data.appetizers[i].name);
+              addMenuItem(res.data.appetizers[i].name, 'appetizer');
             }
             if (res.data.sides[i]) {
-              addSide(res.data.sides[i].name);
+              addMenuItem(res.data.sides[i].name, 'side');
             }
             if (res.data.drinks[i]) {
-              addDrink(res.data.drinks[i].name);
+              addMenuItem(res.data.drinks[i].name, 'drink');
             }
             if (res.data.desserts[i]) {
-              addDessert(res.data.desserts[i].name);
+              addMenuItem(res.data.desserts[i].name, 'dessert');
             }
           }
           getMenu();
@@ -183,7 +148,7 @@ const AuthenticatedHome = ({ user, logout }) => {
         <PartyOverview theme={theme} setTheme={setTheme} host={host} setHost={setHost} date={date} setDate={setDate} generateMenu={generateMenu} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch} logout={logout} />
         <StyledContainer>
           <StyledMenu>
-            <Menu addEntree={addEntree} addAppetizer={addAppetizer} addSide={addSide} addDrink={addDrink} addDessert={addDessert} deleteMenuItem={deleteMenuItem} entrees={entrees} appetizers={appetizers} sides={sides} drinks={drinks} desserts={desserts} />
+            <Menu addMenuItem={addMenuItem} deleteMenuItem={deleteMenuItem} entrees={entrees} appetizers={appetizers} sides={sides} drinks={drinks} desserts={desserts} />
           </StyledMenu>
           <StyledGuests>
             <Guests guests={guests} setGuests={setGuests} addGuest={addGuest} modifyGuest={modifyGuest} watch={watch} setWatch={setWatch} />

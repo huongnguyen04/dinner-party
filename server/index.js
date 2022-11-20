@@ -10,7 +10,7 @@ const api = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${process.
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 
-app.get(`/cuisines/:theme`, cuisineRoutes.getCuisinesData);
+app.get('/cuisines/:theme', cuisineRoutes.getCuisinesData);
 app.get('/cuisines', cuisineRoutes.getCuisines);
 
 app.get('/partyData/:userId', userRoutes.getPartyData);
@@ -19,20 +19,17 @@ app.post('/guests', userRoutes.addGuest);
 app.put('/guest', userRoutes.modifyGuest);
 app.post('/delete', userRoutes.clearMenu);
 
-app.post('/entrees', userRoutes.addEntree);
-app.post('/appetizers', userRoutes.addAppetizer);
-app.post('/sides', userRoutes.addSide);
-app.post('/drinks', userRoutes.addDrink);
-app.post('/desserts', userRoutes.addDessert);
+app.post('/addEntree', userRoutes.addEntree);
+app.post('/addAppetizer', userRoutes.addAppetizer);
+app.post('/addSide', userRoutes.addSide);
+app.post('/addDrink', userRoutes.addDrink);
+app.post('/addDessert', userRoutes.addDessert);
+
 app.post('/deleteEntree', userRoutes.deleteEntree);
 app.post('/deleteAppetizer', userRoutes.deleteAppetizer);
 app.post('/deleteSide', userRoutes.deleteSide);
 app.post('/deleteDrink', userRoutes.deleteDrink);
 app.post('/deleteDessert', userRoutes.deleteDessert);
-
-
-
-
 
 app.listen(3005);
 console.log('Listening on port 3005');

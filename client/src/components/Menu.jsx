@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MenuList from './MenuList.jsx';
 import axios from 'axios';
 
-const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, deleteMenuItem, entrees, appetizers, sides, drinks, desserts }) => {
+const Menu = ({ addMenuItem, deleteMenuItem, entrees, appetizers, sides, drinks, desserts }) => {
 
   const [entree, setEntree] = useState('');
   const [appetizer, setAppetizer] = useState('');
@@ -11,27 +11,27 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, deleteMe
   const [dessert, setDessert] = useState('');
 
   const addEntreeClick = () => {
-    addEntree(formatInput(entree));
+    addMenuItem(formatInput(entree), 'entree');
     setEntree('');
   }
 
   const addAppClick = () => {
-    addAppetizer(formatInput(appetizer));
+    addMenuItem(formatInput(appetizer), 'appetizer');
     setAppetizer('');
   }
 
   const addSideClick = () => {
-    addSide(formatInput(side));
+    addMenuItem(formatInput(side), 'side');
     setSide('');
   }
 
   const addDrinkClick = () => {
-    addDrink(formatInput(drink));
+    addMenuItem(formatInput(drink), 'drink');
     setDrink('');
   }
 
   const addDessertClick = () => {
-    addDessert(formatInput(dessert));
+    addMenuItem(formatInput(dessert), 'dessert');
     setDessert('');
   }
 
@@ -61,7 +61,7 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, deleteMe
       <br></br>
 
       <h3>Appetizers</h3>
-      <MenuList foods={appetizers} category={'appetizer'}  deleteMenuItem={deleteMenuItem}/>
+      <MenuList foods={appetizers} category={'appetizer'} deleteMenuItem={deleteMenuItem}/>
       <br></br>
       <div>
         <input placeholder={'add appetizer'} value={appetizer} onChange={(e) => setAppetizer(e.target.value)}></input>
@@ -70,7 +70,7 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, deleteMe
       <br></br>
 
       <h3>Sides</h3>
-      <MenuList foods={sides} category={'side'}  deleteMenuItem={deleteMenuItem}/>
+      <MenuList foods={sides} category={'side'} deleteMenuItem={deleteMenuItem}/>
       <br></br>
       <div>
         <input placeholder={'add side'} value={side} onChange={(e) => setSide(e.target.value)}></input>
@@ -79,7 +79,7 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, deleteMe
       <br></br>
 
       <h3>Drinks</h3>
-      <MenuList foods={drinks} category={'drink'}  deleteMenuItem={deleteMenuItem}/>
+      <MenuList foods={drinks} category={'drink'} deleteMenuItem={deleteMenuItem}/>
       <br></br>
       <div>
         <input placeholder={'add drink'} value={drink} onChange={(e) => setDrink(e.target.value)}></input>
@@ -88,7 +88,7 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, deleteMe
       <br></br>
 
       <h3>Dessert</h3>
-      <MenuList foods={desserts} category={'dessert'}  deleteMenuItem={deleteMenuItem}/>
+      <MenuList foods={desserts} category={'dessert'} deleteMenuItem={deleteMenuItem}/>
       <br></br>
       <div>
         <input placeholder={'add dessert'} value={dessert} onChange={(e) => setDessert(e.target.value)}></input>
