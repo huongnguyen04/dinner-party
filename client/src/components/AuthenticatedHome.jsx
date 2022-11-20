@@ -92,6 +92,15 @@ const AuthenticatedHome = ({ user, logout }) => {
       .catch((err) => console.log('guest could not be modified'))
   }
 
+  const deleteMenuItem = (menuItem, category) => {
+    axios.post(`/delete${category}`, {userId: user.sub, menuItem: menuItem})
+      .then((res) => {
+        console.log('deleted entry');
+        setWatch(!watch);
+      })
+      .catch((err) => console.log(err));
+  }
+
   const addEntree = (entree) => {
     axios.post('/entrees', {userId: user.sub, entree: entree})
       .then((res) => {
@@ -100,6 +109,7 @@ const AuthenticatedHome = ({ user, logout }) => {
       })
       .catch((err) => console.log(err));
   }
+
 
   const addAppetizer = (appetizer) => {
     axios.post('/appetizers', {userId: user.sub, appetizer: appetizer})
@@ -173,7 +183,7 @@ const AuthenticatedHome = ({ user, logout }) => {
         <PartyOverview theme={theme} setTheme={setTheme} host={host} setHost={setHost} date={date} setDate={setDate} generateMenu={generateMenu} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch} logout={logout} />
         <StyledContainer>
           <StyledMenu>
-            <Menu addEntree={addEntree} addAppetizer={addAppetizer} addSide={addSide} addDrink={addDrink} addDessert={addDessert} entrees={entrees} appetizers={appetizers} sides={sides} drinks={drinks}  desserts={desserts} />
+            <Menu addEntree={addEntree} addAppetizer={addAppetizer} addSide={addSide} addDrink={addDrink} addDessert={addDessert} deleteMenuItem={deleteMenuItem} entrees={entrees} appetizers={appetizers} sides={sides} drinks={drinks} desserts={desserts} />
           </StyledMenu>
           <StyledGuests>
             <Guests guests={guests} setGuests={setGuests} addGuest={addGuest} modifyGuest={modifyGuest} watch={watch} setWatch={setWatch} />

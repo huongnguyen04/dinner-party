@@ -29,8 +29,6 @@ const clearMenu = (req, res) => {
 }
 
 const addGuest = (req, res) => {
-  // console.log('req.body: ', req.body)
-  console.log('in addGuest handler')
   User.findOneAndUpdate({userId: req.body.userId}, {'$push': {guests: {name: req.body.guest, confirmed: req.body.confirmed }}}, {returnDocument: 'after', upsert: true})
     .then((data) => {
       res.send('Successfully added guest to database');
@@ -39,7 +37,6 @@ const addGuest = (req, res) => {
 }
 
 const modifyGuest = (req, res) => {
-  console.log('req.body: ', req.body)
   User.update({'guests._id': req.body.guestId}, {'$set': {'guests.$.confirmed': req.body.confirmed}})
     .then((data) => {
       res.send('Successfully added guest to database');
@@ -48,7 +45,6 @@ const modifyGuest = (req, res) => {
 }
 
 const addEntree = (req, res) => {
-  // console.log('req.body: ', req.body)
   User.findOneAndUpdate({userId: req.body.userId}, {'$push': {entrees: req.body.entree}}, {returnDocument: 'after', upsert: true})
     .then((data) => {
       res.send('Successfully added entree to database');
@@ -57,7 +53,6 @@ const addEntree = (req, res) => {
 }
 
 const addAppetizer = (req, res) => {
-  // console.log('req.body: ', req.body)
   User.findOneAndUpdate({userId: req.body.userId}, {'$push': {appetizers: req.body.appetizer}}, {returnDocument: 'after', upsert: true})
     .then((data) => {
       res.send('Successfully added appetizer to database');
@@ -66,7 +61,6 @@ const addAppetizer = (req, res) => {
 }
 
 const addSide = (req, res) => {
-  // console.log('req.body: ', req.body)
   User.findOneAndUpdate({userId: req.body.userId}, {'$push': {sides: req.body.side}}, {returnDocument: 'after', upsert: true})
     .then((data) => {
       res.send('Successfully added side to database');
@@ -75,7 +69,6 @@ const addSide = (req, res) => {
 }
 
 const addDrink = (req, res) => {
-  // console.log('req.body: ', req.body)
   User.findOneAndUpdate({userId: req.body.userId}, {'$push': {drinks: req.body.drink}}, {returnDocument: 'after', upsert: true})
     .then((data) => {
       res.send('Successfully added drink to database');
@@ -84,7 +77,6 @@ const addDrink = (req, res) => {
 }
 
 const addDessert = (req, res) => {
-  // console.log('req.body: ', req.body)
   User.findOneAndUpdate({userId: req.body.userId}, {'$push': {desserts: req.body.dessert}}, {returnDocument: 'after', upsert: true})
     .then((data) => {
       res.send('Successfully added dessert to database');
@@ -92,4 +84,44 @@ const addDessert = (req, res) => {
     .catch((err) => console.log('Error, could not add dessert to database. Error: ', err));
 }
 
-module.exports = { getPartyData, addGuest, modifyGuest, addPartyDetail, clearMenu, addEntree, addAppetizer, addSide, addDrink, addDessert }
+const deleteEntree = (req, res) => {
+  User.updateOne({userId: req.body.userId}, {$pull: {entrees: req.body.menuItem}})
+    .then(() => {
+      res.send('Deleted dessert from the database!');
+    })
+    .catch((err) => console.log('Error, could not delete dessert from database. Error: ', err))
+}
+
+const deleteAppetizer = (req, res) => {
+  User.updateOne({userId: req.body.userId}, {$pull: {appetizers: req.body.menuItem}})
+    .then(() => {
+      res.send('Deleted appetizer from the database!');
+    })
+    .catch((err) => console.log('Error, could not delete appetizer item from database. Error: ', err))
+}
+
+const deleteSide = (req, res) => {
+  User.updateOne({userId: req.body.userId}, {$pull: {sides: req.body.menuItem}})
+    .then(() => {
+      res.send('Deleted side from the database!');
+    })
+    .catch((err) => console.log('Error, could not delete side from database. Error: ', err))
+}
+
+const deleteDrink = (req, res) => {
+  User.updateOne({userId: req.body.userId}, {$pull: {drinks: req.body.menuItem}})
+    .then(() => {
+      res.send('Deleted drink from the database!');
+    })
+    .catch((err) => console.log('Error, could not delete drink from database. Error: ', err))
+}
+
+const deleteDessert = (req, res) => {
+  User.updateOne({userId: req.body.userId}, {$pull: {desserts: req.body.menuItem}})
+    .then(() => {
+      res.send('Deleted dessert from the database!');
+    })
+    .catch((err) => console.log('Error, could not delete dessert from database. Error: ', err))
+}
+
+module.exports = { getPartyData, addGuest, modifyGuest, addPartyDetail, clearMenu, addEntree, addAppetizer, addSide, addDrink, addDessert, deleteEntree, deleteAppetizer, deleteSide, deleteDrink, deleteDessert }

@@ -24,6 +24,13 @@ app.post('/appetizers', userRoutes.addAppetizer);
 app.post('/sides', userRoutes.addSide);
 app.post('/drinks', userRoutes.addDrink);
 app.post('/desserts', userRoutes.addDessert);
+app.post('/deleteEntree', userRoutes.deleteEntree);
+app.post('/deleteAppetizer', userRoutes.deleteAppetizer);
+app.post('/deleteSide', userRoutes.deleteSide);
+app.post('/deleteDrink', userRoutes.deleteDrink);
+app.post('/deleteDessert', userRoutes.deleteDessert);
+
+
 
 
 

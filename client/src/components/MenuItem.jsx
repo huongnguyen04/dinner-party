@@ -1,20 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const MenuItem = ({ item }) => {
+const MenuItem = ({ item, category, deleteMenuItem }) => {
 
-  const deleteMenuItem = () => {
-    // axios request to delete item
-  }
   return (
     <>
       <StyledWrapper>
         <StyledItem>{item} &nbsp;</StyledItem>
-        <DeleteButton onClick={deleteMenuItem}>ⓧ</DeleteButton>
+        <DeleteButton onClick={() => deleteMenuItem(item, category)}>ⓧ</DeleteButton>
       </StyledWrapper>
     </>
   )
 }
+
 let StyledWrapper = styled.div`
   div:hover + button, button:hover {
   display: inline-block;
