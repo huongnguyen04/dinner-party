@@ -1,4 +1,3 @@
-// const Cuisine = require('../models/cuisine.js');
 const { Cuisine } = require('../db/connection.js');
 
 
