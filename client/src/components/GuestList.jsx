@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const GuestEntry = ({ guests, setGuests, modifyGuest }) => {
+const GuestList = ({ guests, setGuests, modifyGuest }) => {
 
   let guestList;
   if (guests && guests.length > 0) {
@@ -24,4 +24,4 @@ const StyledGuest = styled.div`
   }
 `
 
-export default GuestEntry;
+export default GuestList;

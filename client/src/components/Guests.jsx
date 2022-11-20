@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import GuestEntry from './GuestEntry.jsx';
+import GuestList from './GuestList.jsx';
 
 const Guests = ({ guests, setGuests, addGuest, modifyGuest, watch, setWatch }) => {
   const [guest, setGuest] = useState('');
@@ -48,9 +48,9 @@ const Guests = ({ guests, setGuests, addGuest, modifyGuest, watch, setWatch }) =
       <StyledBtn selected={confirmedView} onClick={onConfirmedClick}>Confirmed</StyledBtn>
       <StyledBtn selected={nonConfirmedView} onClick={onNotConfirmedClick}>Not Confirmed</StyledBtn>
       <StyledGuestsArea>
-        {showAllView && <GuestEntry guests={guests} setGuests={setGuests} modifyGuest={modifyGuest} />}
-        {confirmedView && <GuestEntry guests={confirmedList} setGuests={setGuests} modifyGuest={modifyGuest} />}
-        {nonConfirmedView && <GuestEntry guests={nonConfirmedList} setGuests={setGuests} modifyGuest={modifyGuest} />}
+        {showAllView && <GuestList guests={guests} setGuests={setGuests} modifyGuest={modifyGuest} />}
+        {confirmedView && <GuestList guests={confirmedList} setGuests={setGuests} modifyGuest={modifyGuest} />}
+        {nonConfirmedView && <GuestList guests={nonConfirmedList} setGuests={setGuests} modifyGuest={modifyGuest} />}
       </StyledGuestsArea>
 
       <div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MenuEntry from './MenuEntry.jsx';
+import MenuList from './MenuList.jsx';
 import axios from 'axios';
 
 const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, entrees, appetizers, sides, drinks, desserts }) => {
@@ -52,7 +52,7 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, entrees,
       <h1>Menu</h1>
 
       <h3>Entrees</h3>
-      <MenuEntry foods={entrees}/>
+      <MenuList foods={entrees}/>
       <br></br>
       <div>
         <input placeholder={'add entree'} value={entree} onChange={(e) => setEntree(e.target.value)}></input>
@@ -61,7 +61,7 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, entrees,
       <br></br>
 
       <h3>Appetizers</h3>
-      <MenuEntry foods={appetizers}/>
+      <MenuList foods={appetizers}/>
       <br></br>
       <div>
         <input placeholder={'add appetizer'} value={appetizer} onChange={(e) => setAppetizer(e.target.value)}></input>
@@ -70,7 +70,7 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, entrees,
       <br></br>
 
       <h3>Sides</h3>
-      <MenuEntry foods={sides}/>
+      <MenuList foods={sides}/>
       <br></br>
       <div>
         <input placeholder={'add side'} value={side} onChange={(e) => setSide(e.target.value)}></input>
@@ -79,7 +79,7 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, entrees,
       <br></br>
 
       <h3>Drinks</h3>
-      <MenuEntry foods={drinks}/>
+      <MenuList foods={drinks}/>
       <br></br>
       <div>
         <input placeholder={'add drink'} value={drink} onChange={(e) => setDrink(e.target.value)}></input>
@@ -88,7 +88,7 @@ const Menu = ({ addEntree, addAppetizer, addSide, addDrink, addDessert, entrees,
       <br></br>
 
       <h3>Dessert</h3>
-      <MenuEntry foods={desserts}/>
+      <MenuList foods={desserts}/>
       <br></br>
       <div>
         <input placeholder={'add dessert'} value={dessert} onChange={(e) => setDessert(e.target.value)}></input>
