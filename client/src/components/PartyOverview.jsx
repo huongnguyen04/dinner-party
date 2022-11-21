@@ -58,7 +58,9 @@ const StyledOverviewDetails = styled.div`
 
 const StyledButtonContainer = styled.div`
   text-align: right;
+  margin: 6px;
   margin-bottom: 15px;
+
   button {
     margin: 3px;
     color: #904E55;

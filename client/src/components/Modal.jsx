@@ -9,9 +9,9 @@ const Modal = ({ visible, toggle, setTheme, setDate, setHost, generateMenu }) =>
   <div className="modal">
     <div className="modal-pop" role="dialog" aria-modal="true">
       <StyledXButtonAlign>
-        <button className='no-padding' type="button" onClick={() => {
+        <button className='xButton' type="button" onClick={() => {
           toggle()
-        }}>x</button>
+        }}>ⓧ</button>
       </StyledXButtonAlign>
       <StyledTitle>Let's party!</StyledTitle>
 

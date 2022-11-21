@@ -72,8 +72,8 @@ const StyledGuestsArea = styled.div`
 `
 
 const StyledBtn = styled.button`
-  background: ${props => props.selected ? '#D3D3D3' : 'none'};
-  color: ${props => props.selected ? '#904E55' : 'white'};
+  background: ${props => props.selected ? '#754146' : 'none'};
+  color: white;
   border: 1px solid white;
   &:hover {
     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24),0 5px 10px 0 rgba(0,0,0,0.19);

@@ -25,6 +25,16 @@ h2, h3 {
   padding: 0px;
 }
 
+.xButton {
+  padding: 0px;
+  border: none;
+  font-size: 16px;
+}
+
+.nextButton {
+  border: 1px solid white;
+}
+
 button {
   background: none;
   font-family: Verdana;

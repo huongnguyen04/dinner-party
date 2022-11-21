@@ -53,16 +53,19 @@ const App = () => {
 const StyledTitleContainer = styled.div`
   background: white;
   padding: 15px;
+  height: 200px;
+  text-align: center;
 `
 const StyledAppTitle = styled.h1`
-  text-align: center;
-  font-size: 42px;
+  // text-align: center;
+  padding-top: 30px;
+  font-size: 50px;
   color: #904E55;
 `
 
 const StyledSubTitles = styled.div`
-  text-align: center;
-  padding-top: 100px;
+  // text-align: center;
+  padding-top: 60px;
 `
 
 const StyledGreeting = styled.div`
