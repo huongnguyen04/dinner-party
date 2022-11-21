@@ -1,9 +1,7 @@
 const axios = require('axios');
-// const Model = require('./models/cuisine.js');
 const { Cuisine } = require('./db/connection.js');
 
 const api = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${process.env.EDAMAM_APP_ID}&app_key=${process.env.EDAMAM_APP_KEY}&`
-
 
 // const cuisineTypes = ['american', 'african', 'asian', 'british', 'caribbean', 'central europe', 'chinese',' eastern europe', 'french', 'greek', 'indian', 'italian', 'japanese', 'korean', 'kosher', 'mediterranean', 'mexican', 'middle eastern', 'nordic', 'south american', spanish', 'south east asian', 'taiwanese', 'vietnamese']
 // console.log('cuisineTypes.length: ', cuisineTypes.length) // 24
@@ -44,7 +42,7 @@ Cuisine.find({})
   })
   .then((data) => {
     let flatList = [];
-    console.log('data length:', data.length)
+    // console.log('data length:', data.length)
     // console.log('data:', data)
     data.forEach((arr) => {
       if (typeof arr !== 'undefined') {
@@ -55,7 +53,7 @@ Cuisine.find({})
         })
       }
     });
-    console.log('flatList: ', flatList);
+    // console.log('flatList: ', flatList);
     return Cuisine.insertMany(flatList);
   })
   .then(() => {
