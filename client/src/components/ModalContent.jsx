@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu }) => {
+const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu, formatInput }) => {
   const [modalView1, setModalView1] = useState(true);
   const [userInput, setUserInput] = useState(null);
   const [cuisines, setCuisines] = useState(null);
@@ -71,9 +71,9 @@ const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu }) => {
           <br></br>
           <form onSubmit={(e)=> {
             e.preventDefault();
-            setTheme(tempTheme);
+            setTheme(formatInput(tempTheme));
             setDate(formatDate(tempDate));
-            setHost(tempHost);
+            setHost(formatInput(tempHost));
             generateMenu(selectedTheme);
             toggle();
           }}>
@@ -105,9 +105,9 @@ const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu }) => {
       <StyledModalView>
         <form onSubmit={(e)=> {
           e.preventDefault();
-          setTheme(tempTheme);
+          setTheme(formatInput(tempTheme));
           setDate(formatDate(tempDate));
-          setHost(tempHost);
+          setHost(formatInput(tempHost));
           toggle();
         }}>
           <StyledFlex>

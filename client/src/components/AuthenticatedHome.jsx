@@ -118,7 +118,6 @@ const AuthenticatedHome = ({ user, logout }) => {
       .catch((err) => console.log(err));
   }
 
-
   const generateMenu = (selectedTheme) => {
     if (selectedTheme) {
       axios.get(`/cuisines/${selectedTheme}`)
@@ -148,15 +147,27 @@ const AuthenticatedHome = ({ user, logout }) => {
       }
   }
 
+  const formatInput = (str) => {
+    var result = '';
+    var splitStr = str.split(' ');
+    if (splitStr[splitStr.length - 1] === '') {
+      splitStr.pop();
+    }
+    splitStr.forEach((word, index) => {
+      result+= word[0].toUpperCase() + word.substring(1) + ' ' ;
+    });
+    return result.substring(0, result.length - 1);
+  }
+
 
   useEffect(getMenu, [user, watch]);
 
   return (
     <StyledAuthenticatedHome>
-        <PartyOverview theme={theme} setTheme={setTheme} host={host} setHost={setHost} date={date} setDate={setDate} generateMenu={generateMenu} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch} logout={logout} />
+        <PartyOverview theme={theme} setTheme={setTheme} host={host} setHost={setHost} date={date} setDate={setDate} generateMenu={generateMenu} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch} logout={logout} formatInput={formatInput} />
         <StyledContainer>
           <StyledMenu>
-            <Menu addMenuItem={addMenuItem} deleteMenuItem={deleteMenuItem} entrees={entrees} appetizers={appetizers} sides={sides} drinks={drinks} desserts={desserts} />
+            <Menu addMenuItem={addMenuItem} deleteMenuItem={deleteMenuItem} entrees={entrees} appetizers={appetizers} sides={sides} drinks={drinks} desserts={desserts} formatInput={formatInput} />
           </StyledMenu>
           <StyledGuests>
             <Guests guests={guests} setGuests={setGuests} addGuest={addGuest} modifyGuest={modifyGuest} watch={watch} setWatch={setWatch} deleteGuest={deleteGuest} />

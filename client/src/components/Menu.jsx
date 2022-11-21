@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MenuList from './MenuList.jsx';
 import axios from 'axios';
 
-const Menu = ({ addMenuItem, deleteMenuItem, entrees, appetizers, sides, drinks, desserts }) => {
+const Menu = ({ addMenuItem, deleteMenuItem, entrees, appetizers, sides, drinks, desserts, formatInput }) => {
 
   const [entree, setEntree] = useState('');
   const [appetizer, setAppetizer] = useState('');
@@ -33,18 +33,6 @@ const Menu = ({ addMenuItem, deleteMenuItem, entrees, appetizers, sides, drinks,
   const addDessertClick = () => {
     addMenuItem(formatInput(dessert), 'dessert');
     setDessert('');
-  }
-
-  const formatInput = (str) => {
-    var result = '';
-    var splitStr = str.split(' ');
-    if (splitStr[splitStr.length - 1] === '') {
-      splitStr.pop();
-    }
-    splitStr.forEach((word, index) => {
-      result+= word[0].toUpperCase() + word.substring(1) + ' ' ;
-    });
-    return result.substring(0, result.length - 1);
   }
 
   return (
