@@ -17,7 +17,6 @@ const AuthenticatedHome = ({ user, logout }) => {
   const [guests, setGuests] = useState();
   const [watch, setWatch] = useState(true);
 
-  console.log('user: ', user)
   if (guests && guests.length > 0) {
     console.log('guests: ', guests[0]._id)
   }
@@ -26,7 +25,7 @@ const AuthenticatedHome = ({ user, logout }) => {
     if (user) {
       axios.get(`/partyData/${user.sub}`)
         .then((res) => {
-          console.log(res.data);
+          console.log('res.data: ',res.data);
           setEntrees(res.data.entrees);
           setAppetizers(res.data.appetizers);
           setSides(res.data.sides);
@@ -50,15 +49,15 @@ const AuthenticatedHome = ({ user, logout }) => {
         })
         .catch((err) => {
           console.log('Error getting data in DB. Error: ', err)
-          setEntrees([]);
-          setAppetizers([]);
-          setSides([]);
-          setDrinks([]);
-          setDesserts([]);
-          setGuests([]);
-          setTheme('');
-          setDate('');
-          setHost('');
+          // setEntrees([]);
+          // setAppetizers([]);
+          // setSides([]);
+          // setDrinks([]);
+          // setDesserts([]);
+          // setGuests([]);
+          // setTheme('');
+          // setDate('');
+          // setHost('');
         })
     }
   }

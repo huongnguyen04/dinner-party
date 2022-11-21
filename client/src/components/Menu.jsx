@@ -44,7 +44,7 @@ const Menu = ({ addMenuItem, deleteMenuItem, entrees, appetizers, sides, drinks,
     splitStr.forEach((word, index) => {
       result+= word[0].toUpperCase() + word.substring(1) + ' ' ;
     });
-    return result;
+    return result.substring(0, result.length - 1);
   }
 
   return (

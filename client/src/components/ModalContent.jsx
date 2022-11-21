@@ -40,11 +40,11 @@ const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu }) => {
     <>
     {modalView1 &&
       <>
-        <div>
-          Would you like to input a theme or choose from a list?
-        </div>
-        <br></br>
         <StyledModalView>
+        <StyledQuestion>
+          Would you like to input a theme or choose from a list?
+        </StyledQuestion>
+        <br></br>
           <select onChange={(e) => {
               if (e.target.value === 'true') {
                 setUserInput(true);
@@ -77,20 +77,24 @@ const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu }) => {
             generateMenu(selectedTheme);
             toggle();
           }}>
-            <label htmlFor='theme'>Theme: </label>
-            <select name='theme' onChange={(e) => {
-              setSelectedTheme(e.target.value);
-              setTempTheme(e.target.value);
-            }}>
-              <option>select a theme</option>
-              {cuisineOptions}
-            </select>
-            <div>
-              Date: <input type='date' value={tempDate} onChange={(e) => setTempDate(e.target.value)} required></input>
-            </div>
-            <div>
-              Host: <input type='text' value={tempHost} onChange={(e) => setTempHost(e.target.value)} required></input>
-            </div>
+            <StyledFlex>
+              <StyledUserInput>
+                <label htmlFor='theme'>Theme: </label>
+                <select className='selectTheme' onChange={(e) => {
+                  setSelectedTheme(e.target.value);
+                  setTempTheme(e.target.value);
+                }}>
+                  <option>select a theme</option>
+                  {cuisineOptions}
+                </select>
+                <div>
+                  Date: <input type='date' value={tempDate} onChange={(e) => setTempDate(e.target.value)} required></input>
+                </div>
+                <div>
+                  Host: <input type='text' value={tempHost} onChange={(e) => setTempHost(e.target.value)} required></input>
+                </div>
+              </StyledUserInput>
+            </StyledFlex>
             <br></br>
             <input type='submit'></input>
           </form>
@@ -106,11 +110,15 @@ const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu }) => {
           setHost(tempHost);
           toggle();
         }}>
-          Theme: <input className='themeSelect' type='text' value={tempTheme} onChange={(e) => setTempTheme(e.target.value)} required></input>
-          <br></br>
-          Date: <input type='date' value={tempDate} onChange={(e) => setTempDate(e.target.value)} required></input>
-          <br></br>
-          Host: <input type='text' value={tempHost} onChange={(e) => setTempHost(e.target.value)} required></input>
+          <StyledFlex>
+            <StyledUserInput>
+              Theme: <input type='text' value={tempTheme} onChange={(e) => setTempTheme(e.target.value)} required></input>
+              <br></br>
+              Date: <input type='date' value={tempDate} onChange={(e) => setTempDate(e.target.value)} required></input>
+              <br></br>
+              Host: <input type='text' value={tempHost} onChange={(e) => setTempHost(e.target.value)} required></input>
+            </StyledUserInput>
+          </StyledFlex>
           <br></br>
           <br></br>
           <input type='submit'></input>
@@ -122,10 +130,25 @@ const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu }) => {
 }
 
 const StyledModalView = styled.div`
-  // display: flex;
-  // flex-direction: column;
+  position: absolute;
   text-align: center;
   vertical-align: middle;
+  height: 200px;
+  width: 500px;
+`
+
+const StyledFlex = styled.div`
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+const StyledUserInput = styled.div`
+  text-align: right;
+`
+
+const StyledQuestion = styled.div`
+  margin-bottom: 20px;
 `
 
 export default ModalContent;

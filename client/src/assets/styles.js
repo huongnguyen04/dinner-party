@@ -12,12 +12,10 @@ body {
 }
 
 h1 {
-  // color: #EFF1F3;
   color: white;
 }
 
 h2, h3 {
-  // color: #EFF1F3;
   color: white;
 }
 
@@ -33,6 +31,7 @@ h2, h3 {
 
 .nextButton {
   border: 1px solid white;
+  margin-top: 50px;
 }
 
 button {
@@ -42,34 +41,41 @@ button {
   color: white;
   padding: 5px;
   border-radius: 5px;
-
 }
 
 p, div, option {
-  // color: #EFF1F3;
   color: white;
   font-family: Verdana;
   font-size: 16px;
 }
 
 select {
-  // color: #D8B4A0;
   font-family: Verdana;
   width: 200px;
 }
 
+.selectTheme {
+  width: 155px;
+}
+
 input {
-  // color: #D8B4A0;
   font-family: Verdana;
   width: 150px;
 }
 
-.themeSelect {
-  width: 150px;
+.themeInput {
+  width: 148px;
 }
 
 input[type=submit] {
   width: 100px;
+  background: none;
+  font-family: Verdana;
+  cursor: pointer;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid white;
 }
 
 form {
@@ -82,8 +88,6 @@ form {
   margin: auto;
   width: 50%;
   color: official;
-  // display: inline-block;
-  // position: relative;
   width: 80px;
   height: 80px;
 }

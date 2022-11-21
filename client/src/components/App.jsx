@@ -57,14 +57,13 @@ const StyledTitleContainer = styled.div`
   text-align: center;
 `
 const StyledAppTitle = styled.h1`
-  // text-align: center;
   padding-top: 30px;
   font-size: 50px;
   color: #904E55;
 `
 
 const StyledSubTitles = styled.div`
-  // text-align: center;
+  text-align: center;
   padding-top: 60px;
 `
 
