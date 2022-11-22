@@ -49,15 +49,15 @@ const AuthenticatedHome = ({ user, logout }) => {
         })
         .catch((err) => {
           console.log('Error getting data in DB. Error: ', err)
-          // setEntrees([]);
-          // setAppetizers([]);
-          // setSides([]);
-          // setDrinks([]);
-          // setDesserts([]);
-          // setGuests([]);
-          // setTheme('');
-          // setDate('');
-          // setHost('');
+          setEntrees([]);
+          setAppetizers([]);
+          setSides([]);
+          setDrinks([]);
+          setDesserts([]);
+          setGuests([]);
+          setTheme('');
+          setDate('');
+          setHost('');
         })
     }
   }
@@ -170,7 +170,7 @@ const AuthenticatedHome = ({ user, logout }) => {
             <Menu addMenuItem={addMenuItem} deleteMenuItem={deleteMenuItem} entrees={entrees} appetizers={appetizers} sides={sides} drinks={drinks} desserts={desserts} formatInput={formatInput} />
           </StyledMenu>
           <StyledGuests>
-            <Guests guests={guests} setGuests={setGuests} addGuest={addGuest} modifyGuest={modifyGuest} watch={watch} setWatch={setWatch} deleteGuest={deleteGuest} />
+            <Guests guests={guests} setGuests={setGuests} addGuest={addGuest} modifyGuest={modifyGuest} watch={watch} setWatch={setWatch} deleteGuest={deleteGuest} formatInput={formatInput} />
           </StyledGuests>
         </StyledContainer>
     </StyledAuthenticatedHome>
