@@ -19,7 +19,7 @@ const PartyOverview = ( {theme, setTheme, date, setDate, host, setHost, generate
 
   return (
     <>
-      <StyledOverviewBanner>
+      <StyledOverviewBanner id='overviewBanner'>
         <StyledButtonContainer>
           <button onClick={toggle}>Edit Details</button>
           <button onClick={reset}>Reset</button>
@@ -42,7 +42,6 @@ const PartyOverview = ( {theme, setTheme, date, setDate, host, setHost, generate
 }
 
 const StyledOverviewBanner = styled.div`
-  border: 1px solid white;
   height: 100px;
 `
 
@@ -51,8 +50,7 @@ const StyledOverviewDetails = styled.div`
   span {
     font-size: 18px;
     padding-left: 50px;
-    padding-right: 50px;
-    color: white;
+    padding-right: 50px;s
   }
 `
 

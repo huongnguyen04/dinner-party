@@ -1,24 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
 import Typed from 'typed.js';
 import { AppStyle } from '../assets/styles.js';
+import { lightTheme, darkTheme } from "../assets/themes.js";
+import { ThemeProvider } from "styled-components";
+import Toggler from './Toggle.jsx';
 import TypedAnimation from './TypedAnimation.jsx';
 import AuthenticatedHome from './AuthenticatedHome.jsx';
 
 const App = () => {
   const { isLoading, isAuthenticated, error, user, loginWithPopup, logout } = useAuth0();
+  const [theme, setTheme] = useState('light');
 
   if (error) {
     return <div>Oops... {error.message}</div>;
   }
 
+  const themeToggler = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  }
+
   return (
     <>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <AppStyle/>
+
+        <Toggler theme={theme} toggleTheme={themeToggler}/>
+
         {isAuthenticated &&
         <>
-          <StyledTitleContainer>
+          <StyledTitleContainer id='banner'>
             <StyledAppTitle>dinner party 🥘🎉</StyledAppTitle>
               <>
                 <StyledGreeting>
@@ -46,12 +58,12 @@ const App = () => {
           }
         </>
       }
+      </ThemeProvider>
     </>
   )
 }
 
 const StyledTitleContainer = styled.div`
-  background: white;
   padding: 15px;
   height: 200px;
   text-align: center;
@@ -59,7 +71,6 @@ const StyledTitleContainer = styled.div`
 const StyledAppTitle = styled.h1`
   padding-top: 30px;
   font-size: 50px;
-  color: #904E55;
 `
 
 const StyledSubTitles = styled.div`
@@ -69,7 +80,6 @@ const StyledSubTitles = styled.div`
 
 const StyledGreeting = styled.div`
   text-align: center;
-  color: #904E55;
 `
 
 const StyledButtonAlign = styled.div`
@@ -80,8 +90,6 @@ const StyledButtonAlign = styled.div`
 
 const StyledLoginButton = styled.button`
   width: 150px;
-  background: white;
-  color: #904E55;
 `
 
 

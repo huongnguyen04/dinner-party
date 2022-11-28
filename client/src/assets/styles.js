@@ -7,16 +7,12 @@ body {
   margin: 0 auto;
   margin-top: 100px;
   margin-bottom: 100px;
-  background-color: #904E55;
+  background-color: ${({ theme }) => theme.body};
   width: 900px;
 }
 
-h1 {
-  color: white;
-}
-
-h2, h3 {
-  color: white;
+border {
+  ${({ theme }) => theme.border};
 }
 
 .plus, .no-padding {
@@ -35,16 +31,28 @@ h2, h3 {
 }
 
 button {
-  background: none;
+  background: ${({ theme }) => theme.buttonBackground};
   font-family: Verdana;
   cursor: pointer;
-  color: white;
+  color: ${({ theme }) => theme.buttonText};
   padding: 5px;
   border-radius: 5px;
 }
 
-p, div, option {
-  color: white;
+#banner {
+  background: ${({ theme }) => theme.bannerBackground};
+}
+
+#banner > h1, #banner > div {
+  color: ${({ theme }) => theme.bannerText};
+}
+
+#overviewBanner {
+  border:  ${({ theme }) => theme.overviewBannerBorder};
+}
+
+h1, h2, h3, h4, p, div, option, span {
+  color: ${({ theme }) => theme.text};
   font-family: Verdana;
   font-size: 16px;
 }
