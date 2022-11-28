@@ -59,7 +59,7 @@ const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu, format
           </select>
           <div>
             <br></br>
-            <button className='nextButton' onClick={() => setModalView1(!modalView1)}>next</button>
+            <button className='nextButton' onClick={() => setModalView1(!modalView1)}>Next</button>
           </div>
         </StyledModalView>
       </>
