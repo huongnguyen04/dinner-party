@@ -165,7 +165,7 @@ const AuthenticatedHome = ({ user, logout }) => {
 
   return (
     <StyledAuthenticatedHome>
-        <HomeView />
+        {/* <HomeView /> */}
         <PartyOverview theme={theme} setTheme={setTheme} host={host} setHost={setHost} date={date} setDate={setDate} generateMenu={generateMenu} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch} logout={logout} formatInput={formatInput} />
         <StyledContainer>
           <StyledMenu>
