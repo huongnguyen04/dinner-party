@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import GuestList from './GuestList.jsx';
 
-const Guests = ({ guests, setGuests, addGuest, modifyGuest, deleteGuest, watch, setWatch }) => {
+const Guests = ({ guests, setGuests, addGuest, modifyGuest, deleteGuest, watch, setWatch, formatInput }) => {
   const [guest, setGuest] = useState('');
   const [showAllView, setShowAllView] = useState(true);
   const [confirmedView, setConfirmedView] = useState(false);
@@ -10,7 +10,7 @@ const Guests = ({ guests, setGuests, addGuest, modifyGuest, deleteGuest, watch, 
 
 
   const onGuestButtonClick = () => {
-    addGuest(guest);
+    addGuest(formatInput(guest));
     setGuest('');
   }
 
@@ -72,7 +72,7 @@ const StyledGuestsArea = styled.div`
 `
 
 const StyledBtn = styled.button`
-  background: ${props => props.selected ? '#754146' : 'none'};
+  background: ${props => props.selected ? '#785054' : 'none'};
   color: white;
   border: 1px solid white;
   &:hover {
