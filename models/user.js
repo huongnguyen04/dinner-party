@@ -2,19 +2,24 @@ const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
   userId: String,
+  email: String,
   theme: String,
   date: String,
   host: String,
-  entrees: [String],
-  appetizers: [String],
-  sides: [String],
-  drinks: [String],
-  desserts: [String],
-  guests: [
+  partiesHosting: [
     {
-      name: String,
-      email: String,
-      confirmed: { type: Boolean, default: false }
+      entrees: [String],
+      appetizers: [String],
+      sides: [String],
+      drinks: [String],
+      desserts: [String],
+      guests: [
+        {
+          name: String,
+          email: String,
+          confirmed: { type: Boolean, default: false }
+        }
+      ]
     }
   ]
 });

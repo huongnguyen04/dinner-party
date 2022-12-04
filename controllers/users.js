@@ -14,7 +14,8 @@ const getPartyData = (req, res) => {
 }
 
 const addPartyDetail = (req, res) => {
-  User.findOneAndUpdate({userId: req.body.userId}, {theme: req.body.theme, date: req.body.date, host: req.body.host}, {returnDocument: 'after', upsert: true})
+  console.log('email: ', req.body.email)
+  User.findOneAndUpdate({userId: req.body.userId}, {email: req.body.email, theme: req.body.theme, date: req.body.date, host: req.body.host}, {returnDocument: 'after', upsert: true})
     .then((data) => {
       console.log('user: ', data)
       res.send('Successfully added party details to database');

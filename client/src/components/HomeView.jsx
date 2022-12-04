@@ -67,7 +67,7 @@ const HomeView = ({ user, logout }) => {
   const sendPartyOverviewDetails = () => {
     console.log('in send party overview details')
     if (theme && date && host) {
-      axios.post('/partyDetail', {userId: user.sub, theme: theme, date: date.toString(), host: host})
+      axios.post('/partyDetail', {userId: user.sub, email: user.email, theme: theme, date: date.toString(), host: host})
         .then((res) => console.log('added party details'))
         .catch((err) => console.log(err));
     }
