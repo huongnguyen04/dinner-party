@@ -3,13 +3,19 @@ import styled from 'styled-components';
 
 const GuestItem = ({ guest, modifyGuest, deleteGuest }) => {
 
+  const editGuest = () => {
+
+  }
+
   return (
     <>
-      <StyledWrapper>
+      <StyledWrapper id='wrapper'>
         <StyledGuest>
           {guest.confirmed ? <span onClick={() => modifyGuest(guest)}>✓</span> : <span onClick={() => modifyGuest(guest)}>☐</span>}
           &nbsp; {guest.name} &nbsp;
         </StyledGuest>
+        <EditButton onClick={() => editGuest(guest)}>✎</EditButton>
+        &nbsp;
         <DeleteButton onClick={() => deleteGuest(guest)}>ⓧ</DeleteButton>
       </StyledWrapper>
     </>
@@ -17,8 +23,14 @@ const GuestItem = ({ guest, modifyGuest, deleteGuest }) => {
 }
 
 const StyledWrapper = styled.div`
-  div:hover + button, button:hover {
+  width: 100%;
   display: inline-block;
+  // div:hover ~ button, button:hover {
+  // display: inline-block;
+
+  // span + span + span {
+  //   margin-left: 1em;
+  // }
 }
 `
 
@@ -30,9 +42,17 @@ const StyledGuest = styled.div`
 `
 
 const DeleteButton = styled.button`
-  display: none;
+  display:  inline-block;
   padding: 0px;
   border: none;
+  background: none;
+`
+
+const EditButton = styled.button`
+  display:  inline-block;
+  padding: 0px;
+  border: none;
+  background: none;
 `
 
 export default GuestItem;
