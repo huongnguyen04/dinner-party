@@ -11,7 +11,7 @@ import AuthenticatedHome from './AuthenticatedHome.jsx';
 
 const App = () => {
   const { isLoading, isAuthenticated, error, user, loginWithPopup, logout } = useAuth0();
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
 
   if (error) {
     return <div>Oops... {error.message}</div>;
