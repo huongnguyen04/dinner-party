@@ -27,10 +27,6 @@ const StyledWrapper = styled.div`
   display: inline-block;
   // div:hover ~ button, button:hover {
   // display: inline-block;
-
-  // span + span + span {
-  //   margin-left: 1em;
-  // }
 }
 `
 
