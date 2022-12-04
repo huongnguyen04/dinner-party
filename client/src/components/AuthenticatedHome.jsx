@@ -74,8 +74,8 @@ const AuthenticatedHome = ({ user, logout }) => {
 
   useEffect(sendPartyOverviewDetails, [theme]);
 
-  const addGuest = (guest) => {
-    axios.post('/addGuest', {userId: user.sub, guest: guest, confirmed: false})
+  const addGuest = (guestName, guestEmail) => {
+    axios.post('/addGuest', {userId: user.sub, guestName: guestName, guestEmail, guestEmail, confirmed: false})
       .then((res) => {
         console.log('added guest');
         setWatch(!watch);

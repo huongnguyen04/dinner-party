@@ -13,6 +13,7 @@ const UserSchema = new mongoose.Schema({
   guests: [
     {
       name: String,
+      email: String,
       confirmed: { type: Boolean, default: false }
     }
   ]

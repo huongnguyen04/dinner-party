@@ -31,7 +31,7 @@ const clearMenu = (req, res) => {
 }
 
 const addGuest = (req, res) => {
-  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {guests: {name: req.body.guest, confirmed: req.body.confirmed }}}, {returnDocument: 'after', upsert: true})
+  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {guests: {name: req.body.guestName, email: req.body.guestEmail, confirmed: req.body.confirmed }}}, {returnDocument: 'after', upsert: true})
     .then((data) => {
       res.send('Successfully added guest to database');
     })
