@@ -6,6 +6,7 @@ const getPartyData = (req, res) => {
   console.log('userId: ', userId)
   User.find({userId: userId})
     .then((data) => {
+      console.log('party data: ', data)
       console.log('party data: ', data[0])
       res.send(data[0]);
     })
@@ -15,6 +16,7 @@ const getPartyData = (req, res) => {
 const addPartyDetail = (req, res) => {
   User.findOneAndUpdate({userId: req.body.userId}, {theme: req.body.theme, date: req.body.date, host: req.body.host}, {returnDocument: 'after', upsert: true})
     .then((data) => {
+      console.log('user: ', data)
       res.send('Successfully added party details to database');
     })
     .catch((err) => console.log('Error, could not add party details to database. Error: ', err));

@@ -12,13 +12,14 @@ const Toggle = ({theme,  toggleTheme }) => {
   };
 
 const Button = styled.button`
-  background: ${({ theme }) => theme.background};
+  background: none;
   border: none;
   color: ${({ theme }) => theme.text};
   border-radius: 30px;
   cursor: pointer;
   font-size:1.5rem;
   padding: 0.6rem;
+  transform: rotate(-30deg);
   }
 `
 

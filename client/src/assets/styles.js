@@ -51,7 +51,12 @@ button {
   border:  ${({ theme }) => theme.overviewBannerBorder};
 }
 
-h1, h2, h3, h4, p, div, option, span {
+h1, h2, h3, h4 {
+  color: ${({ theme }) => theme.text};
+  font-family: Verdana;
+}
+
+p, div, option, span {
   color: ${({ theme }) => theme.text};
   font-family: Verdana;
   font-size: 16px;
@@ -84,6 +89,32 @@ input[type=submit] {
   padding: 5px;
   border-radius: 5px;
   border: 1px solid white;
+}
+
+.modal-pop {
+  background: #904E55;
+  border: 2px solid #aaa;
+  border-radius: 5px;
+  z-index: 2;
+  /* max-width: 420px; */
+  min-width: 500px;
+  min-height: 250px;
+  margin: auto;
+  padding: 1em 2em 2em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgb(0, 0, 0);
+  opacity: 0.75;
 }
 
 form {

@@ -47,7 +47,7 @@ const Guests = ({ guests, setGuests, addGuest, modifyGuest, deleteGuest, watch, 
       <StyledBtn selected={showAllView} onClick={onAllClick}>All Guests</StyledBtn>
       <StyledBtn selected={confirmedView} onClick={onConfirmedClick}>Confirmed</StyledBtn>
       <StyledBtn selected={nonConfirmedView} onClick={onNotConfirmedClick}>Not Confirmed</StyledBtn>
-      <StyledGuestsArea>
+      <StyledGuestsArea id='guestArea'>
         {showAllView &&
           <GuestList guests={guests} modifyGuest={modifyGuest} deleteGuest={deleteGuest}/>}
         {confirmedView &&
@@ -67,14 +67,14 @@ const Guests = ({ guests, setGuests, addGuest, modifyGuest, deleteGuest, watch, 
 
 const StyledGuestsArea = styled.div`
   min-height: 300px;
-  border: 1px solid white;
+  border: ${({ theme }) => theme.guestAreaBorder};
   padding: 10px;
 `
 
 const StyledBtn = styled.button`
-  background: ${props => props.selected ? '#785054' : 'none'};
-  color: white;
-  border: 1px solid white;
+  background: ${({ theme }) => theme.overviewButtonBackground};
+  color: ${({ theme }) => theme.overviewButtonText};
+  border: 1px solid #904E55;
   &:hover {
     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24),0 5px 10px 0 rgba(0,0,0,0.19);
   }

@@ -61,9 +61,9 @@ const StyledButtonContainer = styled.div`
 
   button {
     margin: 3px;
-    color: #904E55;
-    background-color: white;
-    border: 1px solid #904E55;
+    color: ${({ theme }) => theme.overviewButtonText};
+    background-color: ${({ theme }) => theme.overviewButtonBackground};
+    border: none;
     &:hover {
       box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24),0 5px 10px 0 rgba(0,0,0,0.19);
     }
