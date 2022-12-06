@@ -13,7 +13,10 @@ app.use(express.json());
 app.get('/cuisines/:theme', cuisineRoutes.getCuisinesData);
 app.get('/cuisines', cuisineRoutes.getCuisines);
 
-app.get('/partyData/:userId', userRoutes.getPartyData);
+app.get('/partyData/:userId/:partyId', userRoutes.getPartyData);
+app.post('/addUser', userRoutes.addUserDetail);
+app.post('/newParty', userRoutes.addParty);
+app.get('/user/:userId/parties', userRoutes.getParties);
 app.post('/partyDetail', userRoutes.addPartyDetail)
 app.post('/addGuest', userRoutes.addGuest);
 app.post('/deleteGuest', userRoutes.deleteGuest);
