@@ -4,7 +4,7 @@ import axios from 'axios';
 import PartyOverview from './partyOverview/PartyOverview.jsx';
 import Menu from './menu/Menu.jsx';
 import Guests from './guests/Guests.jsx';
-import AddPartyView from './AddPartyView.jsx';
+import PartyView from './PartyView.jsx';
 
 const AuthenticatedHome = ({ user, logout }) => {
 
@@ -13,7 +13,7 @@ const AuthenticatedHome = ({ user, logout }) => {
   const [currentParty, setCurrentParty] = useState(null);
 
   const addUser = () => {
-    axios.post(`/addUser`, {userId: user.sub, email: user.email})
+    axios.post('/addUser', {userId: user.sub, email: user.email})
       .then((res) => console.log('res.data: ', res.data))
       .catch((err) => console.log('error adding user data. error: ', err))
   }
@@ -60,7 +60,7 @@ const AuthenticatedHome = ({ user, logout }) => {
           </FlexContainer>
         }
 
-        {viewParty && <AddPartyView user={user} logout={logout} currentParty={currentParty} setCurrentParty={setCurrentParty} setViewParty={setViewParty}/>}
+        {viewParty && <PartyView user={user} logout={logout} currentParty={currentParty} setCurrentParty={setCurrentParty} setViewParty={setViewParty}/>}
     </StyledAuthenticatedHome>
     </>
   )
