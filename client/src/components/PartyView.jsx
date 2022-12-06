@@ -5,7 +5,7 @@ import PartyOverview from './partyOverview/PartyOverview.jsx';
 import Menu from './menu/Menu.jsx';
 import Guests from './guests/Guests.jsx';
 
-const AddPartyView = ({ user, logout, setViewParty, currentParty, setCurrentParty }) => {
+const PartyView = ({ user, logout, setViewParty, currentParty, setCurrentParty }) => {
 
   const [theme, setTheme] = useState('');
   const [date, setDate] = useState('');
@@ -198,4 +198,4 @@ const StyledGuests = styled.div`
   grid-area: guests;
 `
 
-export default AddPartyView;
+export default PartyView;
