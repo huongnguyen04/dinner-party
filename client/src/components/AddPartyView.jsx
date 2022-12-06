@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import PartyOverview from './PartyOverview.jsx';
-import Menu from './Menu.jsx';
-import Guests from './Guests.jsx';
+import PartyOverview from './partyOverview/PartyOverview.jsx';
+import Menu from './menu/Menu.jsx';
+import Guests from './guests/Guests.jsx';
 
 const AddPartyView = ({ user, logout, setViewParty, currentParty, setCurrentParty }) => {
 

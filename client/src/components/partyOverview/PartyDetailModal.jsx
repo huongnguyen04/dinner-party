@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ModalContent from './ModalContent.jsx';
+import PartyDetailModalContent from './PartyDetailModalContent.jsx';
 import styled from 'styled-components';
 
 const container = document.getElementById('root');
 
-const Modal = ({ visible, toggle, setTheme, setDate, setHost, generateMenu }) => visible ? ReactDOM.createPortal(
+const PartyDetailModal = ({ visible, toggle, setTheme, setDate, setHost, generateMenu }) => visible ? ReactDOM.createPortal(
   <div className="modal">
     <div className="modal-pop" role="dialog" aria-modal="true">
       <StyledXButtonAlign>
@@ -16,7 +16,7 @@ const Modal = ({ visible, toggle, setTheme, setDate, setHost, generateMenu }) =>
 
       <StyledTitle>Let's party!</StyledTitle>
 
-      <ModalContent toggle={toggle} setTheme={setTheme} setDate={setDate} setHost={setHost} generateMenu={generateMenu} />
+      <PartyDetailModalContent toggle={toggle} setTheme={setTheme} setDate={setDate} setHost={setHost} generateMenu={generateMenu} />
 
     </div>
     <div className="modal-overlay"></div>
@@ -31,4 +31,4 @@ const StyledXButtonAlign = styled.div`
   right: 30px;
   padding: 10px;
 `
-export default Modal;
+export default PartyDetailModal;

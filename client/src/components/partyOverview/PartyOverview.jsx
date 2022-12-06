@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import Modal from './Modal.jsx';
-import useModal from './useModal.jsx';
-import '../assets/modal.css';
+import PartyDetailModal from './PartyDetailModal.jsx';
+import useModal from '../useModal.jsx';
+import '../../assets/modal.css';
 
 const PartyOverview = ({ theme, setTheme, date, setDate, host, setHost, generateMenu, sendPartyOverviewDetails, watch, setWatch, logout, setViewParty }) => {
   const {toggle, visible} = useModal();
@@ -36,7 +36,7 @@ const PartyOverview = ({ theme, setTheme, date, setDate, host, setHost, generate
       </StyledOverviewBanner>
 
       <div>
-        <Modal visible={visible} toggle={toggle} setTheme={setTheme} setDate={setDate} setHost={setHost} generateMenu={generateMenu} />
+        <PartyDetailModal visible={visible} toggle={toggle} setTheme={setTheme} setDate={setDate} setHost={setHost} generateMenu={generateMenu} />
       </div>
     </>
   );

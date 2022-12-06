@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { formatInput } from './formatInput.js';
+import { formatInput } from '../formatInput.js';
 
 const AddGuestContent = ({ toggle, addGuest }) => {
   const [guestName, setGuestName] = useState('');

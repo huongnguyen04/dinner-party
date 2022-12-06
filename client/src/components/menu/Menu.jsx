@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MenuList from './MenuList.jsx';
 import axios from 'axios';
-import { formatInput } from './formatInput.js';
+import { formatInput } from '../formatInput.js';
 
 const Menu = ({ addMenuItem, deleteMenuItem, entrees, appetizers, sides, drinks, desserts }) => {
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import GuestList from './GuestList.jsx';
 import AddGuestModal from './AddGuestModal.jsx';
-import useModal from './useModal.jsx';
+import useModal from '../useModal.jsx';
 
 const Guests = ({ guests, setGuests, addGuest, modifyGuest, deleteGuest, watch, setWatch, formatInput }) => {
   const [showAllView, setShowAllView] = useState(true);
