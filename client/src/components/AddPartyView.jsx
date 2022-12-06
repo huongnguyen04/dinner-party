@@ -171,13 +171,13 @@ const AddPartyView = ({ user, logout, setViewParty, currentParty, setCurrentPart
 
   return (
     <>
-      <PartyOverview theme={theme} setTheme={setTheme} host={host} setHost={setHost} date={date} setDate={setDate} generateMenu={generateMenu} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch} logout={logout} formatInput={formatInput} setViewParty={setViewParty} />
+      <PartyOverview theme={theme} setTheme={setTheme} host={host} setHost={setHost} date={date} setDate={setDate} generateMenu={generateMenu} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch} logout={logout} setViewParty={setViewParty} />
       <StyledContainer>
         <StyledMenu>
-          <Menu addMenuItem={addMenuItem} deleteMenuItem={deleteMenuItem} entrees={entrees} appetizers={appetizers} sides={sides} drinks={drinks} desserts={desserts} formatInput={formatInput} />
+          <Menu addMenuItem={addMenuItem} deleteMenuItem={deleteMenuItem} entrees={entrees} appetizers={appetizers} sides={sides} drinks={drinks} desserts={desserts}/>
         </StyledMenu>
         <StyledGuests>
-          <Guests guests={guests} setGuests={setGuests} addGuest={addGuest} modifyGuest={modifyGuest} watch={watch} setWatch={setWatch} deleteGuest={deleteGuest} formatInput={formatInput} />
+          <Guests guests={guests} setGuests={setGuests} addGuest={addGuest} modifyGuest={modifyGuest} watch={watch} setWatch={setWatch} deleteGuest={deleteGuest} />
         </StyledGuests>
       </StyledContainer>
     </>

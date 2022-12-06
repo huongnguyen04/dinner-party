@@ -5,25 +5,11 @@ import AddGuestModal from './AddGuestModal.jsx';
 import useModal from './useModal.jsx';
 
 const Guests = ({ guests, setGuests, addGuest, modifyGuest, deleteGuest, watch, setWatch, formatInput }) => {
-  // const [guest, setGuest] = useState('');
   const [showAllView, setShowAllView] = useState(true);
   const [confirmedView, setConfirmedView] = useState(false);
   const [nonConfirmedView, setNonConfirmedView] = useState(false)
 
   const {toggle, visible} = useModal();
-
-
-
-  // const onGuestButtonClick = () => {
-  //   addGuest(formatInput(guest));
-  //   setGuest('');
-  // }
-
-  const onGuestButtonClick = () => {
-
-    // addGuest(formatInput(guest));
-    // setGuest('');
-  }
 
   let confirmedList;
   let nonConfirmedList;
@@ -66,18 +52,12 @@ const Guests = ({ guests, setGuests, addGuest, modifyGuest, deleteGuest, watch, 
         {nonConfirmedView &&
           <GuestList guests={nonConfirmedList} modifyGuest={modifyGuest} deleteGuest={deleteGuest} />}
       </StyledGuestsArea>
-{/*
       <div>
-        <input placeholder={'add guest'} value={guest} onChange={(e) => setGuest(e.target.value)}></input>
-        <button className='plus' onClick={onGuestButtonClick}>+</button>
-      </div> */}
-      <div>
-        {/* <input placeholder={'add guest'} value={guest} onChange={(e) => setGuest(e.target.value)}></input> */}
         <button onClick={toggle}>Add Guest</button>
       </div>
 
       <div>
-        <AddGuestModal visible={visible} toggle={toggle} addGuest={addGuest} formatInput={formatInput}/>
+        <AddGuestModal visible={visible} toggle={toggle} addGuest={addGuest} />
       </div>
 
     </>

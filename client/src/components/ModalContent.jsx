@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { formatInput } from './formatInput.js';
 
-const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu, formatInput }) => {
+
+const ModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu }) => {
   const [modalView1, setModalView1] = useState(true);
   const [userInput, setUserInput] = useState(null);
   const [cuisines, setCuisines] = useState(null);
