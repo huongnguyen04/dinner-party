@@ -41,6 +41,14 @@ const AuthenticatedHome = ({ user, logout }) => {
     }} key={index}>{party.theme}</div>)
   }
 
+  const resetParties = () => {
+    axios.post('/deleteParties', {userId: user.sub})
+      .then((res) => {
+        console.log('cleared all')
+        // setWatch(!watch);
+      })
+      .catch((err) => console.log('error clearing all'))
+  }
 
   return (
     <>
@@ -49,8 +57,9 @@ const AuthenticatedHome = ({ user, logout }) => {
           <FlexContainer>
             <PartiesContainer>
               <h2>Your Parties</h2>
-              {partyNames ? partyNames : <div>None yet... Start planning a party!</div> }
+              {partyNames ? partyNames : <div>None yet... Start planning a party!</div>}
               <button onClick={() => setViewParty(true)}>New Party</button>
+              <button onClick={resetParties}>Delete All Parties</button>
             </PartiesContainer>
 
             <InvitedPartiesContainer>

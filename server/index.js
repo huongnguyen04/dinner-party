@@ -21,7 +21,8 @@ app.post('/partyDetail', userRoutes.addPartyDetail)
 app.post('/addGuest', userRoutes.addGuest);
 app.post('/deleteGuest', userRoutes.deleteGuest);
 app.put('/guest', userRoutes.modifyGuest);
-app.post('/delete', userRoutes.clearMenu);
+app.post('/deleteParties', userRoutes.deleteParties);
+app.post('/deleteParty', userRoutes.clearParty);
 
 app.post('/addEntree', userRoutes.addEntree);
 app.post('/addAppetizer', userRoutes.addAppetizer);

@@ -20,11 +20,11 @@ const getPartyData = (req, res) => {
   User.find({'partiesHosting._id': req.params.partyId}, {'partiesHosting.$': 1})
     .then((data) => {
       // console.log('party data: ', data[0].partiesHosting[0]);
-      if (data) {
+      if (data[0].partiesHosting[0]) {
         res.send(data[0].partiesHosting[0]);
       }
     })
-    .catch((err) => console.log('Error, could not get all party data in database. Error: ', err))
+    .catch((err) => console.log('Error, could not get party data in database. Error: ', err))
 }
 
 const addParty = (req, res) => {
@@ -46,12 +46,20 @@ const addPartyDetail = (req, res) => {
     .catch((err) => console.log('Error, could not add party details to database. Error: ', err));
 }
 
-const clearMenu = (req, res) => {
-  User.deleteMany({})
+const deleteParties = (req, res) => {
+  User.deleteMany({userId: req.body.userId})
     .then(() => {
-      res.send('Deleted all menu items from the database!');
+      res.send('Deleted all user parties from the database!');
     })
-    .catch((err) => console.log('Error, could not delete all menu items from database. Error: ', err))
+    .catch((err) => console.log('Error, could not delete all user parties from database. Error: ', err))
+}
+
+const clearParty = (req, res) => {
+  User.updateOne({userId: req.body.userId}, {'$pull': {partiesHosting: {_id: req.body.partyId}}})
+    .then(() => {
+      res.send('Deleted all party info from the database!');
+    })
+    .catch((err) => console.log('Error, could not delete all party info from database. Error: ', err))
 }
 
 const addGuest = (req, res) => {
@@ -161,4 +169,4 @@ const deleteDessert = (req, res) => {
     .catch((err) => console.log('Error, could not delete dessert from database. Error: ', err))
 }
 
-module.exports = { getPartyData, getParties, addUserDetail, addParty, addGuest, deleteGuest, modifyGuest, addPartyDetail, clearMenu, addEntree, addAppetizer, addSide, addDrink, addDessert, deleteEntree, deleteAppetizer, deleteSide, deleteDrink, deleteDessert }
+module.exports = { getPartyData, getParties, addUserDetail, deleteParties, addParty, addGuest, deleteGuest, modifyGuest, addPartyDetail, clearParty, addEntree, addAppetizer, addSide, addDrink, addDessert, deleteEntree, deleteAppetizer, deleteSide, deleteDrink, deleteDessert }

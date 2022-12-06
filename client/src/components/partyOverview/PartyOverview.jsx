@@ -5,16 +5,13 @@ import PartyDetailModal from './PartyDetailModal.jsx';
 import useModal from '../useModal.jsx';
 import '../../assets/modal.css';
 
-const PartyOverview = ({ theme, setTheme, date, setDate, host, setHost, generateMenu, sendPartyOverviewDetails, watch, setWatch, logout, setViewParty, setCurrentParty }) => {
+const PartyOverview = ({ theme, setTheme, date, setDate, host, setHost, generateMenu, sendPartyOverviewDetails, watch, setWatch, logout, setViewParty, setCurrentParty, resetParty, createNewParty }) => {
   const {toggle, visible} = useModal();
 
-  const reset = () => {
-    axios.post('/delete')
-      .then((res) => {
-        console.log('cleared all')
-        setWatch(!watch);
-      })
-      .catch((err) => console.log('error clearing all'))
+  const onResetClick = () => {
+    resetParty();
+    createNewParty();
+    setWatch(!watch)
   }
 
   return (
@@ -26,7 +23,7 @@ const PartyOverview = ({ theme, setTheme, date, setDate, host, setHost, generate
             setCurrentParty(null);
           }}>Home</button>
           <button onClick={toggle}>Edit Details</button>
-          <button onClick={reset}>Reset</button>
+          <button onClick={onResetClick}>Reset</button>
           <button onClick={() => logout({ returnTo: window.location.origin })}>
             Log Out
           </button>
