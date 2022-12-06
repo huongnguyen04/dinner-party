@@ -3,11 +3,12 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
   userId: String,
   email: String,
-  theme: String,
-  date: String,
-  host: String,
   partiesHosting: [
     {
+      created: { type: Boolean, default: false },
+      theme: String,
+      date: String,
+      host: String,
       entrees: [String],
       appetizers: [String],
       sides: [String],
