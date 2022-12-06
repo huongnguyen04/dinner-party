@@ -1,23 +1,46 @@
 const { User } = require('../db/connection.js');
 
-const getPartyData = (req, res) => {
-  console.log('in party data')
-  let userId = req.params.userId;
-  console.log('userId: ', userId)
-  User.find({userId: userId})
+const addUserDetail = (req, res) => {
+  User.findOneAndUpdate({userId: req.body.userId}, {email: req.body.email}, {returnDocument: 'after', upsert: true})
     .then((data) => {
-      console.log('party data: ', data)
-      console.log('party data: ', data[0])
+      res.send('Successfully added user details to database');
+    })
+    .catch((err) => console.log('Error, could not add user details to database. Error: ', err));
+}
+
+const getParties = (req, res) => {
+  User.find({userId: req.params.userId})
+    .then((data) => {
       res.send(data[0]);
     })
     .catch((err) => console.log('Error, could not get all party data in database. Error: ', err))
 }
 
-const addPartyDetail = (req, res) => {
-  console.log('email: ', req.body.email)
-  User.findOneAndUpdate({userId: req.body.userId}, {email: req.body.email, theme: req.body.theme, date: req.body.date, host: req.body.host}, {returnDocument: 'after', upsert: true})
+const getPartyData = (req, res) => {
+  User.find({'partiesHosting._id': req.params.partyId}, {'partiesHosting.$': 1})
     .then((data) => {
-      console.log('user: ', data)
+      // console.log('party data: ', data[0].partiesHosting[0]);
+      if (data) {
+        res.send(data[0].partiesHosting[0]);
+      }
+    })
+    .catch((err) => console.log('Error, could not get all party data in database. Error: ', err))
+}
+
+const addParty = (req, res) => {
+  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {'partiesHosting': {created: true}}}, {returnDocument: 'after', upsert: true})
+      .then((data) => {
+        console.log('added new party')
+        let newPartyId = data.partiesHosting[data.partiesHosting.length - 1]._id;
+        res.send(newPartyId);
+      })
+      .catch((err) => console.log('Error, could not add new party to database. Error: ', err));
+}
+
+const addPartyDetail = (req, res) => {
+  User.findOneAndUpdate({userId: req.body.userId, 'partiesHosting._id': req.body.partyId}, {'$set': {'partiesHosting.$.theme': req.body.theme, 'partiesHosting.$.date': req.body.date, 'partiesHosting.$.host': req.body.host}}, {returnDocument: 'after', upsert: true})
+    .then((data) => {
+      console.log('added party data: ', data)
       res.send('Successfully added party details to database');
     })
     .catch((err) => console.log('Error, could not add party details to database. Error: ', err));
@@ -32,7 +55,7 @@ const clearMenu = (req, res) => {
 }
 
 const addGuest = (req, res) => {
-  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {guests: {name: req.body.guestName, email: req.body.guestEmail, confirmed: req.body.confirmed }}}, {returnDocument: 'after', upsert: true})
+  User.findOneAndUpdate({userId: req.body.userId, 'partiesHosting._id': req.body.partyId}, {'$push': {'partiesHosting.$.guests': {name: req.body.guestName, email: req.body.guestEmail, confirmed: req.body.confirmed}}}, {returnDocument: 'after', upsert: true})
     .then((data) => {
       res.send('Successfully added guest to database');
     })
@@ -40,7 +63,7 @@ const addGuest = (req, res) => {
 }
 
 const deleteGuest = (req, res) => {
-  User.updateOne({userId: req.body.userId}, {'$pull': {guests: {'_id': req.body.guestId}}})
+  User.updateOne({userId: req.body.userId, 'partiesHosting._id': req.body.partyId}, {'$pull': {'partiesHosting.$.guests': {'_id': req.body.guestId}}})
     .then((data) => {
       res.send('Successfully added guest to database');
     })
@@ -48,23 +71,26 @@ const deleteGuest = (req, res) => {
 }
 
 const modifyGuest = (req, res) => {
-  User.update({'guests._id': req.body.guestId}, {'$set': {'guests.$.confirmed': req.body.confirmed}})
-    .then((data) => {
-      res.send('Successfully added guest to database');
-    })
-    .catch((err) => console.log('Error, could not add guest to database. Error: ', err));
+  User.findOneAndUpdate(
+    {userId: req.body.userId},
+    {'$set': {'partiesHosting.$[e1].guests.$[e2].confirmed': req.body.confirmed}}, {arrayFilters: [{'e1._id': req.body.partyId}, {'e2._id': req.body.guestId}]})
+      .then((data) => {
+        res.send('Successfully modified guest confirmation in database');
+      })
+      .catch((err) => console.log('Error, could not modify guest confirmation in database. Error: ', err));
 }
 
 const addEntree = (req, res) => {
-  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {entrees: req.body.menuItem}}, {returnDocument: 'after', upsert: true})
+  User.findOneAndUpdate({userId: req.body.userId, 'partiesHosting._id': req.body.partyId}, {'$push': {'partiesHosting.$.entrees': req.body.menuItem}}, {returnDocument: 'after'})
     .then((data) => {
+      console.log('add entree data: ', data)
       res.send('Successfully added entree to database');
     })
     .catch((err) => console.log('Error, could not add entree to database. Error: ', err));
 }
 
 const addAppetizer = (req, res) => {
-  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {appetizers: req.body.menuItem}}, {returnDocument: 'after', upsert: true})
+  User.findOneAndUpdate({userId: req.body.userId, 'partiesHosting._id': req.body.partyId}, {'$push': {'partiesHosting.$.appetizers': req.body.menuItem}}, {returnDocument: 'after'})
     .then((data) => {
       res.send('Successfully added appetizer to database');
     })
@@ -72,7 +98,7 @@ const addAppetizer = (req, res) => {
 }
 
 const addSide = (req, res) => {
-  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {sides: req.body.menuItem}}, {returnDocument: 'after', upsert: true})
+  User.findOneAndUpdate({userId: req.body.userId, 'partiesHosting._id': req.body.partyId}, {'$push': {'partiesHosting.$.sides': req.body.menuItem}}, {returnDocument: 'after'})
     .then((data) => {
       res.send('Successfully added side to database');
     })
@@ -80,7 +106,7 @@ const addSide = (req, res) => {
 }
 
 const addDrink = (req, res) => {
-  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {drinks: req.body.menuItem}}, {returnDocument: 'after', upsert: true})
+  User.findOneAndUpdate({userId: req.body.userId, 'partiesHosting._id': req.body.partyId}, {'$push': {'partiesHosting.$.drinks': req.body.menuItem}}, {returnDocument: 'after'})
     .then((data) => {
       res.send('Successfully added drink to database');
     })
@@ -88,7 +114,7 @@ const addDrink = (req, res) => {
 }
 
 const addDessert = (req, res) => {
-  User.findOneAndUpdate({userId: req.body.userId}, {'$push': {desserts: req.body.menuItem}}, {returnDocument: 'after', upsert: true})
+  User.findOneAndUpdate({userId: req.body.userId, 'partiesHosting._id': req.body.partyId}, {'$push': {'partiesHosting.$.desserts': req.body.menuItem}}, {returnDocument: 'after'})
     .then((data) => {
       res.send('Successfully added dessert to database');
     })
@@ -96,7 +122,7 @@ const addDessert = (req, res) => {
 }
 
 const deleteEntree = (req, res) => {
-  User.updateOne({userId: req.body.userId}, {$pull: {entrees: req.body.menuItem}})
+  User.updateOne({userId: req.body.userId, 'partiesHosting._id': req.body.partyId}, {$pull: {'partiesHosting.$.entrees': req.body.menuItem}})
     .then(() => {
       res.send('Deleted dessert from the database!');
     })
@@ -104,7 +130,7 @@ const deleteEntree = (req, res) => {
 }
 
 const deleteAppetizer = (req, res) => {
-  User.updateOne({userId: req.body.userId}, {$pull: {appetizers: req.body.menuItem}})
+  User.updateOne({userId: req.body.userId, 'partiesHosting._id': req.body.partyId}, {$pull: {'partiesHosting.$.appetizers': req.body.menuItem}})
     .then(() => {
       res.send('Deleted appetizer from the database!');
     })
@@ -112,7 +138,7 @@ const deleteAppetizer = (req, res) => {
 }
 
 const deleteSide = (req, res) => {
-  User.updateOne({userId: req.body.userId}, {$pull: {sides: req.body.menuItem}})
+  User.updateOne({userId: req.body.userId, 'partiesHosting._id': req.body.partyId}, {$pull: {'partiesHosting.$.sides': req.body.menuItem}})
     .then(() => {
       res.send('Deleted side from the database!');
     })
@@ -120,7 +146,7 @@ const deleteSide = (req, res) => {
 }
 
 const deleteDrink = (req, res) => {
-  User.updateOne({userId: req.body.userId}, {$pull: {drinks: req.body.menuItem}})
+  User.updateOne({userId: req.body.userId, 'partiesHosting._id': req.body.partyId}, {$pull: {'partiesHosting.$.drinks': req.body.menuItem}})
     .then(() => {
       res.send('Deleted drink from the database!');
     })
@@ -128,11 +154,11 @@ const deleteDrink = (req, res) => {
 }
 
 const deleteDessert = (req, res) => {
-  User.updateOne({userId: req.body.userId}, {$pull: {desserts: req.body.menuItem}})
+  User.updateOne({userId: req.body.userId, 'partiesHosting._id': req.body.partyId}, {$pull: {'partiesHosting.$.desserts': req.body.menuItem}})
     .then(() => {
       res.send('Deleted dessert from the database!');
     })
     .catch((err) => console.log('Error, could not delete dessert from database. Error: ', err))
 }
 
-module.exports = { getPartyData, addGuest, deleteGuest, modifyGuest, addPartyDetail, clearMenu, addEntree, addAppetizer, addSide, addDrink, addDessert, deleteEntree, deleteAppetizer, deleteSide, deleteDrink, deleteDessert }
+module.exports = { getPartyData, getParties, addUserDetail, addParty, addGuest, deleteGuest, modifyGuest, addPartyDetail, clearMenu, addEntree, addAppetizer, addSide, addDrink, addDessert, deleteEntree, deleteAppetizer, deleteSide, deleteDrink, deleteDessert }
