@@ -5,7 +5,7 @@ import Modal from './Modal.jsx';
 import useModal from './useModal.jsx';
 import '../assets/modal.css';
 
-const PartyOverview = ({ theme, setTheme, date, setDate, host, setHost, generateMenu, sendPartyOverviewDetails, watch, setWatch, logout, formatInput, setMakePartyView }) => {
+const PartyOverview = ({ theme, setTheme, date, setDate, host, setHost, generateMenu, sendPartyOverviewDetails, watch, setWatch, logout, formatInput, setViewParty }) => {
   const {toggle, visible} = useModal();
 
   const reset = () => {
@@ -21,7 +21,7 @@ const PartyOverview = ({ theme, setTheme, date, setDate, host, setHost, generate
     <>
       <StyledOverviewBanner id='overviewBanner'>
         <StyledButtonContainer>
-          <button onClick={() => setMakePartyView(false)}>Home</button>
+          <button onClick={() => setViewParty(false)}>Home</button>
           <button onClick={toggle}>Edit Details</button>
           <button onClick={reset}>Reset</button>
           <button onClick={() => logout({ returnTo: window.location.origin })}>
