@@ -10,6 +10,7 @@ const AuthenticatedHome = ({ user, logout }) => {
 
   const [viewParty, setViewParty] = useState(false);
   const [parties, setParties] = useState(null);
+  const [invites, setInvites] = useState(null);
   const [currentParty, setCurrentParty] = useState(null);
 
   const addUser = () => {
@@ -23,7 +24,7 @@ const AuthenticatedHome = ({ user, logout }) => {
   const getParties = () => {
     axios.get(`/user/${user.sub}/parties`)
       .then((res) => {
-        console.log('getParties res.data: ', res.data);
+        // console.log('getParties res.data: ', res.data);
         setParties(res.data.partiesHosting);
       })
       .catch((err) => console.log('error getting user parties data'))
@@ -31,14 +32,41 @@ const AuthenticatedHome = ({ user, logout }) => {
 
   useEffect(getParties, []);
 
+  const getInvitations = () => {
+    axios.get(`/invitations/${user.email}`)
+      .then((res) => {
+        console.log('invitations: ', res.data);
+        // setWatch(!watch);
+        setInvites(res.data.parties);
+      })
+      .catch((err) => console.log('error getting invitations'))
+  }
+
+  useEffect(() => {
+    getParties();
+    getInvitations();
+  }, []);
+
   let partyNames;
   if (parties && parties.length > 0) {
     partyNames = parties.map((party, index) =>
-    <div onClick={() => {
-      console.log('party._id in map: ', party._id)
+    <StyledPartyNames onClick={() => {
       setCurrentParty(party._id);
       setViewParty(true);
-    }} key={index}>{party.theme}</div>)
+    }} key={index}>{party.theme}</StyledPartyNames>)
+  }
+
+  let partyInvites;
+  if (invites && invites.length > 0) {
+    partyInvites = invites.map((party, index) =>
+      <>
+        <div key={index}>
+          <span>{party[0].theme}</span>
+          <span> | </span>
+          <span>{party[1]}</span>
+        </div>
+      </>
+      )
   }
 
   const resetParties = () => {
@@ -64,7 +92,7 @@ const AuthenticatedHome = ({ user, logout }) => {
 
             <InvitedPartiesContainer>
               <h2>Parties You're Invited To</h2>
-              <div>None yet</div>
+              {partyInvites ? partyInvites : <div>None yet</div>}
             </InvitedPartiesContainer>
           </FlexContainer>
         }
@@ -111,5 +139,12 @@ const StyledMenu = styled.div`
 
 const StyledGuests = styled.div`
   grid-area: guests;
+`
+
+const StyledPartyNames = styled.div`
+  cursor: pointer;
+  :hover {
+    color: #FFB6C1;
+  }
 `
 export default AuthenticatedHome;

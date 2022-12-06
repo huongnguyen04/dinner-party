@@ -40,7 +40,7 @@ const addParty = (req, res) => {
 const addPartyDetail = (req, res) => {
   User.findOneAndUpdate({userId: req.body.userId, 'partiesHosting._id': req.body.partyId}, {'$set': {'partiesHosting.$.theme': req.body.theme, 'partiesHosting.$.date': req.body.date, 'partiesHosting.$.host': req.body.host}}, {returnDocument: 'after', upsert: true})
     .then((data) => {
-      console.log('added party data: ', data)
+      // console.log('added party data: ', data)
       res.send('Successfully added party details to database');
     })
     .catch((err) => console.log('Error, could not add party details to database. Error: ', err));
@@ -169,4 +169,22 @@ const deleteDessert = (req, res) => {
     .catch((err) => console.log('Error, could not delete dessert from database. Error: ', err))
 }
 
-module.exports = { getPartyData, getParties, addUserDetail, deleteParties, addParty, addGuest, deleteGuest, modifyGuest, addPartyDetail, clearParty, addEntree, addAppetizer, addSide, addDrink, addDessert, deleteEntree, deleteAppetizer, deleteSide, deleteDrink, deleteDessert }
+const getInvitations = (req, res) => {
+  let dataObj = {};
+  dataObj.parties = [];
+  User.find({'partiesHosting.guests.email': req.params.userEmail})
+    .then((data) => {
+      console.log('data: ', data)
+      data[0].partiesHosting.forEach((party) => {
+        party.guests.forEach((guest) => {
+          if (guest.email === req.params.userEmail) {
+            dataObj.parties.push([party, data[0].email]);
+          }
+        })
+      })
+      res.send(dataObj);
+    })
+    .catch((err) => console.log('Error, could not get invitations from database. Error: ', err))
+}
+
+module.exports = { getPartyData, getParties, addUserDetail, deleteParties, addParty, addGuest, deleteGuest, modifyGuest, addPartyDetail, clearParty, addEntree, addAppetizer, addSide, addDrink, addDessert, deleteEntree, deleteAppetizer, deleteSide, deleteDrink, deleteDessert, getInvitations }

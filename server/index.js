@@ -36,5 +36,7 @@ app.post('/deleteSide', userRoutes.deleteSide);
 app.post('/deleteDrink', userRoutes.deleteDrink);
 app.post('/deleteDessert', userRoutes.deleteDessert);
 
+app.get('/invitations/:userEmail', userRoutes.getInvitations)
+
 app.listen(3005);
 console.log('Listening on port 3005');
