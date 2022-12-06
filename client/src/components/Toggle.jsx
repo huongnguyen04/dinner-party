@@ -4,9 +4,7 @@ import styled from "styled-components"
 const Toggle = ({theme,  toggleTheme }) => {
   return (
     <StyledButtonContainer>
-      <Button onClick={toggleTheme} >
-        ☾
-      </Button>
+      <Button onClick={toggleTheme}>☾</Button>
     </StyledButtonContainer>
     );
   };
