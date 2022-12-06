@@ -171,7 +171,7 @@ const PartyView = ({ user, logout, setViewParty, currentParty, setCurrentParty }
 
   return (
     <>
-      <PartyOverview theme={theme} setTheme={setTheme} host={host} setHost={setHost} date={date} setDate={setDate} generateMenu={generateMenu} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch} logout={logout} setViewParty={setViewParty} />
+      <PartyOverview theme={theme} setTheme={setTheme} host={host} setHost={setHost} date={date} setDate={setDate} generateMenu={generateMenu} sendPartyOverviewDetails={sendPartyOverviewDetails} watch={watch} setWatch={setWatch} logout={logout} setViewParty={setViewParty} setCurrentParty={setCurrentParty} />
       <StyledContainer>
         <StyledMenu>
           <Menu addMenuItem={addMenuItem} deleteMenuItem={deleteMenuItem} entrees={entrees} appetizers={appetizers} sides={sides} drinks={drinks} desserts={desserts}/>
