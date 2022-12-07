@@ -19,6 +19,11 @@ const App = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   }
 
+  const onHomeClick = () => {
+    setViewParty(false);
+    setCurrentParty(null);
+  }
+
   if (error) {
     return <div>Oops... {error.message}</div>;
   }
@@ -31,10 +36,7 @@ const App = () => {
           <StyledButtons>
             {isAuthenticated &&
               <>
-              <button onClick={() => {
-                setViewParty(false)
-                setCurrentParty(null);
-              }}>Home</button>
+              <button onClick={onHomeClick}>Home</button>
               <button onClick={() => logout({ returnTo: window.location.origin })}>
                   Log Out
               </button>
@@ -85,6 +87,7 @@ const StyledTitleContainer = styled.div`
   padding: 15px;
   height: 200px;
   text-align: center;
+  border-radius: 5px;
 `
 const StyledAppTitle = styled.h1`
   padding-top: 30px;
