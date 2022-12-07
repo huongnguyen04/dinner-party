@@ -17,6 +17,7 @@ border {
 
 .plus, .no-padding {
   padding: 0px;
+  border-radius: 3.5px;
 }
 
 .xButton {
@@ -36,6 +37,7 @@ button {
   cursor: pointer;
   color: ${({ theme }) => theme.buttonText};
   padding: 5px;
+  border: solid 1px white;
   border-radius: 5px;
 }
 
