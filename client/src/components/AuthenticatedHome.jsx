@@ -25,7 +25,7 @@ const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty
     axios.get(`/user/${user.sub}/parties`)
       .then((res) => {
         // console.log('getParties res.data: ', res.data);
-        setParties(res.data.partiesHosting);
+        setParties(res.data);
       })
       .catch((err) => console.log('error getting user parties data'))
   }
@@ -37,7 +37,7 @@ const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty
       .then((res) => {
         console.log('invitations: ', res.data);
         // setWatch(!watch);
-        setInvites(res.data.parties);
+        setInvites(res.data);
       })
       .catch((err) => console.log('error getting invitations'))
   }

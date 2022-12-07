@@ -9,9 +9,14 @@ const addUserDetail = (req, res) => {
 }
 
 const getParties = (req, res) => {
+  let parties = [];
   User.find({userId: req.params.userId})
     .then((data) => {
-      res.send(data[0]);
+      parties = data[0].partiesHosting;
+      parties.sort(function(a,b) {
+        return new Date(a.date) - new Date(b.date);
+      })
+      res.send(data[0].partiesHosting);
     })
     .catch((err) => console.log('Error, could not get all party data in database. Error: ', err))
 }
@@ -170,19 +175,20 @@ const deleteDessert = (req, res) => {
 }
 
 const getInvitations = (req, res) => {
-  let dataObj = {};
-  dataObj.parties = [];
+  let parties = [];
   User.find({'partiesHosting.guests.email': req.params.userEmail})
     .then((data) => {
-      console.log('data: ', data)
       data[0].partiesHosting.forEach((party) => {
         party.guests.forEach((guest) => {
           if (guest.email === req.params.userEmail) {
-            dataObj.parties.push([party, data[0].email]);
+            parties.push([party, data[0].email]);
           }
         })
       })
-      res.send(dataObj);
+      parties.sort(function(a,b) {
+        return new Date(a[0].date) - new Date(b[0].date);
+      })
+      res.send(parties);
     })
     .catch((err) => console.log('Error, could not get invitations from database. Error: ', err))
 }
