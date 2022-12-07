@@ -18,15 +18,8 @@ const PartyOverview = ({ theme, setTheme, date, setDate, host, setHost, generate
     <>
       <StyledOverviewBanner id='overviewBanner'>
         <StyledButtonContainer>
-          {/* <button onClick={() => {
-            setViewParty(false)
-            setCurrentParty(null);
-          }}>Home</button> */}
           <button onClick={toggle}>Edit Details</button>
           <button onClick={onResetClick}>Reset</button>
-          {/* <button onClick={() => logout({ returnTo: window.location.origin })}>
-            Log Out
-          </button> */}
         </StyledButtonContainer>
         <StyledOverviewDetails>
           <span><b>Theme:</b> {theme}</span>
