@@ -81,7 +81,7 @@ const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty
                 {partyNames ? partyNames : <div>None yet... Start planning a party!</div>}
               </FlexPartiesContainer>
               <StyledButtonContainer>
-                <button onClick={() => setViewParty(true)}>New Party</button>
+                <NewPartyBtn onClick={() => setViewParty(true)}>New Party</NewPartyBtn>
                 <button onClick={resetParties}>Delete All Parties</button>
               </StyledButtonContainer>
             </PartiesContainer>
@@ -106,8 +106,16 @@ const StyledAuthenticatedHome = styled.div`
   padding-top: 30px;
 `
 
+const NewPartyBtn = styled.button`
+  color: #904E55;
+  background-color: white;
+`
+
 const StyledButtonContainer = styled.div`
-  padding-top: 30px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
 `
 
 const FlexContainer = styled.div`
