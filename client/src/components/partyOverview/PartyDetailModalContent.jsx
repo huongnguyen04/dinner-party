@@ -73,7 +73,7 @@ const PartyDetailModalContent = ({ toggle, setTheme, setDate, setHost, generateM
           <br></br>
           <form onSubmit={(e)=> {
             e.preventDefault();
-            setTheme(formatInput(tempTheme));
+            setTheme(formatInput(tempTheme + ' cuisine'));
             setDate(formatDate(tempDate));
             setHost(formatInput(tempHost));
             generateMenu(selectedTheme);
