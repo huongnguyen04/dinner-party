@@ -76,7 +76,7 @@ const StyledButtons = styled.div`
     background-color: none;
     border: none;
     &:hover {
-      box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24),0 5px 10px 0 rgba(0,0,0,0.19);
+      color: #e8a7ae;
     }
   }
 `
