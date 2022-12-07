@@ -1,8 +1,12 @@
-require("dotenv").config();
+require('dotenv').config();
 const express = require('express');
-const path = require("path");
-const cuisineRoutes = require('../controllers/cuisines.js')
-const userRoutes = require('../controllers/users.js')
+const path = require('path');
+const cuisineRoutes = require('../controllers/cuisines.js');
+const guestRoutes = require('../controllers/users/guest.js');
+const invitationRoutes = require('../controllers/users/invitation.js');
+const menuRoutes = require('../controllers/users/menu.js');
+const partyRoutes = require('../controllers/users/party.js');
+
 const app = express();
 
 const api = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${process.env.EDAMAM_APP_ID}&app_key=${process.env.EDAMAM_APP_KEY}&`
@@ -13,30 +17,31 @@ app.use(express.json());
 app.get('/cuisines/:theme', cuisineRoutes.getCuisinesData);
 app.get('/cuisines', cuisineRoutes.getCuisines);
 
-app.get('/partyData/:userId/:partyId', userRoutes.getPartyData);
-app.post('/addUser', userRoutes.addUserDetail);
-app.post('/newParty', userRoutes.addParty);
-app.get('/user/:userId/parties', userRoutes.getParties);
-app.post('/partyDetail', userRoutes.addPartyDetail)
-app.post('/addGuest', userRoutes.addGuest);
-app.post('/deleteGuest', userRoutes.deleteGuest);
-app.put('/guest', userRoutes.modifyGuest);
-app.post('/deleteParties', userRoutes.deleteParties);
-app.post('/deleteParty', userRoutes.clearParty);
+app.get('/partyData/:userId/:partyId', partyRoutes.getPartyData);
+app.post('/addUser', partyRoutes.addUserDetail);
+app.post('/newParty', partyRoutes.addParty);
+app.get('/user/:userId/parties', partyRoutes.getParties);
+app.post('/partyDetail', partyRoutes.addPartyDetail)
+app.post('/deleteParties', partyRoutes.deleteParties);
+app.post('/deleteParty', partyRoutes.clearParty);
 
-app.post('/addEntree', userRoutes.addEntree);
-app.post('/addAppetizer', userRoutes.addAppetizer);
-app.post('/addSide', userRoutes.addSide);
-app.post('/addDrink', userRoutes.addDrink);
-app.post('/addDessert', userRoutes.addDessert);
+app.post('/addGuest', guestRoutes.addGuest);
+app.post('/deleteGuest', guestRoutes.deleteGuest);
+app.put('/guest', guestRoutes.modifyGuest);
 
-app.post('/deleteEntree', userRoutes.deleteEntree);
-app.post('/deleteAppetizer', userRoutes.deleteAppetizer);
-app.post('/deleteSide', userRoutes.deleteSide);
-app.post('/deleteDrink', userRoutes.deleteDrink);
-app.post('/deleteDessert', userRoutes.deleteDessert);
+app.post('/addEntree', menuRoutes.addEntree);
+app.post('/addAppetizer', menuRoutes.addAppetizer);
+app.post('/addSide', menuRoutes.addSide);
+app.post('/addDrink', menuRoutes.addDrink);
+app.post('/addDessert', menuRoutes.addDessert);
 
-app.get('/invitations/:userEmail', userRoutes.getInvitations)
+app.post('/deleteEntree', menuRoutes.deleteEntree);
+app.post('/deleteAppetizer', menuRoutes.deleteAppetizer);
+app.post('/deleteSide', menuRoutes.deleteSide);
+app.post('/deleteDrink', menuRoutes.deleteDrink);
+app.post('/deleteDessert', menuRoutes.deleteDessert);
+
+app.get('/invitations/:userEmail', invitationRoutes.getInvitations);
 
 app.listen(3005);
 console.log('Listening on port 3005');
