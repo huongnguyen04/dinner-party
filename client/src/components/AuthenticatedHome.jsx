@@ -121,7 +121,7 @@ const PartiesContainer = styled.div`
 
 const FlexPartiesContainer = styled.div`
   display: grid;
-  row-gap: 15%;
+  row-gap: 20%;
 `
 
 const InvitedPartiesContainer = styled.div`
