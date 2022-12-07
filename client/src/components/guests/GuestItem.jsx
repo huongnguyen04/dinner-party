@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const GuestItem = ({ guest, modifyGuest, deleteGuest }) => {
 
   const editGuest = () => {
-
   }
 
   return (
@@ -14,8 +13,7 @@ const GuestItem = ({ guest, modifyGuest, deleteGuest }) => {
           {guest.confirmed ? <span onClick={() => modifyGuest(guest)}>✓</span> : <span onClick={() => modifyGuest(guest)}>☐</span>}
           &nbsp; {guest.name} &nbsp;
         </StyledGuest>
-        <EditButton onClick={() => editGuest(guest)}>✎</EditButton>
-        &nbsp;
+        {/* <EditButton onClick={() => editGuest(guest)}>✎</EditButton> */}
         <DeleteButton onClick={() => deleteGuest(guest)}>ⓧ</DeleteButton>
       </StyledWrapper>
     </>
@@ -25,8 +23,8 @@ const GuestItem = ({ guest, modifyGuest, deleteGuest }) => {
 const StyledWrapper = styled.div`
   width: 100%;
   display: inline-block;
-  // div:hover ~ button, button:hover {
-  // display: inline-block;
+  div:hover + button, button:hover {
+    display: inline-block;
 }
 `
 
@@ -38,14 +36,14 @@ const StyledGuest = styled.div`
 `
 
 const DeleteButton = styled.button`
-  display:  inline-block;
+  display: none;
   padding: 0px;
   border: none;
   background: none;
 `
 
 const EditButton = styled.button`
-  display:  inline-block;
+  display: inline-block;
   padding: 0px;
   border: none;
   background: none;
