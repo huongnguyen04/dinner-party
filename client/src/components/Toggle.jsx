@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 const Toggle = ({theme,  toggleTheme }) => {
   return (
-      <Button onClick={toggleTheme}>☾</Button>
-    );
-  };
+    <Button onClick={toggleTheme}>☾</Button>
+  );
+};
 
 const Button = styled.button`
   background: none;
