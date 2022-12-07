@@ -5,13 +5,13 @@ import PartyOverview from './partyOverview/PartyOverview.jsx';
 import Menu from './menu/Menu.jsx';
 import Guests from './guests/Guests.jsx';
 import PartyView from './PartyView.jsx';
+import PartyHosting from './PartyHosting.jsx';
+import PartyInvited from './PartyInvited.jsx';
+
 
 const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty, setCurrentParty }) => {
-
-  // const [viewParty, setViewParty] = useState(false);
   const [parties, setParties] = useState(null);
   const [invites, setInvites] = useState(null);
-  // const [currentParty, setCurrentParty] = useState(null);
 
   const addUser = () => {
     axios.post('/addUser', {userId: user.sub, email: user.email})
@@ -50,27 +50,14 @@ const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty
   let partyNames;
   if (parties && parties.length > 0) {
     partyNames = parties.map((party, index) =>
-      <StyledPartyNames onClick={() => {
-        setCurrentParty(party._id);
-        setViewParty(true);
-      }} key={index}>
-        <b>{party.date} </b>{party.theme}
-      </StyledPartyNames>
-      )
+      <PartyHosting key={index} party={party} setCurrentParty={setCurrentParty} setViewParty={setViewParty}/>
+    )
   }
 
   let partyInvites;
   if (invites && invites.length > 0) {
     partyInvites = invites.map((party, index) =>
-      <>
-        <div key={index}>
-          <span>{party[0].date}</span>
-          <span> | </span>
-          <span>{party[0].theme}</span>
-          <span> | </span>
-          <span>{party[1]}</span>
-        </div>
-      </>
+      <PartyInvited key={index} party={party}/>
       )
   }
 
@@ -90,14 +77,20 @@ const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty
           <FlexContainer>
             <PartiesContainer>
               <u><h2>Parties You're Hosting</h2></u>
-              {partyNames ? partyNames : <div>None yet... Start planning a party!</div>}
-              <button onClick={() => setViewParty(true)}>New Party</button>
-              <button onClick={resetParties}>Delete All Parties</button>
+              <FlexPartiesContainer>
+                {partyNames ? partyNames : <div>None yet... Start planning a party!</div>}
+              </FlexPartiesContainer>
+              <StyledButtonContainer>
+                <button onClick={() => setViewParty(true)}>New Party</button>
+                <button onClick={resetParties}>Delete All Parties</button>
+              </StyledButtonContainer>
             </PartiesContainer>
 
             <InvitedPartiesContainer>
               <u><h2>Parties You're Invited To</h2></u>
-              {partyInvites ? partyInvites : <div>None yet</div>}
+              <FlexPartiesContainer>
+                {partyInvites ? partyInvites : <div>None yet</div>}
+              </FlexPartiesContainer>
             </InvitedPartiesContainer>
           </FlexContainer>
         }
@@ -113,6 +106,10 @@ const StyledAuthenticatedHome = styled.div`
   padding-top: 30px;
 `
 
+const StyledButtonContainer = styled.div`
+  padding-top: 30px;
+`
+
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -120,6 +117,11 @@ const FlexContainer = styled.div`
 
 const PartiesContainer = styled.div`
   width: 50%;
+`
+
+const FlexPartiesContainer = styled.div`
+  display: grid;
+  row-gap: 15%;
 `
 
 const InvitedPartiesContainer = styled.div`
@@ -146,10 +148,4 @@ const StyledGuests = styled.div`
   grid-area: guests;
 `
 
-const StyledPartyNames = styled.div`
-  cursor: pointer;
-  :hover {
-    color: #FFB6C1;
-  }
-`
 export default AuthenticatedHome;
