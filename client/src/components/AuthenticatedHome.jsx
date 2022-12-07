@@ -8,11 +8,10 @@ import PartyView from './PartyView.jsx';
 import PartyHosting from './PartyHosting.jsx';
 import PartyInvited from './PartyInvited.jsx';
 
-
 const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty, setCurrentParty }) => {
   const [parties, setParties] = useState(null);
   const [invites, setInvites] = useState(null);
-  const [partyAdded, setPartyAdded] = useState(false);
+  const [partyListModified, setPartyListModified] = useState(false);
 
   const addUser = () => {
     axios.post('/addUser', {userId: user.sub, email: user.email})
@@ -25,19 +24,24 @@ const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty
   const getParties = () => {
     axios.get(`/user/${user.sub}/parties`)
       .then((res) => {
-        // console.log('getParties res.data: ', res.data);
-        setParties(res.data);
+        console.log('getParties res.data: ', res.data);
+        let parties = [];
+        res.data.forEach((party) => {
+          if (party.theme) {
+            parties.push(party);
+          }
+        })
+        setParties(parties);
       })
       .catch((err) => console.log('error getting user parties data'))
   }
 
-  useEffect(getParties, [partyAdded]);
+  useEffect(getParties, [partyListModified]);
 
   const getInvitations = () => {
     axios.get(`/invitations/${user.email}`)
       .then((res) => {
         console.log('invitations: ', res.data);
-        // setWatch(!watch);
         setInvites(res.data);
       })
       .catch((err) => console.log('error getting invitations'))
@@ -62,8 +66,8 @@ const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty
   const resetParties = () => {
     axios.post('/deleteParties', {userId: user.sub})
       .then((res) => {
-        console.log('cleared all')
-        // setWatch(!watch);
+        console.log('cleared all');
+        setPartyListModified(!partyListModified);
       })
       .catch((err) => console.log('error clearing all'))
   }
@@ -93,7 +97,7 @@ const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty
           </FlexContainer>
         }
 
-        {viewParty && <PartyView user={user} logout={logout} currentParty={currentParty} setCurrentParty={setCurrentParty} setViewParty={setViewParty} partyAdded={partyAdded} setPartyAdded={setPartyAdded}/>}
+        {viewParty && <PartyView user={user} logout={logout} currentParty={currentParty} setCurrentParty={setCurrentParty} setViewParty={setViewParty} partyListModified={partyListModified} setPartyListModified={setPartyListModified}/>}
     </StyledAuthenticatedHome>
     </>
   )
