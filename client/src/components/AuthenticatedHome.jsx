@@ -6,12 +6,12 @@ import Menu from './menu/Menu.jsx';
 import Guests from './guests/Guests.jsx';
 import PartyView from './PartyView.jsx';
 
-const AuthenticatedHome = ({ user, logout }) => {
+const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty, setCurrentParty }) => {
 
-  const [viewParty, setViewParty] = useState(false);
+  // const [viewParty, setViewParty] = useState(false);
   const [parties, setParties] = useState(null);
   const [invites, setInvites] = useState(null);
-  const [currentParty, setCurrentParty] = useState(null);
+  // const [currentParty, setCurrentParty] = useState(null);
 
   const addUser = () => {
     axios.post('/addUser', {userId: user.sub, email: user.email})
@@ -50,10 +50,13 @@ const AuthenticatedHome = ({ user, logout }) => {
   let partyNames;
   if (parties && parties.length > 0) {
     partyNames = parties.map((party, index) =>
-    <StyledPartyNames onClick={() => {
-      setCurrentParty(party._id);
-      setViewParty(true);
-    }} key={index}>{party.theme}</StyledPartyNames>)
+      <StyledPartyNames onClick={() => {
+        setCurrentParty(party._id);
+        setViewParty(true);
+      }} key={index}>
+        <b>{party.date} </b>{party.theme}
+      </StyledPartyNames>
+      )
   }
 
   let partyInvites;
@@ -61,6 +64,8 @@ const AuthenticatedHome = ({ user, logout }) => {
     partyInvites = invites.map((party, index) =>
       <>
         <div key={index}>
+          <span>{party[0].date}</span>
+          <span> | </span>
           <span>{party[0].theme}</span>
           <span> | </span>
           <span>{party[1]}</span>
@@ -84,14 +89,14 @@ const AuthenticatedHome = ({ user, logout }) => {
         {!viewParty &&
           <FlexContainer>
             <PartiesContainer>
-              <h2>Your Parties</h2>
+              <u><h2>Parties You're Hosting</h2></u>
               {partyNames ? partyNames : <div>None yet... Start planning a party!</div>}
               <button onClick={() => setViewParty(true)}>New Party</button>
               <button onClick={resetParties}>Delete All Parties</button>
             </PartiesContainer>
 
             <InvitedPartiesContainer>
-              <h2>Parties You're Invited To</h2>
+              <u><h2>Parties You're Invited To</h2></u>
               {partyInvites ? partyInvites : <div>None yet</div>}
             </InvitedPartiesContainer>
           </FlexContainer>

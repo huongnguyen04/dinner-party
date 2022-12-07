@@ -11,6 +11,9 @@ import Login from './Login.jsx';
 const App = () => {
   const { isLoading, isAuthenticated, error, user, loginWithPopup, logout } = useAuth0();
   const [theme, setTheme] = useState('dark');
+  const [viewParty, setViewParty] = useState(false);
+  const [currentParty, setCurrentParty] = useState(null);
+
 
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
@@ -24,8 +27,22 @@ const App = () => {
     <>
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <AppStyle/>
-        <Toggler theme={theme} toggleTheme={themeToggler}/>
-
+        <StyledButtonContainer>
+          <StyledButtons>
+            {isAuthenticated &&
+              <>
+              <button onClick={() => {
+                setViewParty(false)
+                setCurrentParty(null);
+              }}>Home</button>
+              <button onClick={() => logout({ returnTo: window.location.origin })}>
+                  Log Out
+              </button>
+              </>
+            }
+          </StyledButtons>
+            <Toggler theme={theme} toggleTheme={themeToggler}/>
+        </StyledButtonContainer>
         {isAuthenticated ?
           <>
             <StyledTitleContainer id='banner'>
@@ -34,7 +51,7 @@ const App = () => {
                   Hello, {user.name}{' 👋🏻 '}
                 </StyledGreeting>
             </StyledTitleContainer>
-          {user && <AuthenticatedHome user={user} logout={logout} />}
+          {user && <AuthenticatedHome user={user} logout={logout} currentParty={currentParty} setCurrentParty={setCurrentParty} viewParty={viewParty} setViewParty={setViewParty} />}
           </> :
           <Login isLoading={isLoading} loginWithPopup={loginWithPopup} />
         }
@@ -42,6 +59,27 @@ const App = () => {
     </>
   )
 }
+
+const StyledButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 2%;
+`
+
+const StyledButtons = styled.div`
+  button {
+    margin: 3px;
+    // color: ${({ theme }) => theme.overviewButtonText};
+    color: white;
+    // background-color: ${({ theme }) => theme.overviewButtonBackground};
+    background-color: none;
+    border: none;
+    &:hover {
+      box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24),0 5px 10px 0 rgba(0,0,0,0.19);
+    }
+  }
+`
 
 const StyledTitleContainer = styled.div`
   padding: 15px;

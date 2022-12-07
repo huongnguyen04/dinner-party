@@ -18,15 +18,15 @@ const PartyOverview = ({ theme, setTheme, date, setDate, host, setHost, generate
     <>
       <StyledOverviewBanner id='overviewBanner'>
         <StyledButtonContainer>
-          <button onClick={() => {
+          {/* <button onClick={() => {
             setViewParty(false)
             setCurrentParty(null);
-          }}>Home</button>
+          }}>Home</button> */}
           <button onClick={toggle}>Edit Details</button>
           <button onClick={onResetClick}>Reset</button>
-          <button onClick={() => logout({ returnTo: window.location.origin })}>
+          {/* <button onClick={() => logout({ returnTo: window.location.origin })}>
             Log Out
-          </button>
+          </button> */}
         </StyledButtonContainer>
         <StyledOverviewDetails>
           <span><b>Theme:</b> {theme}</span>
@@ -62,9 +62,11 @@ const StyledButtonContainer = styled.div`
 
   button {
     margin: 3px;
-    color: ${({ theme }) => theme.overviewButtonText};
-    background-color: ${({ theme }) => theme.overviewButtonBackground};
-    border: none;
+    // color: ${({ theme }) => theme.overviewButtonText};
+    color: white;
+    // background-color: ${({ theme }) => theme.overviewButtonBackground};
+    background-color: none;
+    border: solid 1px white;
     &:hover {
       box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24),0 5px 10px 0 rgba(0,0,0,0.19);
     }
