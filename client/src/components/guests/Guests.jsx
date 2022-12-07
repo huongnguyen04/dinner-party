@@ -52,9 +52,9 @@ const Guests = ({ guests, setGuests, addGuest, modifyGuest, deleteGuest, watch, 
         {nonConfirmedView &&
           <GuestList guests={nonConfirmedList} modifyGuest={modifyGuest} deleteGuest={deleteGuest} />}
       </StyledGuestsArea>
-      <div>
-        <button onClick={toggle}>Add Guest</button>
-      </div>
+      <StyledBtnContainer>
+        <StyledAddGuestBtn onClick={toggle}>Add Guest</StyledAddGuestBtn>
+      </StyledBtnContainer>
 
       <div>
         <AddGuestModal visible={visible} toggle={toggle} addGuest={addGuest} />
@@ -64,10 +64,24 @@ const Guests = ({ guests, setGuests, addGuest, modifyGuest, deleteGuest, watch, 
   );
 }
 
+const StyledBtnContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
+const StyledAddGuestBtn = styled.button`
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  &:hover {
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24),0 5px 10px 0 rgba(0,0,0,0.19);
+  }
+`
+
 const StyledGuestsArea = styled.div`
   min-height: 300px;
   border: ${({ theme }) => theme.guestAreaBorder};
   padding: 10px;
+  border-radius: 5px;
 `
 
 const StyledBtn = styled.button`
@@ -77,7 +91,6 @@ const StyledBtn = styled.button`
   &:hover {
     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24),0 5px 10px 0 rgba(0,0,0,0.19);
   }
-
 `
 
 export default Guests;
