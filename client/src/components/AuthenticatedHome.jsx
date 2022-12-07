@@ -77,11 +77,11 @@ const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty
               <u><h2>Parties You're Hosting</h2></u>
               <FlexPartiesContainer>
                 {partyNames ? partyNames : <div>None yet... Start planning a party!</div>}
-              </FlexPartiesContainer>
               <StyledButtonContainer>
                 <NewPartyBtn onClick={() => setViewParty(true)}>New Party</NewPartyBtn>
                 <button onClick={resetParties}>Delete All Parties</button>
               </StyledButtonContainer>
+              </FlexPartiesContainer>
             </PartiesContainer>
 
             <InvitedPartiesContainer>
@@ -110,9 +110,10 @@ const NewPartyBtn = styled.button`
 `
 
 const StyledButtonContainer = styled.div`
-  margin-top: 50px;
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   column-gap: 20px;
 `
 
@@ -143,7 +144,7 @@ const StyledResetButton = styled.div`
 const StyledContainer = styled.div`
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-areas: "menu guests"
+  grid-template-areas: "menu guests";
 `
 
 const StyledMenu = styled.div`
