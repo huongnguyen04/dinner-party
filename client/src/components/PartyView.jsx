@@ -5,7 +5,7 @@ import PartyOverview from './partyOverview/PartyOverview.jsx';
 import Menu from './menu/Menu.jsx';
 import Guests from './guests/Guests.jsx';
 
-const PartyView = ({ user, logout, setViewParty, currentParty, setCurrentParty }) => {
+const PartyView = ({ user, logout, setViewParty, currentParty, setCurrentParty, partyAdded, setPartyAdded }) => {
 
   const [theme, setTheme] = useState('');
   const [date, setDate] = useState('');
@@ -74,7 +74,10 @@ const PartyView = ({ user, logout, setViewParty, currentParty, setCurrentParty }
   const sendPartyOverviewDetails = () => {
     if (currentParty && theme && date && host) {
       axios.post('/partyDetail', {userId: user.sub, partyId: currentParty, theme: theme, date: date.toString(), host: host})
-        .then((res) => console.log('added party details'))
+        .then((res) => {
+          console.log('added party details');
+          setPartyAdded(!partyAdded);
+        })
         .catch((err) => console.log(err));
     }
   }

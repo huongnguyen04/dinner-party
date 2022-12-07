@@ -12,6 +12,7 @@ import PartyInvited from './PartyInvited.jsx';
 const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty, setCurrentParty }) => {
   const [parties, setParties] = useState(null);
   const [invites, setInvites] = useState(null);
+  const [partyAdded, setPartyAdded] = useState(false);
 
   const addUser = () => {
     axios.post('/addUser', {userId: user.sub, email: user.email})
@@ -30,7 +31,7 @@ const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty
       .catch((err) => console.log('error getting user parties data'))
   }
 
-  useEffect(getParties, []);
+  useEffect(getParties, [partyAdded]);
 
   const getInvitations = () => {
     axios.get(`/invitations/${user.email}`)
@@ -42,10 +43,7 @@ const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty
       .catch((err) => console.log('error getting invitations'))
   }
 
-  useEffect(() => {
-    getParties();
-    getInvitations();
-  }, []);
+  useEffect(getInvitations, []);
 
   let partyNames;
   if (parties && parties.length > 0) {
@@ -95,7 +93,7 @@ const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty
           </FlexContainer>
         }
 
-        {viewParty && <PartyView user={user} logout={logout} currentParty={currentParty} setCurrentParty={setCurrentParty} setViewParty={setViewParty}/>}
+        {viewParty && <PartyView user={user} logout={logout} currentParty={currentParty} setCurrentParty={setCurrentParty} setViewParty={setViewParty} partyAdded={partyAdded} setPartyAdded={setPartyAdded}/>}
     </StyledAuthenticatedHome>
     </>
   )
