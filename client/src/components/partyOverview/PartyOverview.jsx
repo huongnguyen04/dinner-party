@@ -37,6 +37,8 @@ const PartyOverview = ({ theme, setTheme, date, setDate, host, setHost, generate
 
 const StyledOverviewBanner = styled.div`
   height: 100px;
+  border-radius: 5px;
+
 `
 
 const StyledOverviewDetails = styled.div`
