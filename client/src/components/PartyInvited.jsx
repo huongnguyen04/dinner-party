@@ -6,7 +6,7 @@ const PartyInvited = ({ party }) => {
       <b>{party[0].date} </b>
       <span>{party[0].theme}</span>
       <span> | </span>
-      <span>{party[1]}</span>
+      <i>{party[1]}</i>
     </div>
   );
 };
