@@ -21,7 +21,10 @@ Dinner Party was built for those who love hosting dinner parties and love to pla
 ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 
 ## Description
-This application was built using the MERN stack. The food data was received from the Edamam Api and stored in a MongoDB database. Authentication is implemented through Auth0. Users can log in and create parties, in which they can add their party theme, date, and host. They can plan their entire menu and guest list. The host may start the party from scratch, or choose a theme from a list of cuisines. If they choose a cuisine as a theme, they will get a generated menu with 3 items in each menu category. The host was the ability to add and delete from this menu. On the guest list, if the host provides the guest email, the guest can log in to their account and see that they've been invited to the party. On the user's home screen, both the parties they are hosting and the parties they are invited to are sorted by date.
+This application was built using the MERN stack. The food data was received from the Edamam Api and stored in a MongoDB database. Authentication is implemented through Auth0. 
+Users can log in and create parties, in which they can add their party theme, date, and host. They can plan their entire menu and guest list. The host may start the party from scratch, or choose a theme from a list of cuisines. If they choose a cuisine as a theme, they will get a generated menu with 3 items in each menu category. The host has the ability to add and delete from this menu. 
+On the guest list, if the host provides the guest email, the guest can log in to their account and see that they've been invited to the party. Newly added guest will be defaulted to "Not Confirmed" and the host has the ability to toggle between "Confirmed" and "Not Confirmed" by clicking to the left of the guest name. The host can see different views of the guest list: all guests, confirmed, and not confirmed. 
+On the user's home screen, both the parties they are hosting and the parties they are invited to are sorted by date.
 
 # Product Features
 ## Home
