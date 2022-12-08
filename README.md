@@ -4,11 +4,11 @@
 dinner party was built for those who love hosting dinner parties and love to plan. In this application, you can log in and see your previous and upcoming parties you're hosting. You can plan out your menu and invite guests, who will see the party invitations when they log in.
 
 ## Table of Contents
-[Tech Stack](https://github.com/huongnguyen04/dinner-party/blob/main/README.md#tech-stack)  
-[Description](https://github.com/huongnguyen04/dinner-party/blob/main/README.md#description)  
-[Product Features](https://github.com/huongnguyen04/dinner-party/blob/main/README.md#product-features)  
-[Installation](https://github.com/huongnguyen04/dinner-party/blob/main/README.md#installation)  
-[Roadmap](https://github.com/huongnguyen04/dinner-party/blob/main/README.md#installation)  
+* [Tech Stack](https://github.com/huongnguyen04/dinner-party/blob/main/README.md#tech-stack)  
+* [Description](https://github.com/huongnguyen04/dinner-party/blob/main/README.md#description)  
+* [Product Features](https://github.com/huongnguyen04/dinner-party/blob/main/README.md#product-features)  
+* [Installation](https://github.com/huongnguyen04/dinner-party/blob/main/README.md#installation)  
+* [Roadmap](https://github.com/huongnguyen04/dinner-party/blob/main/README.md#installation)  
 
 ## Tech Stack
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
