@@ -4,7 +4,11 @@
 dinner party was built for those who love hosting dinner parties and love to plan. In this application, you can log in and see your previous and upcoming parties you're hosting. You can plan out your menu and invite guests, who will see the party invitations when they log in.
 
 ## Table of Contents
-
+[Tech Stack](https://github.com/huongnguyen04/dinner-party/blob/main/README.md#tech-stack)  
+[Description](https://github.com/huongnguyen04/dinner-party/blob/main/README.md#description)  
+[Product Features](https://github.com/huongnguyen04/dinner-party/blob/main/README.md#product-features)  
+[Installation](https://github.com/huongnguyen04/dinner-party/blob/main/README.md#installation)  
+[Roadmap](https://github.com/huongnguyen04/dinner-party/blob/main/README.md#installation)  
 
 ## Tech Stack
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
@@ -17,6 +21,7 @@ dinner party was built for those who love hosting dinner parties and love to pla
 ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 
 ## Description
+This application was built using the MERN stack. The food data was received from the Edamam Api and stored in a MongoDB database.
 
 # Product Features
 ## Home
