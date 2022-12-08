@@ -1,0 +1,217 @@
+[
+  {
+    "userId": "google-oauth2|106533854726198788131",
+    "email": "htnguuyen@gmail.com",
+    "partiesHosting": [
+      {
+        "created": true,
+        "theme": "Cheese and Wine Night",
+        "date": "05-23-2018",
+        "host": "Ashley",
+        "entrees": ["Pasta"],
+        "appetizers": ["Aged Cheddar", "Gouda", "Cheddar Jack Cheese", "Romano", "Blue Cheese"],
+        "sides": ["Wheat Thins", "Town House Snack Crackers", "Almonds", "Strawberries", "BlueBerries"],
+        "drinks": ["Red Wine", "White Wine"],
+        "desserts": ["Chocolate Cake"],
+        "guests": [
+          {
+            "name": "Cody",
+            "email": "cody@gmail.com",
+            "confirmed": true
+          },
+          {
+            "name": "Zack",
+            "email": "zack@gmail.com",
+            "confirmed": true
+          },
+          {
+            "name": "Brenda",
+            "email": "brenda@gmail.com",
+            "confirmed": false
+          },
+          {
+            "name": "Sam",
+            "email": "sam@gmail.com",
+            "confirmed": true
+          },
+          {
+            "name": "Victoria",
+            "email": "victoria@gmail.com",
+            "confirmed": true
+          },
+          {
+            "name": "Huong",
+            "email": "htn023@gmail.com",
+            "confirmed": false
+          }
+        ]
+      },
+      {
+        "created": true,
+        "theme": "Sushi Night",
+        "date": "07-16-2021",
+        "host": "Ashley",
+        "entrees": ["Dynamic Roll", "Baked Salmon Roll", "Baked Scallop Roll", "Hamachi Kama"],
+        "appetizers": ["Tuna Tartare", "Kumamoto Oysters", "Salmon Carpaccio", "Salmon Ceviche"],
+        "sides": ["Baked Dynamite Oysters", "Seaweed Salad", "Crispy Salmon Skin Salad"],
+        "drinks": ["Sake", "Sapparo Beer"],
+        "desserts": ["Matcha Tiramisu", "Lychee Ice Cream"],
+        "guests": [
+          {
+            "name": "Sam Glass",
+            "email": "samglass@gmail.com",
+            "confirmed": true
+          },
+          {
+            "name": "Tina A.",
+            "email": "tinaa@gmail.com",
+            "confirmed": true
+          },
+          {
+            "name": "Josh P.",
+            "email": "joshp@gmail.com",
+            "confirmed": false
+          },
+          {
+            "name": "Huong",
+            "email": "htn023@gmail.com",
+            "confirmed": true
+          }
+        ]
+      },
+      {
+        "created": true,
+        "theme": "Friends-Giving",
+        "date": "11-26-2022",
+        "host": "Ashley",
+        "entrees": ["Sushi Bake", "Chicken Alfredo", "Fried Rice"],
+        "appetizers": ["Dynamite Shrimp", "Egg Rolls"],
+        "sides": ["French Fries", "Bacon & Brussel Sprouts"],
+        "drinks": ["Thai Tea", "Milk Tea", "Coca Cola", "Martinis"],
+        "desserts": ["Browned Butter Chocolate Chip Cookies", "Banana Pudding", "Matcha Mochi Cookies"],
+        "guests": [
+          {
+            "name": "May",
+            "email": "may@gmail.com",
+            "confirmed": true
+          },
+          {
+            "name": "Brittney",
+            "email": "brittney@gmail.com",
+            "confirmed": true
+          },
+          {
+            "name": "Emmie",
+            "email": "emmie@gmail.com",
+            "confirmed": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "userId": "auth0|6377f42437595e4c99566f1a",
+    "email": "htn023@gmail.com",
+    "partiesHosting": [
+      {
+        "created": true,
+        "theme": "Christmas",
+        "date": "12-25-2022",
+        "host": "Ashley",
+        "entrees": ["Prime Rib", "Fried Rice", "Lamb Chop"],
+        "appetizers": ["Salmon Carpaccio", "Tuna Tartare"],
+        "sides": ["Egg Rolls", "Fruit Platter", "Oven Roasted Asparagus"],
+        "drinks": ["White Wine", "Coca Cola", "Soda"],
+        "desserts": ["Chocolate Cake", "Porto's Cheese Rolls"],
+        "guests": [
+          {
+            "name": "Emmie",
+            "email": "emmie@gmail.com",
+            "confirmed": true
+          },
+          {
+            "name": "Melinda",
+            "email": "melinda@gmail.com",
+            "confirmed": true
+          },
+          {
+            "name": "Jadan",
+            "email": "jadan@gmail.com",
+            "confirmed": false
+          },
+          {
+            "name": "Gracie",
+            "email": "gracie@gmail.com",
+            "confirmed": true
+          },
+          {
+            "name": "Emily",
+            "email": "emily@gmail.com",
+            "confirmed": false
+          },
+          {
+            "name": "Huong",
+            "email": "htnguuyen@gmail.com",
+            "confirmed": false
+          }
+        ]
+      },
+      {
+        "created": true,
+        "theme": "NYE Party",
+        "date": "12-31-2022",
+        "host": "Jane",
+        "entrees": ["Sushi Bake", "Chicken Alfredo", "Fried Rice"],
+        "appetizers": ["Dynamite Shrimp", "Egg Rolls"],
+        "sides": ["French Fries", "Bacon & Brussel Sprouts"],
+        "drinks": ["Thai Tea", "Milk Tea", "Coca Cola", "Martinis"],
+        "desserts": ["Browned Butter Chocolate Chip Cookies", "Banana Pudding", "Matcha Mochi Cookies"],
+        "guests": [
+          {
+            "name": "May",
+            "email": "may@gmail.com",
+            "confirmed": true
+          },
+          {
+            "name": "Brittney",
+            "email": "brittney@gmail.com",
+            "confirmed": true
+          },
+          {
+            "name": "Huong",
+            "email": "htnguuyen@gmail.com",
+            "confirmed": true
+          }
+        ]
+      },
+      {
+        "created": true,
+        "theme": "Emmie's Birthday",
+        "date": "08-11-2023",
+        "host": "Emmie",
+        "entrees": ["Sushi Bake", "Chicken Alfredo", "Fried Rice"],
+        "appetizers": ["Dynamite Shrimp", "Egg Rolls"],
+        "sides": ["French Fries", "Bacon & Brussel Sprouts"],
+        "drinks": ["Thai Tea", "Milk Tea", "Coca Cola", "Martinis"],
+        "desserts": ["Browned Butter Chocolate Chip Cookies", "Banana Pudding", "Matcha Mochi Cookies"],
+        "guests": [
+          {
+            "name": "May",
+            "email": "may@gmail.com",
+            "confirmed": true
+          },
+          {
+            "name": "Brittney",
+            "email": "brittney@gmail.com",
+            "confirmed": true
+          },
+          {
+            "name": "Huong",
+            "email": "htnguuyen@gmail.com",
+            "confirmed": false
+          }
+        ]
+      }
+    ]
+  }
+]
