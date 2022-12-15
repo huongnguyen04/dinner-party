@@ -54,14 +54,14 @@ From the root directory, run the following commands in your terminal.
 npm install
 ```
 
-2. Run webpack & the dev server. Open http://localhost:3005 in your browser
+2. To run in development: Run webpack in development & the server. Open http://localhost:3005 in your browser
 ```
 npm start
 ```
 ```
 npm run server
 ```
-3. To build for production: Open http://localhost:3005 in your browser
+3. To build for production: Run webpack in build mode & the server. Open http://localhost:3005 in your browser
  ```
 npm run build
 ```
