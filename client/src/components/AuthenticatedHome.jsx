@@ -75,7 +75,7 @@ const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty
   return (
     <>
     <StyledAuthenticatedHome>
-        {!viewParty &&
+        {!viewParty ?
           <FlexContainer>
             <PartiesContainer>
               <u><h2>Parties You're Hosting</h2></u>
@@ -95,9 +95,8 @@ const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty
               </FlexPartiesContainer>
             </InvitedPartiesContainer>
           </FlexContainer>
-        }
-
-        {viewParty && <PartyView user={user} logout={logout} currentParty={currentParty} setCurrentParty={setCurrentParty} setViewParty={setViewParty} partyListModified={partyListModified} setPartyListModified={setPartyListModified}/>}
+        :
+        <PartyView user={user} logout={logout} currentParty={currentParty} setCurrentParty={setCurrentParty} setViewParty={setViewParty} partyListModified={partyListModified} setPartyListModified={setPartyListModified}/>}
     </StyledAuthenticatedHome>
     </>
   )
