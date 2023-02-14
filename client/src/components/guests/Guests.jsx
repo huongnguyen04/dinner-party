@@ -72,6 +72,7 @@ const StyledAddGuestBtn = styled.button`
   margin-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  border: ${({ theme }) => theme.guestAreaBorder};
   &:hover {
     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24),0 5px 10px 0 rgba(0,0,0,0.19);
   }

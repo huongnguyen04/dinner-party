@@ -75,29 +75,28 @@ const AuthenticatedHome = ({ user, logout, viewParty, setViewParty, currentParty
   return (
     <>
     <StyledAuthenticatedHome>
-        {!viewParty &&
-          <FlexContainer>
-            <PartiesContainer>
-              <u><h2>Parties You're Hosting</h2></u>
-              <FlexPartiesContainer>
-                {partyNames ? partyNames : <div>None yet... Start planning a party!</div>}
-              <StyledButtonContainer>
-                <NewPartyBtn onClick={() => setViewParty(true)}>New Party</NewPartyBtn>
-                <button onClick={resetParties}>Delete All Parties</button>
-              </StyledButtonContainer>
-              </FlexPartiesContainer>
-            </PartiesContainer>
+      {!viewParty ?
+        <FlexContainer>
+          <PartiesContainer>
+            <u><h2>Parties You're Hosting</h2></u>
+            <FlexPartiesContainer>
+              {partyNames ? partyNames : <div>None yet... Start planning a party!</div>}
+            <StyledButtonContainer>
+              <NewPartyBtn onClick={() => setViewParty(true)}>New Party</NewPartyBtn>
+              <button onClick={resetParties}>Delete All Parties</button>
+            </StyledButtonContainer>
+            </FlexPartiesContainer>
+          </PartiesContainer>
 
-            <InvitedPartiesContainer>
-              <u><h2>Parties You're Invited To</h2></u>
-              <FlexPartiesContainer>
-                {partyInvites ? partyInvites : <div>None yet</div>}
-              </FlexPartiesContainer>
-            </InvitedPartiesContainer>
-          </FlexContainer>
-        }
-
-        {viewParty && <PartyView user={user} logout={logout} currentParty={currentParty} setCurrentParty={setCurrentParty} setViewParty={setViewParty} partyListModified={partyListModified} setPartyListModified={setPartyListModified}/>}
+          <InvitedPartiesContainer>
+            <u><h2>Parties You're Invited To</h2></u>
+            <FlexPartiesContainer>
+              {partyInvites ? partyInvites : <div>None yet</div>}
+            </FlexPartiesContainer>
+          </InvitedPartiesContainer>
+        </FlexContainer>
+      :
+      <PartyView user={user} logout={logout} currentParty={currentParty} setCurrentParty={setCurrentParty} setViewParty={setViewParty} partyListModified={partyListModified} setPartyListModified={setPartyListModified}/>}
     </StyledAuthenticatedHome>
     </>
   )
@@ -132,7 +131,7 @@ const PartiesContainer = styled.div`
 
 const FlexPartiesContainer = styled.div`
   display: grid;
-  row-gap: 20%;
+  row-gap: 20px;
 `
 
 const InvitedPartiesContainer = styled.div`
