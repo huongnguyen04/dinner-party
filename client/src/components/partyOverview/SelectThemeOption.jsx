@@ -30,23 +30,27 @@ const SelectThemeOption = ({ cuisines, setCuisines, generateMenu, selectedTheme,
         <select onChange={(e) => {
             if (e.target.value === 'input') {
               setThemeOption('input');
-            } else {
-              if (e.target.value === 'list') {
-                setThemeOption('list');
-              } else {
-                setThemeOption('random');
-              }
+            } else if (e.target.value === 'list') {
+              setThemeOption('list');
+              getCuisines();
+            } else if (e.target.value === 'random') {
+              setThemeOption('random');
               getCuisines();
             }
-          }} required>
-          <option value='select'>Select an option</option>
+            }
+          } required>
+          <option value='' disabled selected>Select an option</option>
           <option value='input'>I want to input a theme</option>
           <option value='list'>I want choose from a list</option>
           <option value='random'>Just choose for me!</option>
         </select>
         <div>
           <br></br>
-          <button className='nextButton' onClick={() => setView(!view)}>Next</button>
+          <button className='nextButton' onClick={() => {
+            if (themeOption !== '') {
+              setView(!view)
+            }
+          }}>Next</button>
         </div>
         </>
       }

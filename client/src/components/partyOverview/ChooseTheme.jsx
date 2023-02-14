@@ -13,8 +13,8 @@ const ChooseTheme = ({ setTempTheme, cuisines }) => {
     <>
       <div>Select an option and we'll generate a menu for you.</div>
       <br></br>
-      <select onChange={(e) => setTempTheme(e.target.value)}>
-        <option>Select a theme</option>
+      <select onChange={(e) => setTempTheme(e.target.value)} required>
+        <option value='' disabled selected>Select a theme</option>
         {cuisineOptions}
       </select>
     </>
