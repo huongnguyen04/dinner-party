@@ -4,15 +4,11 @@ import { formatInput } from '../formatInput.js';
 import Form from './Form.jsx';
 import SelectThemeOption from './SelectThemeOption.jsx';
 
-
 const PartyDetailModalContent = ({ toggle, setTheme, setDate, setHost, generateMenu }) => {
   const [view, setView] = useState(true);
-  // const [userInput, setUserInput] = useState(null);
   const [cuisines, setCuisines] = useState(null);
-  // const [tempTheme, setTempTheme] = useState('');
   const [tempDate, setTempDate] = useState('');
   const [tempHost, setTempHost] = useState('');
-  const [selectedTheme, setSelectedTheme] = useState(null);
 
   const formatDate = (date) => {
     let formatted = '';
@@ -23,36 +19,36 @@ const PartyDetailModalContent = ({ toggle, setTheme, setDate, setHost, generateM
 
   return (
     <>
-     {view &&
-      <>
-      <StyledModalView>
-        <div>First, enter the party's host and date.</div>
-        <br></br>
-        <form onSubmit={(e)=> {
-          e.preventDefault();
-          setDate(formatDate(tempDate));
-          setHost(formatInput(tempHost));
-          setView(!view);
-        }}>
-      <StyledFlex>
-        <StyledUserInput>
-          <div>
-            Date: <input type='date' value={tempDate} onChange={(e) => setTempDate(e.target.value)} required></input>
-          </div>
-          <div>
-            Host: <input type='text' value={tempHost} onChange={(e) => setTempHost(e.target.value)} required></input>
-          </div>
-        </StyledUserInput>
-      </StyledFlex>
-      <br></br>
-      <input type='submit' value={"next"}></input>
-    </form>
+    <StyledModalView>
+      {view &&
+        <>
+          <div>First, enter the party's host and date.</div>
+          <br></br>
+          <form onSubmit={(e)=> {
+            e.preventDefault();
+            setDate(formatDate(tempDate));
+            setHost(formatInput(tempHost));
+            setView(!view);
+          }}>
+          <StyledFlex>
+            <StyledUserInput>
+              <div>
+                Date: <input type='date' value={tempDate} onChange={(e) => setTempDate(e.target.value)} required></input>
+              </div>
+              <div>
+                Host: <input type='text' value={tempHost} onChange={(e) => setTempHost(e.target.value)} required></input>
+              </div>
+            </StyledUserInput>
+          </StyledFlex>
+          <br></br>
+          <input type='submit' value={"next"}></input>
+        </form>
+      </>
+      }
+      {!view &&
+        <SelectThemeOption cuisines={cuisines} setCuisines={setCuisines} generateMenu={generateMenu} setTheme={setTheme} toggle={toggle}/>
+      }
     </StyledModalView>
-    </>
-     }
-    {!view &&
-      <SelectThemeOption cuisines={cuisines} setCuisines={setCuisines} generateMenu={generateMenu} selectedTheme={selectedTheme} setSelectedTheme={setSelectedTheme} setTheme={setTheme} toggle={toggle}/>
-    }
   </>
   )
 }
@@ -73,10 +69,6 @@ const StyledFlex = styled.div`
 `
 const StyledUserInput = styled.div`
   text-align: right;
-`
-
-const StyledQuestion = styled.div`
-  margin-bottom: 20px;
 `
 
 export default PartyDetailModalContent;
