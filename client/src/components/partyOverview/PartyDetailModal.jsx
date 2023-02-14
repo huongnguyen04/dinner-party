@@ -6,10 +6,10 @@ import styled from 'styled-components';
 const container = document.getElementById('root');
 
 const PartyDetailModal = ({ visible, toggle, setTheme, setDate, setHost, generateMenu }) => visible ? ReactDOM.createPortal(
-  <div className="modal">
-    <div className="modal-pop" role="dialog" aria-modal="true">
+  <div className='modal'>
+    <div className='modal-pop' role='dialog' aria-modal='true'>
       <StyledXButtonAlign>
-        <button className='xButton' type="button" onClick={() => {
+        <button className='xButton' type='button' onClick={() => {
           toggle();
         }}>ⓧ</button>
       </StyledXButtonAlign>
@@ -19,7 +19,7 @@ const PartyDetailModal = ({ visible, toggle, setTheme, setDate, setHost, generat
       <PartyDetailModalContent toggle={toggle} setTheme={setTheme} setDate={setDate} setHost={setHost} generateMenu={generateMenu} />
 
     </div>
-    <div className="modal-overlay"></div>
+    <div className='modal-overlay'></div>
   </div>, container
 ) : null;
 
