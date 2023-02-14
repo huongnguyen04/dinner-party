@@ -1,17 +1,16 @@
 const { Cuisine } = require('../db/connection.js');
 
-
 const getCuisines = (req, res) => {
   Cuisine.distinct('type')
     .then((cuisines) => {
-      console.log('cuisines: ', cuisines)
+      // console.log('cuisines: ', cuisines)
       res.send(cuisines);
     })
     .catch(console.error)
 }
 
 const getCuisinesData = (req, res) => {
-  let theme = req.params.theme;
+  let theme = req.params.theme.toLowerCase();
   let data = {};
   Cuisine.find({'type': theme})
     .then((result) => {
