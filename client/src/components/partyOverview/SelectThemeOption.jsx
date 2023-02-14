@@ -38,7 +38,7 @@ const SelectThemeOption = ({ cuisines, setCuisines, generateMenu, selectedTheme,
               }
               getCuisines();
             }
-          }}>
+          }} required>
           <option value='select'>Select an option</option>
           <option value='input'>I want to input a theme</option>
           <option value='list'>I want choose from a list</option>
