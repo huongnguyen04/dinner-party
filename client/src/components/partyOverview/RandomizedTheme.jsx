@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
-const RandomizedTheme = ({ cuisines, setTempTheme }) => {
+const RandomizedTheme = ({ cuisines, tempTheme, setTempTheme }) => {
   let random = cuisines[Math.floor(Math.random() * cuisines.length)];
 
   useEffect(() => setTempTheme(random), [])
 
   return (
     <>
-    your random theme is: {random}
+      Your random theme is: {tempTheme}
     </>
   )
 };
