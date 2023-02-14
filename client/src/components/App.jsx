@@ -72,10 +72,8 @@ const StyledButtonContainer = styled.div`
 const StyledButtons = styled.div`
   button {
     margin: 3px;
-    // color: ${({ theme }) => theme.overviewButtonText};
-    color: white;
-    // background-color: ${({ theme }) => theme.overviewButtonBackground};
-    background-color: none;
+    color: ${({ theme }) => theme.navButton};
+    background-color: ${({ theme }) => theme.navButtonBg};
     border: none;
     &:hover {
       color: #e8a7ae;

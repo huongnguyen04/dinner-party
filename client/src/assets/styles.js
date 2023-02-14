@@ -20,15 +20,23 @@ border {
   border-radius: 3.5px;
 }
 
+.plus {
+  background: none;
+  border: ${({ theme }) => theme.guestAreaBorder};
+}
+
 .xButton {
   padding: 0px;
   border: none;
   font-size: 16px;
+  background: none;
 }
 
 .nextButton {
   border: 1px solid white;
-  margin-top: 50px;
+  margin-top: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 button {
@@ -39,6 +47,34 @@ button {
   padding: 5px;
   border: solid 1px white;
   border-radius: 5px;
+}
+
+.modal-pop {
+  background: ${({ theme }) => theme.buttonBackground};
+  color: #F5F5F5;
+  border: 2px solid #aaa;
+  border-radius: 5px;
+  z-index: 2;
+  /* max-width: 420px; */
+  min-width: 500px;
+  min-height: 250px;
+  margin: auto;
+  padding: 1em 2em 2em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgb(0, 0, 0);
+  opacity: 0.75;
 }
 
 #banner {
@@ -91,32 +127,6 @@ input[type=submit] {
   padding: 5px;
   border-radius: 5px;
   border: 1px solid white;
-}
-
-.modal-pop {
-  background: #904E55;
-  border: 2px solid #aaa;
-  border-radius: 5px;
-  z-index: 2;
-  /* max-width: 420px; */
-  min-width: 500px;
-  min-height: 250px;
-  margin: auto;
-  padding: 1em 2em 2em;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  background-color: rgb(0, 0, 0);
-  opacity: 0.75;
 }
 
 form {
@@ -203,8 +213,6 @@ form {
     opacity: 0;
   }
 }
-
-
 `
 
 export { AppStyle };

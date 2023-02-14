@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PartyDetailModal from './PartyDetailModal.jsx';
 import useModal from '../useModal.jsx';
-import '../../assets/modal.css';
 
 const PartyOverview = ({ theme, setTheme, date, setDate, host, setHost, generateMenu, sendPartyOverviewDetails, watch, setWatch, logout, setViewParty, setCurrentParty, resetParty, createNewParty }) => {
   const {toggle, visible} = useModal();
@@ -56,11 +55,9 @@ const StyledButtonContainer = styled.div`
 
   button {
     margin: 3px;
-    // color: ${({ theme }) => theme.overviewButtonText};
-    color: white;
-    // background-color: ${({ theme }) => theme.overviewButtonBackground};
-    background-color: none;
-    border: solid 1px white;
+    color: ${({ theme }) => theme.navButton};
+    background-color: ${({ theme }) => theme.navButtonBg};
+    border: ${({ theme }) => theme.navButtonBrdr};
     &:hover {
       box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24),0 5px 10px 0 rgba(0,0,0,0.19);
     }

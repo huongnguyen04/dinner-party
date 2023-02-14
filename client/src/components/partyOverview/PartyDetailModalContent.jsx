@@ -41,7 +41,7 @@ const PartyDetailModalContent = ({ toggle, setTheme, setDate, setHost, generateM
             </StyledUserInput>
           </StyledFlex>
           <br></br>
-          <input type='submit' value={"next"}></input>
+          <input type='submit' value='Next'></input>
         </form>
       </>
       }
